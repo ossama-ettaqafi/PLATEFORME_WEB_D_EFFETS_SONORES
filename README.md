@@ -1,19 +1,19 @@
 # Meow-it: Plateforme de partage d'effets sonores
 
-<center>
+<div align="center">
 Plateforme Logo
-</center>
-<center>
+<br>
 <img src="https://i.ibb.co/Bc4gXkf/meow-it-logo-new.png" alt="meow-it-logo-new" width="200">
-</center>
 
-<center>
 Technologies
-</center>
-<center>
-<img src="https://angular.io/assets/images/logos/angular/angular.png" alt="Angular Logo" width="50"> <img src="https://laravel.com/img/logomark.min.svg" alt="Laravel Logo" width="40"><br><img src="https://img.icons8.com/color/452/html-5.png" alt="HTML Logo" width="50"><img src="https://img.icons8.com/color/452/css3.png" alt="CSS Logo" width="50"><br><img src="https://www.php.net/images/logos/new-php-logo.png" alt="PHP Logo" width="50"><img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" alt="SQL Logo" width="80">
-</center>
-
+<br> 
+<img src="https://angular.io/assets/images/logos/angular/angular.png" alt="Angular Logo" width="50">
+<img src="https://laravel.com/img/logomark.min.svg" alt="Laravel Logo" width="40"><br>
+<img src="https://img.icons8.com/color/452/html-5.png" alt="HTML Logo" width="50">
+<img src="https://img.icons8.com/color/452/css3.png" alt="CSS Logo" width="50"><br>
+<img src="https://www.php.net/images/logos/new-php-logo.png" alt="PHP Logo" width="50">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" alt="SQL Logo" width="80">
+</div>
 
 ## Introduction 🌟
 
