@@ -17,6 +17,8 @@ import { ProfileInfosComponent } from './components/profile-infos/infos.componen
 import { TrackDetailComponent } from './components/track/track-detail/track-detail.component';
 import { TrackOwnerComponent } from './components/track/track-owner/track-owner.component';
 import { TrackEditComponent } from './components/track/track-edit/track-edit.component';
+import { TracksComponent } from './components/containers/tracks/tracks.component';
+import { ArtistsComponent } from './components/containers/artists/artists.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { TrackEditComponent } from './components/track/track-edit/track-edit.com
     ProfileInfosComponent,
     TrackDetailComponent,
     TrackOwnerComponent,
-    TrackEditComponent
+    TrackEditComponent,
+    TracksComponent,
+    ArtistsComponent
   ],
   imports: [
     BrowserModule,

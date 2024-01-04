@@ -14,6 +14,7 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.2s ease;
     padding-left: 0;
+    z-index: 99;
 }
 
 .music-player:hover {
