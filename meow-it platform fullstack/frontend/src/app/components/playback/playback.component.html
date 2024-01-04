@@ -1,0 +1,19 @@
+<div class="music-player">
+    <div class="album-art">
+        <img [src]="imageURL" alt="Album Art">
+    </div>
+    <div class="track-info">
+        <div class="track-title">{{currentTrack}}</div>
+        <div class="track-artist">{{artistName}}</div>
+    </div>
+    <div class="progress-bar-container">
+        <div class="heart-icon liked"><i class="fas fa-heart"></i></div>
+        <progress class="progress-bar" value="" [max]="maxTime"></progress>
+    </div>
+    <div class="duration">{{maxTimeString}}</div>
+    <div class="playback-controls">
+        <!-- <button class="prev-btn"><i class="fas fa-step-backward"></i></button> -->
+        <button class="play-pause-btn"><i class="fas fa-pause"></i></button>
+        <!-- <button class="next-btn"><i class="fas fa-step-forward"></i></button> -->
+    </div>
+</div>

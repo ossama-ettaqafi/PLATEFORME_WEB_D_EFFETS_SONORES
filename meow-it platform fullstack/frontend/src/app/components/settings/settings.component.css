@@ -1,0 +1,110 @@
+.main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    width: 400px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 40px 40px 80px;
+    overflow: hidden;
+    position: relative;
+}
+
+.avatar-container {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.avatar-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.avatar-container img:hover {
+    transform: scale(1.1);
+}
+
+/* Container for the edit icon */
+.edit-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 2;
+}
+
+/* Style for the edit icon */
+.edit-icon i {
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.edit-icon i:hover {
+    color: #f4f4f4;
+    transform: scale(1.1);
+}
+
+.form-container {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333333;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    background-color: #fff;
+}
+
+.save-button {
+    background-color: #27ae60;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    font-size: 12px;
+}
+
+.save-button:hover {
+    background-color: #218f53;
+}
+
+.save-button i {
+    margin-right: 8px;
+}

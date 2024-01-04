@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="profile-container">
+    <div class="profile-section">
+      <div class="profile-pic">
+        <img [src]="user.image" alt="Profile Picture">
+      </div>
+
+      <div class="profile-details">
+        <h2>{{ user.name }}</h2>
+        <p>{{ user.location }}</p>
+        <p>Joining Date: {{ user.joiningDate }}</p>
+        <button class="follow-button">Follow</button>
+      </div>
+    </div>
+
+    <div class="profile-buttons-container">
+      <div *ngFor="let button of user.profileButtons" class="profile-column">
+        <div class="profile-button">
+          <i [class]="button.iconClass"></i>
+          {{ button.count }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bio-container">
+    <h3>Bio</h3>
+    <p>{{ user.bio }}</p>
+  </div>
+</div>
