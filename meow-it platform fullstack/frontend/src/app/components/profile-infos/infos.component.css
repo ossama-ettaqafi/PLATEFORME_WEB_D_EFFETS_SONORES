@@ -108,6 +108,7 @@ p {
   border-radius: 4px;
   cursor: pointer;
   margin-top: 10px;
+  font-size: 14px;
 }
 
 .follow-button:hover {
@@ -155,6 +156,6 @@ p {
   }
 
   .follow-button {
-    font-size: 14px;
+    font-size: 12px;
   }
 }

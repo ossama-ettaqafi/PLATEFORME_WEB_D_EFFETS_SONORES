@@ -1,0 +1,29 @@
+<div class="track-details">
+  <div class="image-container">
+    <img [src]="track.imageURL" alt="Track Image">
+  </div>
+
+  <div class="track-info">
+    <h2>
+      {{track.trackName}}
+    </h2>
+    <p>
+      <span class="icon"><i class="fas fa-user"></i></span> {{track.artistName}}
+    </p>
+    <p>
+      <span class="icon"><i class="fas fa-clock"></i></span> {{track.trackDuration}}
+    </p>
+    <p>
+      <span class="icon"><i class="fas fa-calendar-alt"></i></span> {{track.uploadDate}}
+    </p>
+    <p>
+      <span class="icon"><i class="fas fa-heart"></i></span> {{track.likeCount}}
+    </p>
+  </div>
+
+  <div class="buttons">
+    <button class="button play-button"><i class="fas fa-play"></i></button>
+    <button class="button heart-button"><i class="fas fa-heart"></i></button>
+    <button class="button download-button"><i class="fas fa-download"></i></button>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+.track-details {
+  width: 40%;
+  min-width: 40%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.image-container {
+  width: 100%;
+  max-height: 200px;
+  text-align: center;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.image-container img:hover {
+  transform: scale(1.1);
+}
+
+.track-info {
+  flex: 0;
+  padding-left: 20px;
+}
+
+h2,
+p {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.track-info h2 {
+  margin-bottom: 20px;
+}
+
+.icon {
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+h2 {
+  color: #333;
+  font-size: 1.8em;
+  margin-top: 10px;
+}
+
+p {
+  color: #555;
+  margin: 5px 0;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.button {
+  margin: 0 5px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  color: #fff;
+  background: none;
+  font-size: 15px;
+  border-radius: 50%;
+  padding: 5px 5px;
+  transition: width 0.5s ease-in-out, height 0.5s ease-in-out, padding 0.5s ease-in-out;
+}
+
+.heart-button {
+  color: #666;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.heart-button:hover {
+  color: #FF1493;
+}
+
+.download-button {
+  margin-left: auto;
+  color: #800080;
+  font-size: 13px;
+}
+
+.download-button:hover {
+  color: #8A2BE2;
+}
+
+.play-button {
+  background: linear-gradient(45deg, #FF007F, #800080);
+  border-radius: 50%;
+  padding: 10px 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.play-button:hover {
+  background: linear-gradient(45deg, #FF1493, #8A2BE2);
+}

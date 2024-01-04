@@ -14,7 +14,9 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { SettingsComponent } from './components/settings/settings.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ProfileInfosComponent } from './components/profile-infos/infos.component';
-import { ContainerComponent } from './components/container/container.component';
+import { TrackDetailComponent } from './components/track/track-detail/track-detail.component';
+import { TrackOwnerComponent } from './components/track/track-owner/track-owner.component';
+import { TrackEditComponent } from './components/track/track-edit/track-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ContainerComponent } from './components/container/container.component';
     SettingsComponent,
     NotificationsComponent,
     ProfileInfosComponent,
-    ContainerComponent
+    TrackDetailComponent,
+    TrackOwnerComponent,
+    TrackEditComponent
   ],
   imports: [
     BrowserModule,

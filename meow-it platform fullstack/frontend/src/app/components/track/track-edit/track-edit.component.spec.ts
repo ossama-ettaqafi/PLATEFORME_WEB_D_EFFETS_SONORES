@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ContainerComponent } from './container.component';
+import { TrackEditComponent } from './track-edit.component';
 
-describe('ContainerComponent', () => {
-  let component: ContainerComponent;
-  let fixture: ComponentFixture<ContainerComponent>;
+describe('TrackEditComponent', () => {
+  let component: TrackEditComponent;
+  let fixture: ComponentFixture<TrackEditComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ContainerComponent]
+      declarations: [TrackEditComponent]
     });
-    fixture = TestBed.createComponent(ContainerComponent);
+    fixture = TestBed.createComponent(TrackEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
