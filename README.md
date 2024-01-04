@@ -1,3 +1,11 @@
+<div align="center">
+  
+### Captures d'écran de l'interface / progression du projet
+<a href="https://drive.google.com/drive/folders/1Y3fxcTsiJ2nF_YQMAfViY1RmNV1n2Q-l?usp=drive_link"> <img src="https://www.gstatic.com/images/icons/material/product/2x/drive_48dp.png" alt="ossama's google drive" width="50"></a>
+<br>
+<p><a href="https://drive.google.com/drive/folders/1Y3fxcTsiJ2nF_YQMAfViY1RmNV1n2Q-l?usp=drive_link">Cliquez ici</a> ou dans l'icône ci-dessu</p>
+</div>
+
 # Meow-it: Plateforme de partage d'effets sonores
 
 <div align="center">
