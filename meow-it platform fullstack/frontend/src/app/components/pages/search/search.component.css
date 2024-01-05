@@ -19,3 +19,13 @@
   align-items: center;
   position: relative;
 }
+
+.nothing-found {
+  margin-top: -10px;
+}
+
+@media screen and (max-width: 860px) {
+  .main-content:first-of-type .container{
+    margin-top: 0;
+  }
+}

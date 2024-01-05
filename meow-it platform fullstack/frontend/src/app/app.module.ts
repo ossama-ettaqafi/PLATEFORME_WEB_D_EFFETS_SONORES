@@ -17,8 +17,15 @@ import { ProfileInfosComponent } from './components/profile-infos/infos.componen
 import { TrackDetailComponent } from './components/track/track-detail/track-detail.component';
 import { TrackOwnerComponent } from './components/track/track-owner/track-owner.component';
 import { TrackEditComponent } from './components/track/track-edit/track-edit.component';
-import { TracksComponent } from './components/containers/tracks/tracks.component';
-import { ArtistsComponent } from './components/containers/artists/artists.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { SearchComponent } from './components/pages/search/search.component';
+import { NotificationsPageComponent } from './components/pages/notifications-page/notifications-page.component';
+import { SettingsPageComponent } from './components/pages/settings-page/settings-page.component';
+import { LoginPageComponent } from './components/pages/auth/login-page/login-page.component';
+import { RegisterPageComponent } from './components/pages/auth/register-page/register-page.component';
+import { ProfilePageComponent } from './components/pages/profile-page/profile-page.component';
+import { TrackPageComponent } from './components/pages/track/track-page/track-page.component';
+import { EditTrackPageComponent } from './components/pages/track/edit-track-page/edit-track-page.component';
 
 @NgModule({
   declarations: [
@@ -37,8 +44,15 @@ import { ArtistsComponent } from './components/containers/artists/artists.compon
     TrackDetailComponent,
     TrackOwnerComponent,
     TrackEditComponent,
-    TracksComponent,
-    ArtistsComponent
+    HomeComponent,
+    SearchComponent,
+    NotificationsPageComponent,
+    SettingsPageComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
+    ProfilePageComponent,
+    TrackPageComponent,
+    EditTrackPageComponent
   ],
   imports: [
     BrowserModule,

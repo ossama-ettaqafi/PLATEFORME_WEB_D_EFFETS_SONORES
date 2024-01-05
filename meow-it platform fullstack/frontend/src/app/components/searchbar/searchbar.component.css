@@ -1,3 +1,16 @@
+.main-content {
+  margin-left: 80px;
+  padding: 16px;
+  margin-left: 80px;
+}
+
+.search-container{
+  display: flexbox;
+  margin-left: 80px;
+  padding: 16px;
+  margin-bottom: 40px;
+}
+
 .search-icon {
     border: none;
     border-radius: 50%;

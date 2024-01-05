@@ -3,7 +3,7 @@
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 
 body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #ecf0f1;
+  margin: 0 !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  background-color: #ecf0f1 !important;
 }
