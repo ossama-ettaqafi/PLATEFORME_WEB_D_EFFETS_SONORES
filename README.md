@@ -6,7 +6,7 @@
 <p><a href="https://drive.google.com/drive/folders/1Y3fxcTsiJ2nF_YQMAfViY1RmNV1n2Q-l?usp=drive_link">Cliquez ici</a> ou dans l'icône ci-dessu</p>
 </div>
 
-# Meow-it: Plateforme de partage d'effets sonores
+# meow-it: Plateforme de partage d'effets sonores
 
 <div align="center">
 Plateforme Logo
@@ -26,7 +26,7 @@ Technologies
 ## Introduction 🌟
 
 ### Aperçu 🌐
-Meow-It est une plateforme animée par la communauté, conçue pour les passionnés de son afin de partager, découvrir et apprécier des effets sonores uniques. Ce document présente les fonctionnalités clés, les détails techniques et les interactions utilisateur au sein de l'application Meow-It.
+meow-it est une plateforme animée par la communauté, conçue pour les passionnés de son afin de partager, découvrir et apprécier des effets sonores uniques. Ce document présente les fonctionnalités clés, les détails techniques et les interactions utilisateur au sein de l'application meow-it.
 
 ### Objectifs 🎶
 1. Favoriser une communauté dynamique d'utilisateurs passionnés par le son.
