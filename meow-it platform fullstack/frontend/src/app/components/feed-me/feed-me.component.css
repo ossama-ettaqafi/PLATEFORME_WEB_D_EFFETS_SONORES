@@ -10,6 +10,7 @@
 .main-content {
   margin-left: 80px;
   padding: 16px;
+  margin-right: 0;
 }
 
 .upload-button {
@@ -151,7 +152,7 @@ h2 {
 
 @media screen and (max-width: 860px) {
   .main-content h2 {
-    font-size: 20px;
+    font-size: 22px;
     width: 60%;
   }
 

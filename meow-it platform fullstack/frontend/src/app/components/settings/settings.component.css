@@ -124,12 +124,17 @@
 }
 
 @media screen and (max-width: 860px) {
+  .main-content h2 {
+    font-size: 22px;
+    width: 60%;
+  }
+
   .avatar-container {
     width: 150px;
     height: 150px;
   }
 
-  .error-message{
+  .error-message {
     font-size: 12px;
     left: 10px;
   }

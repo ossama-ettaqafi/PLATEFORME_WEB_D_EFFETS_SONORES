@@ -82,3 +82,10 @@
 h2 {
     color: #333;
 }
+
+@media screen and (max-width: 860px) {
+  .main-content h2 {
+    font-size: 22px;
+    width: 60%;
+  }
+}
