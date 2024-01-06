@@ -1,9 +1,9 @@
 <div align="center">
   
 ### Captures d'écran de l'interface / progression du projet
-<a href="https://drive.google.com/drive/folders/1Y3fxcTsiJ2nF_YQMAfViY1RmNV1n2Q-l?usp=drive_link"> <img src="https://www.gstatic.com/images/icons/material/product/2x/drive_48dp.png" alt="ossama's google drive" width="50"></a>
+<a href="https://drive.google.com/drive/folders/1Y3fxcTsiJ2nF_YQMAfViY1RmNV1n2Q-l?usp=drive_link"> <img src="https://www.gstatic.com/images/icons/material/product/2x/drive_48dp.png" alt="ossama's google drive" width="50" title="Voir les captures d'écran de l'interface"></a>
+<a href="https://occipital-tornado-e71.notion.site/Avancement-du-projet-individuel-28cd8f345c874f118fd48eb2865e4847?pvs=4"> <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="ossama's notion" title="Voir la progression du projet" width="50"></a>
 <br>
-<p><a href="https://drive.google.com/drive/folders/1Y3fxcTsiJ2nF_YQMAfViY1RmNV1n2Q-l?usp=drive_link">Cliquez ici</a> ou dans l'icône ci-dessu</p>
 </div>
 
 # meow-it: Plateforme de partage d'effets sonores
