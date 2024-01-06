@@ -166,6 +166,16 @@ button:hover {
     color: #B48CF9;
 }
 
+.logo-image {
+  height: 40px;
+}
+
+.logo-image img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 @media (max-width: 768px) {
     .card {
         flex-direction: column;

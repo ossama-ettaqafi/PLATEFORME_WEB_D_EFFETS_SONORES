@@ -1,12 +1,21 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 100px;
+  padding: 16px;
+  padding-right: 0;
+}
+
 .container {
   display: flex;
   flex-direction: row;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin: 140px;
-  margin-top: 40px;
-  margin-bottom: 0;
-  width: 80%;
+  align-items: flex-start;
+  gap: 50px;
+  margin: 60px;
+  margin-right: 0;
+  width: 90%;
 }
 
 .profile-container {
@@ -17,8 +26,7 @@
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  width: 60%;
-  /* height: 220px; */
+  width: 50%;
   transition: box-shadow 0.3s ease;
 }
 
@@ -53,11 +61,6 @@
   flex: 1;
   padding: 20px;
   text-align: left;
-}
-
-.profile-details h2 {
-  margin-top: 0;
-  color: #333;
 }
 
 .profile-details p {
@@ -119,6 +122,7 @@ p {
 .bio-container {
   overflow: hidden;
   margin-left: 10px;
+  margin-right: 0;
   width: 30%;
 }
 
@@ -143,11 +147,12 @@ p {
     flex: 1;
   }
 
-  .profile-details h2, .bio-container h3 {
+  .bio-container h3 {
     font-size: 20px;
   }
 
-  .profile-details p, .bio-container p {
+  .profile-details p,
+  .bio-container p {
     font-size: 12px;
   }
 
@@ -157,5 +162,10 @@ p {
 
   .follow-button {
     font-size: 12px;
+  }
+
+  .main-content h2 {
+    font-size: 22px;
+    width: 60%;
   }
 }
