@@ -4,7 +4,7 @@
 
 .comments-section h3 {
   color: #333;
-  padding-bottom: 10px;
+  padding-bottom: 40px;
   font-size: 1.4em;
 }
 
@@ -33,6 +33,9 @@
   font-size: 1.2em;
 }
 
-/* .comments-section .comment:nth-last-child(2) {
-  margin-bottom: 40px;
-} */
+@media (max-width: 980px) {
+  .main-content h2 {
+    font-size: 22px;
+    width: 60%;
+  }
+}
