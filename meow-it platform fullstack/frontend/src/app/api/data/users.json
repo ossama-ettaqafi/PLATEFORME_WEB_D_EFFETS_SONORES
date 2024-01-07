@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "hashed_password",
+    "bio": "Sample bio",
+    "join_date": "2022-01-07",
+    "country": "Sample Country",
+    "city": "Sample City",
+    "image_path": "assets/images/def/user-image.png"
+  },
+  {
+    "id": 2,
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "password": "hashed_password",
+    "bio": "Another bio",
+    "join_date": "2022-01-08",
+    "country": "Another Country",
+    "city": "Another City",
+    "image_path": "assets/images/def/user-image.png"
+  },
+  {
+    "id": 3,
+    "name": "Bob Smith",
+    "email": "bob@example.com",
+    "password": "hashed_password",
+    "bio": "Bob's bio",
+    "join_date": "2022-01-09",
+    "country": "Bob's Country",
+    "city": "Bob's City",
+    "image_path": "assets/images/def/user-image.png"
+  },
+  {
+    "id": 4,
+    "name": "Alice Johnson",
+    "email": "alice@example.com",
+    "password": "hashed_password",
+    "bio": "Alice's bio",
+    "join_date": "2022-01-10",
+    "country": "Alice's Country",
+    "city": "Alice's City",
+    "image_path": "assets/images/def/user-image.png"
+  }
+]

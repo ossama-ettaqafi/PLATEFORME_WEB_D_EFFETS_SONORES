@@ -1,9 +1,11 @@
-<div class="comments-section">
+<div class="main-content">
   <h2>Notifications</h2>
 
-  <div *ngFor="let comment of comments" class="comment">
-    <i [class]="comment.iconClass"></i>
-    <p>{{ notifContent(comment) }}</p>
-  </div>
+  <div class="container">
+    <div *ngFor="let comment of comments" class="comment">
+      <i [class]="comment.iconClass"></i>
+      <p>{{ notifContent(comment) }}</p>
+    </div>
 
+  </div>
 </div>

@@ -26,6 +26,12 @@ import { RegisterPageComponent } from './components/pages/auth/register-page/reg
 import { ProfilePageComponent } from './components/pages/profile-page/profile-page.component';
 import { TrackPageComponent } from './components/pages/track/track-page/track-page.component';
 import { EditTrackPageComponent } from './components/pages/track/edit-track-page/edit-track-page.component';
+import { NotfoundComponent } from './components/pages/notfound/notfound.component';
+import { UsersService } from './services/users.service';
+import { TracksService } from './services/tracks.service';
+import { NotificationsService } from './services/notifications.service';
+import { LikesService } from './services/likes.service';
+import { FollowsService } from './services/follows.service';
 
 @NgModule({
   declarations: [
@@ -52,13 +58,20 @@ import { EditTrackPageComponent } from './components/pages/track/edit-track-page
     RegisterPageComponent,
     ProfilePageComponent,
     TrackPageComponent,
-    EditTrackPageComponent
+    EditTrackPageComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    UsersService,
+    TracksService,
+    NotificationsService,
+    LikesService,
+    FollowsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

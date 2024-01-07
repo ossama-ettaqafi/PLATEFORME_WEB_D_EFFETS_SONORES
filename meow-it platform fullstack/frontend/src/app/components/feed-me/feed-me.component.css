@@ -40,10 +40,6 @@
   margin-right: 8px;
 }
 
-h2 {
-  color: #333;
-}
-
 .cate-container {
   display: flex;
   flex-direction: column;
