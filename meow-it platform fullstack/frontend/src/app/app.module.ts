@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PlaybackComponent } from './components/playback/playback.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
-import { MusicCardComponent } from './components/music-card/music-card.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { FeedMeComponent } from './components/feed-me/feed-me.component';
 import { LoginComponent } from './components/auth/login/login.component';
@@ -32,6 +31,9 @@ import { TracksService } from './services/tracks.service';
 import { NotificationsService } from './services/notifications.service';
 import { LikesService } from './services/likes.service';
 import { FollowsService } from './services/follows.service';
+import { TrackCardComponent } from './components/track-card/track-card.component';
+import { UploadTrackPageComponent } from './components/pages/track/upload-track-page/upload-track-page.component';
+import { TrackUploadComponent } from './components/track/track-upload/track-upload.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,6 @@ import { FollowsService } from './services/follows.service';
     SidebarComponent,
     PlaybackComponent,
     UserCardComponent,
-    MusicCardComponent,
     SearchbarComponent,
     FeedMeComponent,
     LoginComponent,
@@ -59,7 +60,10 @@ import { FollowsService } from './services/follows.service';
     ProfilePageComponent,
     TrackPageComponent,
     EditTrackPageComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    TrackCardComponent,
+    UploadTrackPageComponent,
+    TrackUploadComponent
   ],
   imports: [
     BrowserModule,

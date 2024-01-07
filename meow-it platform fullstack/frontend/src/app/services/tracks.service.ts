@@ -11,6 +11,7 @@ export class TracksService {
   constructor(private http: HttpClient) { }
 
   getTracks(): Observable<any[]> {
+    console.log(this.http.get<any[]>(this.apiUrl));
     return this.http.get<any[]>(this.apiUrl);
   }
 }
