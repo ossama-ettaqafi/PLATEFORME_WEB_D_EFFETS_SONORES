@@ -7,17 +7,31 @@ import { SearchComponent } from './components/pages/search/search.component';
 import { TrackPageComponent } from './components/pages/track/track-page/track-page.component';
 import { SettingsPageComponent } from './components/pages/settings-page/settings-page.component';
 import { NotfoundComponent } from './components/pages/notfound/notfound.component';
+import { LoginPageComponent } from './components/pages/auth/login-page/login-page.component';
+import { RegisterPageComponent } from './components/pages/auth/register-page/register-page.component';
+import { UploadTrackPageComponent } from './components/pages/track/upload-track-page/upload-track-page.component';
+import { TrackEditComponent } from './components/track/track-edit/track-edit.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'notifications', component: NotificationsPageComponent},
-  { path: 'profile/:id', component: ProfilePageComponent},
   { path: 'search', component: SearchComponent},
-  { path: 'track/:id', component: TrackPageComponent},
-  { path: 'settings', component: SettingsPageComponent},
-  { path: '404', component: NotfoundComponent},
-  { path: '**', redirectTo:'404', pathMatch: 'full'}
+  { path: 'profile/:id', component: ProfilePageComponent,
+    children: [
+      { path: 'edit', component: SettingsPageComponent}
+    ]
+  },
+  { path: 'track/:id', component: TrackPageComponent,
+    children: [
+      { path: 'edit', component: TrackEditComponent}
+    ]
+  },
+  { path: 'upload-track', component: UploadTrackPageComponent},
+  { path: 'login', component: LoginPageComponent},
+  { path: 'register', component: RegisterPageComponent},
+  { path: 'notfound', component: NotfoundComponent},
+  { path: '**', redirectTo:'notfound', pathMatch: 'full'}
 ];
 
 @NgModule({

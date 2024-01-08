@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-track-detail',
@@ -14,4 +15,15 @@ export class TrackDetailComponent {
     uploadDate: 'January 1, 2023',
     likeCount: 100
   }
+
+  constructor(private router: Router) { }
+
+  showTitle: boolean = false;
+
+  ngOnInit() {
+    this.router.events.subscribe(() => {
+      this.showTitle = this.router.url.includes('/edit')? false : true;
+    });
+  }
+
 }

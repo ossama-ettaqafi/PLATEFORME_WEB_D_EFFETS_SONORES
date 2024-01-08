@@ -24,7 +24,6 @@ import { LoginPageComponent } from './components/pages/auth/login-page/login-pag
 import { RegisterPageComponent } from './components/pages/auth/register-page/register-page.component';
 import { ProfilePageComponent } from './components/pages/profile-page/profile-page.component';
 import { TrackPageComponent } from './components/pages/track/track-page/track-page.component';
-import { EditTrackPageComponent } from './components/pages/track/edit-track-page/edit-track-page.component';
 import { NotfoundComponent } from './components/pages/notfound/notfound.component';
 import { UsersService } from './services/users.service';
 import { TracksService } from './services/tracks.service';
@@ -59,7 +58,6 @@ import { TrackUploadComponent } from './components/track/track-upload/track-uplo
     RegisterPageComponent,
     ProfilePageComponent,
     TrackPageComponent,
-    EditTrackPageComponent,
     NotfoundComponent,
     TrackCardComponent,
     UploadTrackPageComponent,

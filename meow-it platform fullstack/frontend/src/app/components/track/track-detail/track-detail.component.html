@@ -4,9 +4,15 @@
   </div>
 
   <div class="track-info">
-    <h2>
-      {{track.trackName}}
-    </h2>
+
+    <ng-container *ngIf="showTitle">
+      <h2>
+        {{track.trackName}}
+      </h2>
+    </ng-container>
+
+    <router-outlet></router-outlet>
+
     <p>
       <span class="icon"><i class="fas fa-user"></i></span> {{track.artistName}}
     </p>

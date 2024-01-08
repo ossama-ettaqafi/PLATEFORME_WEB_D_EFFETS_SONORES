@@ -9,10 +9,11 @@
 <!-- <app-settings></app-settings> -->
 <!-- <app-notifications></app-notifications> -->
 <!-- <app-infos></app-infos> -->
-<app-track-detail></app-track-detail>
+<!-- <app-track-detail></app-track-detail> -->
 <!-- <app-track-owner></app-track-owner> -->
-<app-track-edit></app-track-edit>
-<app-track-upload></app-track-upload>
+<!-- <app-track-edit></app-track-edit> -->
+
+<!-- <app-track-upload></app-track-upload> -->
 
 <!-- Full pages -->
 <!-- <app-home></app-home> -->
@@ -27,12 +28,12 @@
 <!-- <app-notfound></app-notfound> -->
 
 <!-- Navbar & Playback elements -->
-<!-- <app-sidebar></app-sidebar>
-<app-playback></app-playback> -->
+<ng-container *ngIf="showSidebarAndPlayback">
+  <app-sidebar></app-sidebar>
+  <app-playback></app-playback>
+</ng-container>
 
 <!-- Changeable element -->
-<!-- <router-outlet></router-outlet> -->
+<router-outlet></router-outlet>
 
-
-<footer class="site-footer">
-</footer>
+<footer class="site-footer" *ngIf="showSidebarAndPlayback"></footer>
