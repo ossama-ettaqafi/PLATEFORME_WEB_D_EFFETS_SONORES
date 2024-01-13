@@ -16,7 +16,7 @@
 }
 
 .left-section {
-  flex: 1;
+  flex: 2;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -27,12 +27,14 @@
 }
 
 .right-section {
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   padding: 40px;
 }
+
 
 .right-section form {
   margin: 0 auto;
@@ -70,6 +72,7 @@
 
 input {
   display: block;
+  width: 300px;
   padding: 10px;
   padding-left: 30px;
   margin-bottom: 10px;
@@ -88,7 +91,7 @@ button {
   display: block;
   width: 60%;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 40px;
   background: linear-gradient(45deg, #FFD700, #FFA500);
   color: #ffffff;
   border: none;
@@ -103,8 +106,8 @@ button:hover {
 }
 
 .login-image {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   padding: 20px;
   object-fit: cover;
 }
@@ -173,44 +176,58 @@ button:hover {
   color: #B48CF9;
 }
 
+.error-message {
+  position: absolute;
+  bottom: 38%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #e74c3c;
+  font-size: 14px;
+}
+
 @media (max-width: 768px) {
+  .login-image {
+    width: 150px;
+    height: 150px;
+  }
+
   .card {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .left-section,
   .right-section {
-      text-align: center;
+    text-align: center;
   }
 
   .right-section {
-      padding-top: 0px;
-      margin-top: -30px;
+    padding-top: 0px;
+    margin-top: -30px;
   }
 
   .left-section {
-      margin-right: 0px;
-      border-radius: 50%;
-      overflow: hidden;
-      position: relative;
-      top: -50px;
-      height: 150px;
-      transition: background-color 0.3s ease;
+    margin-right: 0px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    top: -50px;
+    height: 150px;
+    transition: background-color 0.3s ease;
   }
 
   .inverse .left-section {
-      order: 1;
-      margin-right: 0px;
-      border-radius: 50%;
-      overflow: hidden;
-      position: relative;
-      top: -50px;
-      height: 150px;
+    order: 1;
+    margin-right: 0px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    top: -50px;
+    height: 150px;
   }
 
   .inverse .right-section {
-      order: 2;
-      text-align: center;
+    order: 2;
+    text-align: center;
   }
 }

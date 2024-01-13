@@ -30,6 +30,8 @@ import { UploadTrackPageComponent } from './components/pages/track/upload-track-
 import { TrackUploadComponent } from './components/track/track-upload/track-upload.component';
 import { UploadButtonComponent } from './components/upload-button/upload-button.component';
 import { CategoryPageComponent } from './components/pages/category-page/category-page.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { CategoryPageComponent } from './components/pages/category-page/category
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     UsersService,

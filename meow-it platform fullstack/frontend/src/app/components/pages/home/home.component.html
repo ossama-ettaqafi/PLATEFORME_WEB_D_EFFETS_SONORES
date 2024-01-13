@@ -1,9 +1,9 @@
 <div class="main-content">
-  <h2>{{welcomeMessage}}</h2>
+  <h2 *ngIf="this.loggedUser && this.loggedUser.length > 0">Welcome, {{ this.loggedUser[0]?.name }}</h2>
 
   <div class="container">
     <div class="pub-container">
-      <img [src]="imageURL" alt="meow-it publication">
+      <img src="assets/images/def/feed-pub.png" alt="meow-it publication">
     </div>
 
     <div class="cate-container">
@@ -27,8 +27,9 @@
     <h3>Artists</h3>
 
     <div class="cards-container">
-      <app-user-card></app-user-card>
+      <app-user-card *ngFor="let user of users" [userData]="user"></app-user-card>
     </div>
+
   </div>
 </div>
 

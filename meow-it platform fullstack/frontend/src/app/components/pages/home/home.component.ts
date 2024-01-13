@@ -1,30 +1,28 @@
-import { Component /*, OnInit*/ } from '@angular/core';
-// import { TracksService } from 'src/app/services/tracks.service';
+import { Component, OnInit} from '@angular/core';
+import { UsersService } from 'src/app/services/users.service';
+import { SharedService } from 'src/app/shared.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  // tracks: any[] | undefined;
+export class HomeComponent implements OnInit {
+  users: any[] | undefined;
+  loggedInUserId: number | null | undefined;
+  loggedUser: any[] | undefined;
 
-  // constructor(private tracksService: TracksService) {}
 
-  // ngOnInit(): void {
+  constructor(private usersService: UsersService, private sharedService: SharedService) {}
 
-  //   console.log("test");
+  ngOnInit(): void {
+    this.loggedInUserId = this.sharedService.getLoggedInUserId();
 
-  //   this.tracksService.getTracks().subscribe(data => {
-  //     this.tracks = data;
-
-  //     console.log(this.tracks);
-  //   });
-  // }
-
-  public userName:string = "OSSAMA"
-  public imageURL:string = "assets/images/def/feed-pub.png";
-  public welcomeMessage:string = `Welcome ${this.userName},`;
+    this.usersService.getUsers().subscribe(data => {
+      this.users = data;
+      this.loggedUser = data.filter(user => user.id == this.loggedInUserId);
+    });
+  }
 
   categories = [
     { id: 1, name: 'Nature', icon: 'fas fa-leaf', side: 'left' },
@@ -34,5 +32,4 @@ export class HomeComponent {
     { id: 5, name: 'Instruments', icon: 'fas fa-music', side: 'right' },
     { id: 6, name: 'Things', icon: 'fas fa-cog', side: 'right' }
   ];
-
 }

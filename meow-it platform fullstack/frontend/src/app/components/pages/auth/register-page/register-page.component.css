@@ -16,7 +16,7 @@
 }
 
 .left-section {
-  flex: 1;
+  flex: 2;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -29,8 +29,8 @@
 .right-section {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   padding: 40px;
 }
 
@@ -44,10 +44,20 @@
   color: #000000;
 }
 
+.logo-image {
+  height: 40px;
+}
+
+.logo-image img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .input-group {
   position: relative;
   margin-bottom: 10px;
-  margin-left: 30px;
+  margin-left: 10px;
 }
 
 .input-group i {
@@ -60,6 +70,7 @@
 
 input {
   display: block;
+  width: 300px;
   padding: 10px;
   padding-left: 30px;
   margin-bottom: 10px;
@@ -92,9 +103,9 @@ button:hover {
   background: linear-gradient(45deg, #FFD700, #FF8C00);
 }
 
-.login-image {
-  width: 150px;
-  height: 150px;
+.register-image {
+  width: 200px;
+  height: 200px;
   padding: 20px;
   object-fit: cover;
 }
@@ -131,15 +142,13 @@ button:hover {
 }
 
 .upload-details {
-  width: 130px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  margin-left: 46px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 300px;
 }
 
 .upload-logo {
@@ -166,17 +175,21 @@ button:hover {
   color: #B48CF9;
 }
 
-.logo-image {
-height: 40px;
+.error-message {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  color: #e74c3c;
+  font-size: 14px;
 }
 
-.logo-image img {
-max-width: 100%;
-height: 100%;
-object-fit: cover;
-}
 
 @media (max-width: 768px) {
+  .register-image {
+    width: 150px;
+    height: 150px;
+  }
+
   .card {
       flex-direction: column;
       align-items: center;

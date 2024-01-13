@@ -4,14 +4,18 @@
     <div class="profile-container">
       <div class="profile-section">
         <div class="profile-pic">
-          <img [src]="user.image" alt="Profile Picture">
+          <img [src]="userData.image_path" alt="{{userData.name}} Profile Picture">
         </div>
 
         <div class="profile-details">
-          <h3>{{ user.name }}</h3>
-          <p>{{ user.location }}</p>
-          <p>Joining Date: {{ user.joiningDate }}</p>
-          <button class="follow-button">Follow</button>
+          <!-- Connected id -->
+          <h3>{{ userData.name }} {{ loggedInUserId == userData.id? "(me)":"" }}</h3>
+          <p>{{ userData.country }}, {{ userData.city }}</p>
+          <p>Joining Date: {{ userData.join_date }}</p>
+          <ng-container *ngIf="loggedInUserId != userData.id">
+            <button class="follow-button">Follow</button>
+          </ng-container>
+
         </div>
       </div>
 
@@ -26,7 +30,7 @@
     </div>
     <div class="bio-container">
       <h3>Bio</h3>
-      <p>{{ user.bio }}</p>
+      <p>{{ userData.bio }}</p>
     </div>
   </div>
 </div>

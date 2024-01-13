@@ -1,5 +1,5 @@
-<div [routerLink]="['/profile', User.id]" class="user-card">
-    <img [src]="User.image" alt="User Image">
-    <p>{{ User.name }}</p>
+<div [routerLink]="['/profile', userData.id]" class="user-card">
+    <img [src]="userData.image_path" alt="User Image">
+    <p>{{ userData.name }}</p>
     <button class="follow-button">Follow</button>
 </div>
