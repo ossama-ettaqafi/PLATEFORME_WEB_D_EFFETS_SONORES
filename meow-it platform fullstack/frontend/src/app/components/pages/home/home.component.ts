@@ -21,4 +21,13 @@ export class HomeComponent {
   //     console.log(this.tracks);
   //   });
   // }
+
+  public category1:any = {
+    Id : 1
+  }
+
+
+  public imageURL:string = "assets/images/def/feed-pub.png";
+  public userName:string = "OSSAMA"
+  public welcomeMessage:string = `Welcome ${this.userName},`;
 }

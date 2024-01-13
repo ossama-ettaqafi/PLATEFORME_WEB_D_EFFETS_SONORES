@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  imageURL:string = "assets/images/def/user-image.png";
+  imageURL: string = "assets/images/def/user-image.png";
+  userId: number = 1;
 }

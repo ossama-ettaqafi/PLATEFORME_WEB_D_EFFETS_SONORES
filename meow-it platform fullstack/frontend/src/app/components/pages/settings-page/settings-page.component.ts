@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./settings-page.component.css']
 })
 export class SettingsPageComponent {
-
+  public imageURL:string = "assets/images/def/test-image.jpg";
 }

@@ -1,4 +1,4 @@
-<div class="artist-card">
+<div class="artist-card" [routerLink]="['/profile', owner.ownerId]">
   <div class="first-info">
     <img [src]="owner.imageURL" alt="User Image">
     <button class="follow-button">Follow</button>

@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "Category One",
+    "image": "path/to/image1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Category Two",
+    "image": "path/to/image2.jpg"
+  }
+]

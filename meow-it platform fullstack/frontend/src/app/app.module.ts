@@ -7,11 +7,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PlaybackComponent } from './components/playback/playback.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-import { FeedMeComponent } from './components/feed-me/feed-me.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
-import { SettingsComponent } from './components/settings/settings.component';
-import { NotificationsComponent } from './components/notifications/notifications.component';
 import { ProfileInfosComponent } from './components/profile-infos/infos.component';
 import { TrackDetailComponent } from './components/track/track-detail/track-detail.component';
 import { TrackOwnerComponent } from './components/track/track-owner/track-owner.component';
@@ -33,6 +28,8 @@ import { FollowsService } from './services/follows.service';
 import { TrackCardComponent } from './components/track-card/track-card.component';
 import { UploadTrackPageComponent } from './components/pages/track/upload-track-page/upload-track-page.component';
 import { TrackUploadComponent } from './components/track/track-upload/track-upload.component';
+import { UploadButtonComponent } from './components/upload-button/upload-button.component';
+import { CategoryPageComponent } from './components/pages/category-page/category-page.component';
 
 @NgModule({
   declarations: [
@@ -41,11 +38,6 @@ import { TrackUploadComponent } from './components/track/track-upload/track-uplo
     PlaybackComponent,
     UserCardComponent,
     SearchbarComponent,
-    FeedMeComponent,
-    LoginComponent,
-    RegisterComponent,
-    SettingsComponent,
-    NotificationsComponent,
     ProfileInfosComponent,
     TrackDetailComponent,
     TrackOwnerComponent,
@@ -61,7 +53,9 @@ import { TrackUploadComponent } from './components/track/track-upload/track-uplo
     NotfoundComponent,
     TrackCardComponent,
     UploadTrackPageComponent,
-    TrackUploadComponent
+    TrackUploadComponent,
+    UploadButtonComponent,
+    CategoryPageComponent
   ],
   imports: [
     BrowserModule,

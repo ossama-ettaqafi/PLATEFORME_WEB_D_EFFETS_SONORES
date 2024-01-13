@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-track-detail',
@@ -16,14 +16,19 @@ export class TrackDetailComponent {
     likeCount: 100
   }
 
-  constructor(private router: Router) { }
+
+  constructor(private router: Router, private activeRoute: ActivatedRoute) { }
+
 
   showTitle: boolean = false;
 
   ngOnInit() {
     this.router.events.subscribe(() => {
-      this.showTitle = this.router.url.includes('/edit')? false : true;
+      this.showTitle = this.router.url.includes('/edit') ? false : true;
     });
+
+    const id = this.activeRoute.snapshot.paramMap.get('id');
+    console.log(id);
   }
 
 }

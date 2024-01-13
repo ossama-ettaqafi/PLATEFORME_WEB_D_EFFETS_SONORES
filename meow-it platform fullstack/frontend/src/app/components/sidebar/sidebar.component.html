@@ -1,12 +1,12 @@
 <div class="sidebar-container">
-  <div [routerLink]="['/profile']" class="profile-image">
+  <div [routerLink]="['/profile', userId]" class="profile-image">
     <img [src]="imageURL" alt="Profile Image">
   </div>
   <div class="sidebar">
     <a [routerLink]="['/search']" routerLinkActive="active"><i class="fas fa-search"></i></a>
     <a [routerLink]="['/home']" routerLinkActive="active"><i class="fas fa-home"></i></a>
     <a [routerLink]="['/notifications']" routerLinkActive="active"><i class="fas fa-bell"></i></a>
-    <a [routerLink]="['/settings']" routerLinkActive="active"><i class="fas fa-cog"></i></a>
+    <a [routerLink]="['/settings', userId]" routerLinkActive="active"><i class="fas fa-cog"></i></a>
     <a href=""><i class="fas fa-sign-out-alt"></i></a>
   </div>
 </div>

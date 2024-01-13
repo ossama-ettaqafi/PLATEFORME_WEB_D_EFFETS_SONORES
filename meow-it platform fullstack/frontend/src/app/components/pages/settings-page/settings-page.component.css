@@ -1,0 +1,166 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.container {
+  display: flex;
+  max-width: 600px;
+  margin: 60px 0;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #fff;
+  position: relative;
+}
+
+h2 {
+  align-self: flex-start;
+  margin-left: 100px;
+}
+
+.avatar-container {
+  position: relative;
+  margin-right: 20px;
+  margin-left: 10px;
+  margin-top: 20px;
+  max-width: 200px;
+  height: 200px;
+}
+
+.avatar-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.edit-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  transition: hover 0.3s ease;
+}
+
+.edit-icon i {
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.edit-icon i:hover {
+  color: #f4f4f4;
+  transform: scale(1.1);
+}
+
+.form-container {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon i {
+  margin-right: 10px;
+  color: #aaa;
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  background-color: #fff;
+}
+
+.save-button {
+  background-color: #27ae60;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-top: 30px;
+  margin-left: auto;
+}
+
+.save-button:hover {
+  background-color: #218f53;
+}
+
+.save-button i {
+  margin-right: 8px;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  position: absolute;
+  padding: 20px;
+  bottom: 0;
+  left: 10px;
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.input-with-icon textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.form-input:focus {
+  outline: none;
+  background-color: #fff;
+}
+
+.form-section h3 {
+  color: #888;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 860px) {
+  .main-content h2 {
+    font-size: 22px;
+    width: 60%;
+  }
+
+  .avatar-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .error-message {
+    font-size: 12px;
+    left: 10px;
+  }
+}

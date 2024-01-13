@@ -11,17 +11,15 @@ import { LoginPageComponent } from './components/pages/auth/login-page/login-pag
 import { RegisterPageComponent } from './components/pages/auth/register-page/register-page.component';
 import { UploadTrackPageComponent } from './components/pages/track/upload-track-page/upload-track-page.component';
 import { TrackEditComponent } from './components/track/track-edit/track-edit.component';
+import { CategoryPageComponent } from './components/pages/category-page/category-page.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'notifications', component: NotificationsPageComponent},
   { path: 'search', component: SearchComponent},
-  { path: 'profile/:id', component: ProfilePageComponent,
-    children: [
-      { path: 'edit', component: SettingsPageComponent}
-    ]
-  },
+  { path: 'profile/:id', component: ProfilePageComponent},
+  { path: 'settings/:id', component: SettingsPageComponent},
   { path: 'track/:id', component: TrackPageComponent,
     children: [
       { path: 'edit', component: TrackEditComponent}
@@ -31,6 +29,7 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent},
   { path: 'register', component: RegisterPageComponent},
   { path: 'notfound', component: NotfoundComponent},
+  { path: 'category/:id', component: CategoryPageComponent},
   { path: '**', redirectTo:'notfound', pathMatch: 'full'}
 ];
 

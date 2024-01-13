@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-card.component.css']
 })
 export class UserCardComponent {
-  public imageURL:string = "assets/images/def/test-image.jpg";
+  public User:any = {
+    id: 12,
+    image: "assets/images/def/test-image.jpg",
+    name: "OSSAMA"
+  };
 }

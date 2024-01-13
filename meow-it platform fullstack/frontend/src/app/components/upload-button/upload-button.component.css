@@ -1,0 +1,26 @@
+.upload-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  outline: none;
+  z-index: 999;
+}
+
+.upload-button:hover {
+  transform: scale(1.02);
+}
+
+.upload-button i {
+  margin-right: 8px;
+}

@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class TrackOwnerComponent {
   owner = {
+    ownerId : 1,
     imageURL: 'assets/images/def/test-image.jpg',
     followers: 11 + ' Followers',
     following: 13 + ' Following',

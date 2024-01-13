@@ -1,4 +1,4 @@
-import { Component /*, Inputp*/ } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-track-card',
@@ -7,6 +7,10 @@ import { Component /*, Inputp*/ } from '@angular/core';
 })
 export class TrackCardComponent {
 
-// @Input() public tracks: any[] | undefined;
-
+  public myTrack:any = {
+    id: 1,
+    idU: 100,
+    title: "My Song",
+    image: "song.jpg",
+  };
 }
