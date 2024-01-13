@@ -1,22 +1,28 @@
 <div class="main-content">
-  <h2>Categorie : CateName</h2>
+  <div class="main-title">
+    <div class="go-back">
+      <button (click)="navigateBack()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      Go back
+    </div>
+    <h2>Categorie: {{ category?.name }} <div class="{{ category?.icon }}"></div>
+    </h2>
+  </div>
 
   <div class="container">
 
     <div class="pub-container">
-      <img [src]="imageURL" alt="meow-it publication">
+      <img [src]="category.imagePath" alt="meow-it {{ category?.name | lowercase }} image">
     </div>
 
     <h3>Sounds</h3>
 
     <div class="nothing-found">
-      <span>Oops! Nothing Found.</span>
+      <span>Oops! Nothing found in this category.</span>
     </div>
 
     <div class="cards-container">
-      <app-track-card></app-track-card>
-      <app-track-card></app-track-card>
-      <app-track-card></app-track-card>
       <app-track-card></app-track-card>
     </div>
   </div>

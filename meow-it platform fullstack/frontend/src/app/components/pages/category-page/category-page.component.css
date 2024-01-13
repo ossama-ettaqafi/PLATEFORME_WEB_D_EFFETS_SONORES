@@ -51,6 +51,41 @@
   transform: scale(1.05);
 }
 
+.main-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.go-back {
+  display: flex;
+  align-items: center;
+  color: #FFA500;
+  font-size: 14px;
+  margin-right: 20px;
+}
+
+.go-back button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 8px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  transition: color 0.3s ease-in-out;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.go-back button:hover {
+  color: rgba(255, 255, 255, 0.5);
+  background: linear-gradient(45deg, #FFD700, #FF8C00);
+}
+
 @media screen and (max-width: 860px) {
   .pub-container {
     height: 150px;

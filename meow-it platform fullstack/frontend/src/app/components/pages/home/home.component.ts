@@ -22,12 +22,17 @@ export class HomeComponent {
   //   });
   // }
 
-  public category1:any = {
-    Id : 1
-  }
-
-
-  public imageURL:string = "assets/images/def/feed-pub.png";
   public userName:string = "OSSAMA"
+  public imageURL:string = "assets/images/def/feed-pub.png";
   public welcomeMessage:string = `Welcome ${this.userName},`;
+
+  categories = [
+    { id: 1, name: 'Nature', icon: 'fas fa-leaf', side: 'left' },
+    { id: 2, name: 'Human', icon: 'fas fa-user', side: 'left' },
+    { id: 3, name: 'Animals', icon: 'fas fa-paw', side: 'left' },
+    { id: 4, name: 'Ambiances', icon: 'fas fa-tree', side: 'right' },
+    { id: 5, name: 'Instruments', icon: 'fas fa-music', side: 'right' },
+    { id: 6, name: 'Things', icon: 'fas fa-cog', side: 'right' }
+  ];
+
 }
