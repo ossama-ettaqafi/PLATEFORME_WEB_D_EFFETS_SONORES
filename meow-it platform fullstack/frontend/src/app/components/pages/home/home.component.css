@@ -142,6 +142,10 @@
   transform: scale(1.05);
 }
 
+.nothing-found {
+  margin-top: -10px;
+}
+
 @media screen and (max-width: 860px) {
   .main-content h2 {
     font-size: 22px;

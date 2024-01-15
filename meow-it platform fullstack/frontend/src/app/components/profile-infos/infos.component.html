@@ -4,7 +4,7 @@
     <div class="profile-container">
       <div class="profile-section">
         <div class="profile-pic">
-          <img [src]="userData.image_path" alt="{{userData.name}} Profile Picture">
+          <img [src]="userData.image_path" alt="Profile Picture">
         </div>
 
         <div class="profile-details">
@@ -20,7 +20,7 @@
       </div>
 
       <div class="profile-buttons-container">
-        <div *ngFor="let button of user.profileButtons" class="profile-column">
+        <div *ngFor="let button of profileButtons" class="profile-column">
           <div class="profile-button">
             <i [class]="button.iconClass"></i>
             {{ button.count }}

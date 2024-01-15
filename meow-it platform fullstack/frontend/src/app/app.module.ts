@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PlaybackComponent } from './components/playback/playback.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
-import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { ProfileInfosComponent } from './components/profile-infos/infos.component';
 import { TrackDetailComponent } from './components/track/track-detail/track-detail.component';
 import { TrackOwnerComponent } from './components/track/track-owner/track-owner.component';
@@ -39,7 +38,6 @@ import { FormsModule } from '@angular/forms';
     SidebarComponent,
     PlaybackComponent,
     UserCardComponent,
-    SearchbarComponent,
     ProfileInfosComponent,
     TrackDetailComponent,
     TrackOwnerComponent,

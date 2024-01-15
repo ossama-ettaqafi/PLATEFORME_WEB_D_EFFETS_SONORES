@@ -26,7 +26,11 @@
   <div class="container">
     <h3>Artists</h3>
 
-    <div class="cards-container">
+    <div class="nothing-found" *ngIf="users && users.length === 0">
+      <span>Oops! The list is empty.</span>
+    </div>
+
+    <div class="cards-container" *ngIf="users && users.length > 0">
       <app-user-card *ngFor="let user of users" [userData]="user"></app-user-card>
     </div>
 
@@ -38,9 +42,13 @@
   <div class="container">
     <h3>Sounds</h3>
 
+    <div class="nothing-found">
+      <span>Oops! There is nothing.</span>
+    </div>
+
     <div class="cards-container">
       <!-- [tracks]="tracks" -->
-      <app-track-card></app-track-card>
+      <!-- <app-track-card></app-track-card> -->
     </div>
   </div>
 </div>

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NotificationsService {
-  private apiUrl = '/api/data/notifications.json';
+  private apiUrl = 'assets/api/data/notifications.json';
 
   constructor(private http: HttpClient) { }
 

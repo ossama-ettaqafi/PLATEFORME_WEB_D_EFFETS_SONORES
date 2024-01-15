@@ -2,9 +2,9 @@
   <h2>Notifications</h2>
 
   <div class="container">
-    <div *ngFor="let comment of comments" class="comment">
-      <i [class]="comment.iconClass"></i>
-      <p>{{ notifContent(comment) }}</p>
+    <div *ngFor="let notification of filteredNotifications" class="comment">
+      <i [class]="comments[notification.notificationType].iconClass"></i>
+      <p>{{ notification.senderName }} {{ comments[notification.notificationType].notificationMessage }}</p>
     </div>
 
   </div>

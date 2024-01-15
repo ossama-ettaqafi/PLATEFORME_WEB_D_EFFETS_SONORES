@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FollowsService {
-  private apiUrl = '/api/data/follows.json';
+  private apiUrl = 'assets/api/data/follows.json';
 
   constructor(private http: HttpClient) { }
 

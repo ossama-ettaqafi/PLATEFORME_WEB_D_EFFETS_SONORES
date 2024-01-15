@@ -1,7 +1,8 @@
+import { TracksService } from 'src/app/services/tracks.service';
+import { FollowsService } from 'src/app/services/follows.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { map, switchMap } from 'rxjs/operators';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -11,23 +12,45 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class ProfilePageComponent implements OnInit {
   users: any[] | undefined;
-  userId: string | undefined;
   userFound: any | undefined;
   loggedInUserId: number | null | undefined;
+  tracks: any[] | undefined;
+  followers: any[] | undefined;
+  following: any[] | undefined;
 
-  constructor(private usersService: UsersService, private route: ActivatedRoute, private sharedService:SharedService) {}
+  constructor(
+    private usersService: UsersService,
+    private tracksService: TracksService,
+    private followsService: FollowsService,
+    private route: ActivatedRoute,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
     this.loggedInUserId = this.sharedService.getLoggedInUserId();
 
-    this.route.params.pipe(
-      map(params => params['id']),
-      switchMap(id => this.usersService.getUsers().pipe(
-        map(users => users.find(user => user.id.toString() === id))
-      ))
-    ).subscribe(user => {
-      this.userFound = user;
+    this.route.params.subscribe(params => {
+      const userId = +params['id'];
+
+      this.usersService.getUsers().subscribe(users => {
+        this.userFound = users.find(user => user.id == userId);
+
+        this.tracksService.getTracks().subscribe(tracks => {
+          this.tracks = tracks.filter(track => track.user_id == userId);
+        });
+
+        this.followsService.getFollows().subscribe(follows => {
+          // Filter and map followers
+          this.followers = follows
+            .filter(follow => follow.following_id == userId)
+            .map(follow => users.find(user => user.id == follow.follower_id));
+
+          // Filter and map following
+          this.following = follows
+            .filter(follow => follow.follower_id == userId)
+            .map(follow => users.find(user => user.id == follow.following_id));
+        });
+      });
     });
   }
-
 }

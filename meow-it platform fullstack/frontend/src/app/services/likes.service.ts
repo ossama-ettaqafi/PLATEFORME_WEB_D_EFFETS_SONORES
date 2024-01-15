@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LikesService {
-  private apiUrl = '/api/data/likes.json';
+  private apiUrl = 'assets/api/data/likes.json';
 
   constructor(private http: HttpClient) { }
 

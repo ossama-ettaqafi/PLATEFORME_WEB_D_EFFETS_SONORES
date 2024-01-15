@@ -70,6 +70,11 @@ h2 {
 
 .profile-details p {
   color: #777;
+  font-size: 15px;
+}
+
+.profile-details h3 {
+  font-size: 20px;
 }
 
 .profile-buttons-container {
@@ -97,7 +102,7 @@ p {
   justify-content: center;
   text-decoration: none;
   color: #777;
-  font-size: 15px;
+  font-size: 12px;
   background-color: #fff;
   border-radius: 5px;
   width: 50px;
@@ -154,17 +159,21 @@ p {
     font-size: 20px;
   }
 
+  .profile-button {
+    font-size: 10px;
+  }
+
+  .follow-button {
+    font-size: 12px;
+  }
+
   .profile-details p,
   .bio-container p {
     font-size: 12px;
   }
 
-  .profile-button {
-    font-size: 12px;
-  }
-
-  .follow-button {
-    font-size: 12px;
+  .profile-details h3 {
+    font-size: 15px;
   }
 
   .main-content h2 {

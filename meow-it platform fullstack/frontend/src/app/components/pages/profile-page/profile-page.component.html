@@ -5,16 +5,14 @@
   <div class="container">
     <h3>Uploaded Sounds</h3>
 
-    <div class="nothing-found">
-      <span>Oops! The list in empty.</span>
+    <div class="nothing-found" *ngIf="tracks && tracks.length === 0">
+      <span>Oops! The list is empty.</span>
     </div>
 
-    <div class="cards-container">
-      <!-- <app-track-card></app-track-card>
-      <app-track-card></app-track-card>
-      <app-track-card></app-track-card>
-      <app-track-card></app-track-card> -->
+    <div class="cards-container" *ngIf="tracks && tracks.length > 0">
+      <app-track-card *ngFor="let track of tracks" [trackData]="track" [user]="userFound"></app-track-card>
     </div>
+
   </div>
 </div>
 
@@ -23,15 +21,12 @@
   <div class="container">
     <h3>Followers</h3>
 
-    <div class="nothing-found">
-      <span>Oops! The list in empty.</span>
+    <div class="nothing-found" *ngIf="followers && followers.length === 0">
+      <span>Oops! The list is empty.</span>
     </div>
 
-    <div class="cards-container">
-      <!-- <app-user-card></app-user-card>
-      <app-user-card></app-user-card>
-      <app-user-card></app-user-card>
-      <app-user-card></app-user-card> -->
+    <div class="cards-container" *ngIf="followers && followers.length > 0">
+      <app-user-card *ngFor="let follower of followers" [userData]="follower"></app-user-card>
     </div>
   </div>
 </div>
@@ -41,15 +36,13 @@
   <div class="container">
     <h3>Following</h3>
 
-    <div class="nothing-found">
-      <span>Oops! The list in empty.</span>
+    <div class="nothing-found" *ngIf="following && following.length === 0">
+      <span>Oops! The list is empty.</span>
     </div>
 
-    <div class="cards-container">
-      <!-- <app-user-card></app-user-card>
-      <app-user-card></app-user-card>
-      <app-user-card></app-user-card>
-      <app-user-card></app-user-card> -->
+    <div class="cards-container" *ngIf="following && following.length > 0">
+      <app-user-card *ngFor="let flwg of following" [userData]="flwg"></app-user-card>
     </div>
+
   </div>
 </div>

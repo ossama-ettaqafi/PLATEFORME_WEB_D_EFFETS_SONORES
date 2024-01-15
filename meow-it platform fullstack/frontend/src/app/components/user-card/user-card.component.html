@@ -1,5 +1,7 @@
 <div [routerLink]="['/profile', userData.id]" class="user-card">
-    <img [src]="userData.image_path" alt="User Image">
-    <p>{{ userData.name }}</p>
-    <button class="follow-button">Follow</button>
+  <img [src]="userData.image_path" alt="User Image">
+  <p>{{ userData.name }}</p>
+
+  <button *ngIf="loggedInUserId == userData.id" class="follow-button">Visit</button>
+  <button *ngIf="loggedInUserId != userData.id" class="follow-button">Follow</button>
 </div>
