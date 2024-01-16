@@ -8,27 +8,32 @@
 
 .container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   max-width: 600px;
-  margin: 60px 0;
+  margin: 60px auto;
   overflow: hidden;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: #fff;
-  position: relative;
+  padding-bottom: 100px;
 }
 
 h2 {
   align-self: flex-start;
   margin-left: 100px;
+  font-size: 24px;
 }
 
 .avatar-container {
   position: relative;
-  margin-right: 20px;
-  margin-left: 10px;
-  margin-top: 20px;
+  margin: 20px 0;
   max-width: 200px;
   height: 200px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
 .avatar-container img {
@@ -62,17 +67,22 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: #fff;
 }
 
 .form-group {
-  margin-bottom: 20px;
   position: relative;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .input-with-icon {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .input-with-icon i {
@@ -80,61 +90,18 @@ h2 {
   color: #aaa;
 }
 
-.input-with-icon input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #f5f5f5;
-  box-sizing: border-box;
-}
-
-.form-input:focus {
-  outline: none;
-  background-color: #fff;
-}
-
-.save-button {
-  background-color: #27ae60;
-  color: #ffffff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 12px;
-  margin-top: 30px;
-  margin-left: auto;
-}
-
-.save-button:hover {
-  background-color: #218f53;
-}
-
-.save-button i {
-  margin-right: 8px;
-}
-
-.error-message {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  position: absolute;
-  padding: 20px;
-  bottom: 0;
-  left: 10px;
-  color: #e74c3c;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
+.input-with-icon input,
 .input-with-icon textarea {
-  width: 100%;
+  width: 450px;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
   background-color: #f5f5f5;
   box-sizing: border-box;
-  resize: vertical;
+}
+
+.input-with-icon textare {
+  height: 50px;
 }
 
 .form-input:focus {
@@ -148,19 +115,93 @@ h2 {
   margin-bottom: 20px;
 }
 
+.error-message {
+  position: absolute;
+  padding: 20px;
+  bottom: 10px;
+  left: 30px;
+  color: #e74c3c;
+  font-size: 14px;
+}
+
+.password-error,
+.password-success {
+  position: absolute;
+  bottom: -30px;
+  right: 10px;
+  font-size: 14px;
+}
+
+.password-error {
+  color: #e74c3c;
+}
+
+.password-success {
+  color: green;
+}
+
+.save-button {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  background-color: #27ae60;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.save-button:hover {
+  background-color: #218f53;
+}
+
+.save-button i {
+  margin-right: 8px;
+}
+
 @media screen and (max-width: 860px) {
   .main-content h2 {
     font-size: 22px;
     width: 60%;
   }
 
-  .avatar-container {
-    width: 150px;
-    height: 150px;
+  .container {
+    width: 400px;
   }
 
+  .avatar-container {
+    max-width: 120px;
+    height: 120px;
+  }
+
+  .input-with-icon input,
+  .input-with-icon textarea {
+    width: 300px;
+    font-size: 12px;
+  }
+
+  .input-with-icon i {
+    font-size: 12px;
+  }
+
+  .form-section h3 {
+    color: #888;
+    font-size: 16px;
+  }
+
+  .password-error,
+  .password-success,
   .error-message {
     font-size: 12px;
+  }
+
+  .error-message{
     left: 10px;
+  }
+
+  .save-button {
+    font-size: 12px;
   }
 }

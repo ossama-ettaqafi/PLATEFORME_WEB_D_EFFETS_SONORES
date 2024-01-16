@@ -18,7 +18,7 @@
 } */
 
 input {
-  width: 85%;
+  width: 200px;
   padding: 10px;
   margin-bottom: 10px;
   margin-top: 15px;
@@ -42,7 +42,7 @@ input:focus {
 .valid-icon {
   position: absolute;
   top: 55%;
-  right: 10px;
+  right: 0;
   transform: translateY(-50%);
   font-size: 1.2em;
   color: #4CAF50;
@@ -57,4 +57,11 @@ input:focus {
 
 input:valid + .valid-icon {
   display: block;
+}
+
+@media screen and (max-width: 800px) {
+  input, .valid-icon {
+    font-size: 12px;
+  }
+
 }

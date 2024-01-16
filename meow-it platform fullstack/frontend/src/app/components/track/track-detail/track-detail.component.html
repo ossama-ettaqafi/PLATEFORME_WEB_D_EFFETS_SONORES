@@ -1,29 +1,29 @@
 <div class="track-details">
   <div class="image-container">
-    <img [src]="track.imageURL" alt="Track Image">
+    <img [src]="trackData.image_path" alt="Track Image">
   </div>
 
   <div class="track-info">
 
     <ng-container *ngIf="showTitle">
       <h2>
-        {{track.trackName}}
+        {{trackData.title}}
       </h2>
     </ng-container>
 
     <router-outlet></router-outlet>
 
     <p>
-      <span class="icon"><i class="fas fa-user"></i></span> {{track.artistName}}
+      <span class="icon"><i class="fas fa-user"></i></span> {{user.name}}
     </p>
     <p>
-      <span class="icon"><i class="fas fa-clock"></i></span> {{track.trackDuration}}
+      <span class="icon"><i class="fas fa-clock"></i></span> {{ formatTime(trackData.duration) }}
     </p>
     <p>
-      <span class="icon"><i class="fas fa-calendar-alt"></i></span> {{track.uploadDate}}
+      <span class="icon"><i class="fas fa-calendar-alt"></i></span> {{trackData.release_date}}
     </p>
     <p>
-      <span class="icon"><i class="fas fa-heart"></i></span> {{track.likeCount}}
+      <span class="icon"><i class="fas fa-heart"></i></span> {{likesCount}}
     </p>
   </div>
 

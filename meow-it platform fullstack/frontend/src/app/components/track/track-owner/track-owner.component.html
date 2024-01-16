@@ -1,11 +1,15 @@
-<div class="artist-card" [routerLink]="['/profile', owner.ownerId]">
+<div class="artist-card" [routerLink]="['/profile', trackData.user_id]">
   <div class="first-info">
     <img [src]="owner.imageURL" alt="User Image">
-    <button class="follow-button">Follow</button>
+
+    <ng-container *ngIf="loggedInUserId != trackData.user_id">
+      <button class="follow-button">Follow</button>
+    </ng-container>
+
   </div>
   <div class="user-info">
-    <span>{{owner.followers}}</span>
-    <span>{{owner.following}}</span>
-    <span>{{owner.likes}}</span>
+    <span>{{followersCount}} Followers</span>
+    <span>{{followingCount}} Following</span>
+    <span>{{userlikesCount}} Likes</span>
   </div>
 </div>

@@ -3,54 +3,54 @@
     "id": 1,
     "title": "Sample Track 1",
     "user_id": 1,
-    "image_path": "assets/images/def/test-image.jpg",
+    "image_path": "assets/images/def/track_cover.jpg",
     "duration": 240,
     "release_date": "2022-01-07",
-    "category": 4
+    "categoryId": 4
   },
   {
     "id": 2,
     "title": "Sample Track 2",
     "user_id": 2,
-    "image_path": "assets/images/def/test-image.jpg",
+    "image_path": "assets/images/def/track_cover.jpg",
     "duration": 180,
     "release_date": "2022-01-08",
-    "category": 4
+    "categoryId": 4
   },
   {
     "id": 3,
     "title": "Sample Track 3",
     "user_id": 3,
-    "image_path": "assets/images/def/test-image.jpg",
+    "image_path": "assets/images/def/track_cover.jpg",
     "duration": 300,
     "release_date": "2022-01-09",
-    "category": 2
+    "categoryId": 2
   },
   {
     "id": 4,
     "title": "Sample Track 4",
     "user_id": 4,
-    "image_path": "assets/images/def/test-image.jpg",
+    "image_path": "assets/images/def/track_cover.jpg",
     "duration": 200,
     "release_date": "2022-01-10",
-    "category": 1
+    "categoryId": 1
   },
   {
     "id": 5,
     "title": "New Track 1",
     "user_id": 1,
-    "image_path": "assets/images/def/test-image.jpg",
+    "image_path": "assets/images/def/track_cover.jpg",
     "duration": 180,
     "release_date": "2022-01-11",
-    "category": 3
+    "categoryId": 3
   },
   {
     "id": 6,
     "title": "New Track 2",
     "user_id": 2,
-    "image_path": "assets/images/def/test-image.jpg",
+    "image_path": "assets/images/def/track_cover.jpg",
     "duration": 220,
     "release_date": "2022-01-12",
-    "category": 2
+    "categoryId": 2
   }
 ]

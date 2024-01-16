@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { TracksService } from 'src/app/services/tracks.service';
 import { UsersService } from 'src/app/services/users.service';
 import { SharedService } from 'src/app/shared.service';
 
@@ -8,20 +9,30 @@ import { SharedService } from 'src/app/shared.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  users: any[] | undefined;
+  users: any;
+  tracks: any;
   loggedInUserId: number | null | undefined;
   loggedUser: any[] | undefined;
 
 
-  constructor(private usersService: UsersService, private sharedService: SharedService) {}
+  constructor(private usersService: UsersService,
+    private tracksService:TracksService,
+    private sharedService: SharedService) {}
 
   ngOnInit(): void {
     this.loggedInUserId = this.sharedService.getLoggedInUserId();
 
     this.usersService.getUsers().subscribe(data => {
       this.users = data;
-      this.loggedUser = data.filter(user => user.id == this.loggedInUserId);
     });
+
+    this.tracksService.getTracks().subscribe(tracks => {
+        this.tracks = tracks;
+    });
+  }
+
+  getUserById(userId: number): any {
+    return this.users.find((user: any) => user.id === userId);
   }
 
   categories = [
@@ -32,4 +43,5 @@ export class HomeComponent implements OnInit {
     { id: 5, name: 'Instruments', icon: 'fas fa-music', side: 'right' },
     { id: 6, name: 'Things', icon: 'fas fa-cog', side: 'right' }
   ];
+
 }

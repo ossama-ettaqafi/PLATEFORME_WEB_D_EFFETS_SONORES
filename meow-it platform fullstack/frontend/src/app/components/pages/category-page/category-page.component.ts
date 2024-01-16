@@ -1,5 +1,8 @@
+import { CategoryService } from './../../../services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TracksService } from 'src/app/services/tracks.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-category-page',
@@ -8,25 +11,40 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CategoryPageComponent implements OnInit {
 
-  category: any;
   categoryId: string | undefined;
+  filteredTracks: any[] = [];
+  category: any;
+  allUsers: any;
 
-  categories = [
-    { id: 1, name: 'Nature', icon: 'fas fa-leaf', imagePath: 'assets/images/def/nature.jpg' },
-    { id: 2, name: 'Human', icon: 'fas fa-user', imagePath: 'assets/images/def/human.jpeg' },
-    { id: 3, name: 'Animals', icon: 'fas fa-paw', imagePath: 'assets/images/def/animals.jpg' },
-    { id: 4, name: 'Ambiances', icon: 'fas fa-tree', imagePath: 'assets/images/def/ambiances.jpg' },
-    { id: 5, name: 'Instruments', icon: 'fas fa-music', imagePath: 'assets/images/def/instruments.jpeg' },
-    { id: 6, name: 'Things', icon: 'fas fa-cog', imagePath: 'assets/images/def/things.jpg' }
-  ];
-
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router,
+    private catergoryService:CategoryService,
+    private tracksService:TracksService,
+    private usersService:UsersService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.categoryId = params['id'];
-      this.category = this.categories.find(category => category.id.toString() === this.categoryId);
     });
+
+    this.tracksService.getTracks().subscribe(tracks => {
+
+      if (this.categoryId) {
+        this.filteredTracks = tracks.filter(track => track.categoryId == this.categoryId);
+      }
+
+    });
+
+    this.catergoryService.getCategories().subscribe(categories => {
+      this.category = categories.find(category => category.id == this.categoryId)
+    });
+
+    this.usersService.getUsers().subscribe(users => {
+      this.allUsers = users;
+    });
+  }
+
+  getUserById(userId: number): any {
+    return this.allUsers.find((user: any) => user.id === userId);
   }
 
   navigateBack(): void {

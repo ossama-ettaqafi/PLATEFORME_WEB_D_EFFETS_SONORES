@@ -56,7 +56,7 @@
   padding: 8px 15px;
   border-radius: 4px;
   margin: 0 5px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 @media screen and (max-width: 800px) {
@@ -74,6 +74,7 @@
 
   .user-info span {
     background-color: transparent;
+    font-size: 12px;
   }
 
   .follow-button {

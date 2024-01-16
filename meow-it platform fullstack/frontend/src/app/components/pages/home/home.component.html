@@ -42,13 +42,12 @@
   <div class="container">
     <h3>Sounds</h3>
 
-    <div class="nothing-found">
-      <span>Oops! There is nothing.</span>
+    <div *ngIf="tracks.length == 0" class="nothing-found">
+      <span>Oops! Nothing found in this category.</span>
     </div>
 
     <div class="cards-container">
-      <!-- [tracks]="tracks" -->
-      <!-- <app-track-card></app-track-card> -->
+      <app-track-card *ngFor="let track of tracks" [trackData]="track" [user]="getUserById(track.user_id)"></app-track-card>
     </div>
   </div>
 </div>
