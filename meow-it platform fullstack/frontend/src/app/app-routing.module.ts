@@ -28,9 +28,9 @@ const routes: Routes = [
   { path: 'upload-track', component: UploadTrackPageComponent},
   { path: 'login', component: LoginPageComponent},
   { path: 'register', component: RegisterPageComponent},
-  { path: 'notfound', component: NotfoundComponent},
+  { path: 'not-found', component: NotfoundComponent},
   { path: 'category/:id', component: CategoryPageComponent},
-  { path: '**', redirectTo:'notfound', pathMatch: 'full'}
+  { path: '**', redirectTo:'not-found', pathMatch: 'full'}
 ];
 
 @NgModule({

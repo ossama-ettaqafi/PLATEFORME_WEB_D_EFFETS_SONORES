@@ -1,5 +1,5 @@
 <div class="main-content">
-  <h2 *ngIf="this.loggedUser && this.loggedUser.length > 0">Welcome, {{ this.loggedUser[0]?.name }}</h2>
+  <h2  *ngIf="loggedInUserId && loggedUser">Welcome, {{ getUserById(loggedInUserId).name }}</h2>
 
   <div class="container">
     <div class="pub-container">
@@ -42,7 +42,7 @@
   <div class="container">
     <h3>Sounds</h3>
 
-    <div *ngIf="tracks.length == 0" class="nothing-found">
+    <div *ngIf="tracks && tracks.length === 0" class="nothing-found">
       <span>Oops! Nothing found in this category.</span>
     </div>
 

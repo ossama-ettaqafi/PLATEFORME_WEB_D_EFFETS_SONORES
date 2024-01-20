@@ -5,7 +5,12 @@
       <button class="search-icon" (click)="performSearch()">
         <i class="fas fa-search"></i>
       </button>
-      <input [(ngModel)]="searchQuery" type="text" class="search-input" placeholder="Search">
+      <input
+        [(ngModel)]="searchQuery"
+        type="text"
+        class="search-input"
+        placeholder="Search"
+      />
       <div class="search-filter">
         <div class="filter-list">
           <select [(ngModel)]="searchFilter">
@@ -19,34 +24,57 @@
   </div>
 
   <!-- Users card -->
-  <div class="main-content" *ngIf="searchFilter === 'all' || searchFilter === 'users'">
+  <div
+    class="main-content"
+    *ngIf="searchFilter === 'all' || searchFilter === 'users'"
+  >
     <div class="container">
       <h3>Users</h3>
 
-      <div class="cards-container" *ngIf="filteredUsers.length > 0">
-        <app-user-card *ngFor="let user of filteredUsers" [userData]="user"></app-user-card>
+      <div
+        class="cards-container"
+        *ngIf="filteredUsers && filteredUsers.length > 0"
+      >
+        <app-user-card
+          *ngFor="let user of filteredUsers"
+          [userData]="user"
+        ></app-user-card>
       </div>
 
-      <div class="nothing-found" *ngIf="filteredUsers.length == 0">
+      <div
+        class="nothing-found"
+        *ngIf="filteredUsers && filteredUsers.length == 0"
+      >
         <span>Oops! Nothing Found.</span>
       </div>
     </div>
   </div>
 
   <!-- Tracks cards -->
-  <div class="main-content" *ngIf="searchFilter === 'all' || searchFilter === 'sounds'">
+  <div
+    class="main-content"
+    *ngIf="searchFilter === 'all' || searchFilter === 'sounds'"
+  >
     <div class="container">
       <h3>Sounds</h3>
 
-      <div class="cards-container" *ngIf="filteredTracks.length > 0">
-        <app-track-card *ngFor="let track of filteredTracks" [trackData]="track" [user]="getUserById(track.user_id)"></app-track-card>
+      <div
+        class="cards-container"
+        *ngIf="filteredTracks && filteredTracks.length > 0"
+      >
+        <app-track-card
+          *ngFor="let track of filteredTracks"
+          [trackData]="track"
+          [user]="getUserById(track.user_id)"
+        ></app-track-card>
       </div>
 
-      <div class="nothing-found" *ngIf="filteredTracks.length == 0">
+      <div
+        class="nothing-found"
+        *ngIf="filteredTracks && filteredTracks.length == 0"
+      >
         <span>Oops! Nothing Found.</span>
       </div>
-
     </div>
   </div>
-
 </div>

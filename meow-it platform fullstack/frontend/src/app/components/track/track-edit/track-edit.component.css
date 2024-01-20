@@ -1,24 +1,5 @@
-/* .edit-icon {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  z-index: 1;
-}
-
-.edit-icon i {
-  font-size: 15px;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.edit-icon i:hover {
-  color: #f4f4f4;
-  transform: scale(1.2);
-} */
-
 input {
-  width: 200px;
+  width: 80%;
   padding: 10px;
   margin-bottom: 10px;
   margin-top: 15px;
@@ -37,31 +18,13 @@ input:focus {
 
 .input-container {
   position: relative;
-}
-
-.valid-icon {
-  position: absolute;
-  top: 55%;
-  right: 0;
-  transform: translateY(-50%);
-  font-size: 1.2em;
-  color: #4CAF50;
-  display: none;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.valid-icon:hover {
-  color: #45a049;
-}
-
-input:valid + .valid-icon {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 800px) {
-  input, .valid-icon {
+  input{
     font-size: 12px;
   }
-
 }

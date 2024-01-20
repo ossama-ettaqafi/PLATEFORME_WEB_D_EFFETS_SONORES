@@ -32,8 +32,6 @@ export class SettingsPageComponent implements OnInit {
       this.userService.getUsers().subscribe(users => {
         // Find the user with the matching ID
         this.user = users.find(u => u.id == this.userId);
-
-        console.log('User Data:', this.user);
       });
     });
   }

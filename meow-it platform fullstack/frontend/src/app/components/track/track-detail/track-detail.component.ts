@@ -16,7 +16,7 @@ export class TrackDetailComponent implements OnInit {
 
   @Input() trackData: any;
 
-  showTitle: boolean = true;
+  editTrack: boolean = false;
   likesCount: any = 0;
   user:any;
 
@@ -35,7 +35,7 @@ export class TrackDetailComponent implements OnInit {
       this.user = users.find(user => user.id == this.trackData.user_id);
     });
 
-    this.showTitle = !this.router.url.includes('/edit');
+    this.editTrack = this.router.url.includes('/edit');
   }
 
   public formatTime(seconds: number): string {
@@ -48,6 +48,15 @@ export class TrackDetailComponent implements OnInit {
     return `${formattedMinutes}:${formattedSeconds}`;
   }
 
+  public edit_track(){
+    console.log(this.editTrack);
+    this.editTrack = !this.router.url.includes('/edit');
+    this.router.navigate(['track', this.trackData.id,'edit']);
+  }
 
+  public go_back(){
+    this.editTrack = false;
+    this.router.navigate(['track', this.trackData.id]);
+  }
 
 }

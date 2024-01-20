@@ -197,11 +197,15 @@ h2 {
     font-size: 12px;
   }
 
-  .error-message{
+  .error-message {
     left: 10px;
   }
 
   .save-button {
+    font-size: 12px;
+  }
+
+  .edit-icon i {
     font-size: 12px;
   }
 }
