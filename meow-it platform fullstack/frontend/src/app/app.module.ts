@@ -9,7 +9,6 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { ProfileInfosComponent } from './components/profile-infos/infos.component';
 import { TrackDetailComponent } from './components/track/track-detail/track-detail.component';
 import { TrackOwnerComponent } from './components/track/track-owner/track-owner.component';
-import { TrackEditComponent } from './components/track/track-edit/track-edit.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { SearchComponent } from './components/pages/search/search.component';
 import { NotificationsPageComponent } from './components/pages/notifications-page/notifications-page.component';
@@ -41,7 +40,6 @@ import { FormsModule } from '@angular/forms';
     ProfileInfosComponent,
     TrackDetailComponent,
     TrackOwnerComponent,
-    TrackEditComponent,
     HomeComponent,
     SearchComponent,
     NotificationsPageComponent,

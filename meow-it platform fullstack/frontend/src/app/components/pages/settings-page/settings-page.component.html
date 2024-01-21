@@ -2,9 +2,14 @@
   <h2>Settings</h2>
   <div class="container">
     <div class="avatar-container">
-      <img *ngIf="user" [src]="user.image_path" alt="User Avatar" class="avatar">
-      <div class="edit-icon"><i class="fas fa-pencil-alt"></i></div>
+      <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" />
+      <img *ngIf="user && user.image_path" [src]="user.image_path" alt="User Avatar" class="avatar">
+      <div class="edit-icon" (click)="fileInput.click()">
+        <i class="fas fa-pencil-alt"></i>
+      </div>
     </div>
+
+
 
     <div *ngIf="displaySuccessMessage" class="error-message" id="success-message" [style.color]="'green'">
       Changes saved successfully!

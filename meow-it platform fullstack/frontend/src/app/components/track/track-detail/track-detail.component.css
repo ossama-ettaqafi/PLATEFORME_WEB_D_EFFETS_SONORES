@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 600px;
-  min-width: 300px;
   margin: 50px auto;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   border-radius: 8px;
-  max-width: 800px;
+  width: 600px;
+  min-width: 300px;
+  max-width: 700px;
 }
 
 .image-container {
@@ -83,42 +83,45 @@ p {
   position: relative;
   color: #fff;
   background: none;
-  font-size: 15px;
   border-radius: 50%;
   padding: 5px 5px;
-  transition: width 0.5s ease-in-out, height 0.5s ease-in-out, padding 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out, height 0.5s ease-in-out,
+    padding 0.5s ease-in-out;
 }
 
 .heart-button {
   color: #666;
   border-radius: 50%;
   margin-left: 10px;
+  font-size: 15px;
 }
 
 .heart-button:hover {
-  color: #FF1493;
+  color: #ff1493;
 }
 
 .download-button {
   margin-left: auto;
   color: #800080;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .download-button:hover {
-  color: #8A2BE2;
+  color: #8a2be2;
 }
 
 .play-button {
-  background: linear-gradient(45deg, #FF007F, #800080);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #ff007f, #800080);
   border-radius: 50%;
-  padding: 10px 10px;
   width: 40px;
   height: 40px;
 }
 
 .play-button:hover {
-  background: linear-gradient(45deg, #FF1493, #8A2BE2);
+  background: linear-gradient(45deg, #ff1493, #8a2be2);
 }
 
 .edit-icon {
@@ -139,8 +142,82 @@ p {
   transform: scale(1.1);
 }
 
-@media screen and (max-width: 800px) {
+.button-container {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 18px;
+}
 
+.edit-button,
+.back-button,
+.delete-button,
+.verify-button {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.edit-button,.back-button {
+  color: #9b59b6;
+}
+
+.edit-button:hover, .back-button:hover {
+  color: #8e44ad;
+}
+
+.delete-button {
+  position: absolute;
+  right: 0;
+  color: #e74c3c;
+}
+
+.delete-button:hover {
+  color: #c0392b;
+}
+
+.verify-button {
+  position: absolute;
+  right: 30px;
+  color: #2ecc71;
+}
+
+.verify-button:hover {
+  color: #27ae60;
+}
+
+.edit-button i,
+.back-button i {
+  margin-right: 5px;
+}
+
+input {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 7px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 18px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input:focus {
+  outline: none;
+  background-color: #fff;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 800px) {
   .track-details {
     width: 300px;
   }
@@ -166,10 +243,18 @@ p {
   .play-button {
     width: 30px;
     height: 30px;
-    padding: 1px 1px;
   }
 
   .edit-icon i {
     font-size: 12px;
+  }
+
+  .button-container {
+    font-size: 12px;
+  }
+
+  input{
+    font-size: 12px;
+    height: 30px;
   }
 }

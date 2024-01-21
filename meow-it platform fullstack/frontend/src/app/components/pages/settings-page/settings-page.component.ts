@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { UploadUserImageService } from 'src/app/services/upload-user-image.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class SettingsPageComponent implements OnInit {
   public userId: string | null = null;
   public user: any;  // Update the type based on your user model
   public allUsers: any[] = [];  // Update the type based on your user model
+  selectedImagePreview: string | ArrayBuffer | null = null;
 
   passwordMatchError: boolean = false;
   allFieldsFilled: boolean = true;
@@ -20,7 +22,9 @@ export class SettingsPageComponent implements OnInit {
 
   changesSaved: boolean = false;
 
-  constructor(private route: ActivatedRoute, private userService: UsersService) {}
+  constructor(private route: ActivatedRoute,
+  private userService: UsersService,
+  private uploadUserImageService: UploadUserImageService) {}
 
   ngOnInit(): void {
     // Subscribe to the route parameters to get the user ID
@@ -34,6 +38,8 @@ export class SettingsPageComponent implements OnInit {
         this.user = users.find(u => u.id == this.userId);
       });
     });
+
+    this.selectedImagePreview = this.user.image_path;
   }
 
   checkPasswordMatch(): void {
@@ -62,4 +68,28 @@ export class SettingsPageComponent implements OnInit {
       this.displaySuccessMessage = false; // Hide success message
     }
   }
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      // Set the user's image_path with the selected image
+      this.user.image_path = URL.createObjectURL(file);
+
+      // Assuming user has a user_id property, adjust accordingly
+      this.uploadUserImageService.uploadUserImage(file, this.user.user_id).subscribe(
+        () => {
+          // Display success message if needed
+          this.displaySuccessMessage = true;
+        },
+        (error: any) => {
+          console.error('Error uploading user image:', error);
+          // Display error message if needed
+          this.displayErrorMessage = true;
+        }
+      );
+    }
+  }
+
+
 }

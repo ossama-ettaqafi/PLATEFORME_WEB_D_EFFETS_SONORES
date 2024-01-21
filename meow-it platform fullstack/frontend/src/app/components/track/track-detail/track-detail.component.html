@@ -1,11 +1,33 @@
 <div class="track-details">
-  <div *ngIf="!editTrack" (click)="edit_track()">Edit Track</div>
-  <div *ngIf="editTrack" (click)="go_back()">See details</div>
+  <ng-container *ngIf="LoggedUserId === trackData.user_id">
+    <div class="button-container">
+      <div class="edit-button" *ngIf="!editTrack" (click)="edit_track()">
+        <i class="fas fa-edit"></i> Edit
+      </div>
+
+      <div class="back-button" *ngIf="editTrack" (click)="go_back()">
+        <i class="fa fa-angle-left"></i> Back
+      </div>
+
+      <div class="verify-button" *ngIf="editTrack && !same_value" (click)="go_back()">
+        <i class="fa fa-check"></i>
+      </div>
+
+      <div class="delete-button" *ngIf="editTrack" (click)="edit_track()">
+        <i class="fas fa-trash"></i>
+      </div>
+
+    </div>
+  </ng-container>
 
   <div class="image-container">
+    <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" />
     <img *ngIf="trackData" [src]="trackData.image_path" alt="Track Image" />
-    <div class="edit-icon"><i class="fas fa-pencil-alt"></i></div>
+    <div class="edit-icon" *ngIf="editTrack" (click)="fileInput.click()">
+      <i class="fas fa-pencil-alt"></i>
+    </div>
   </div>
+
 
   <div class="track-info">
     <ng-container *ngIf="!editTrack">
@@ -14,7 +36,9 @@
       </h2>
     </ng-container>
 
-    <router-outlet></router-outlet>
+    <div class="input-container" *ngIf="editTrack">
+      <input type="text" id="track-name" [value]="trackData.title" [(ngModel)]="editedTitle" (input)="onInputChange()">
+    </div>
 
     <p>
       <span class="icon"><i class="fas fa-user"></i></span>
@@ -32,7 +56,9 @@
 
   <div class="buttons">
     <button class="button play-button"><i class="fas fa-play"></i></button>
-    <button class="button heart-button"><i class="fas fa-heart"></i> {{ likesCount }}</button>
+    <button class="button heart-button">
+      <i class="fas fa-heart"></i> {{ likesCount }}
+    </button>
     <button class="button download-button">
       <i class="fas fa-download"></i>
     </button>
