@@ -1,6 +1,6 @@
 <div class="artist-card" [routerLink]="['/profile', trackData.user_id]">
-  <div class="first-info">
-    <img [src]="owner.imageURL" alt="User Image">
+  <div class="first-info" *ngIf="user">
+    <img [src]="user.image_path" alt="User Image">
 
     <ng-container *ngIf="loggedInUserId != trackData.user_id">
       <button class="follow-button">Follow</button>

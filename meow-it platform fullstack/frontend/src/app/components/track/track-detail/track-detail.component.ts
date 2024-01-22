@@ -1,8 +1,8 @@
 import { UsersService } from 'src/app/services/users.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { LikesService } from 'src/app/services/likes.service';
 import { SharedService } from 'src/app/shared.service';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-track-detail',
@@ -12,18 +12,16 @@ import { SharedService } from 'src/app/shared.service';
 export class TrackDetailComponent implements OnInit {
   @Input() trackData: any;
 
-  editTrack: boolean | undefined;
   likesCount: any = 0;
   user: any;
   LoggedUserId: any;
-  editedTitle: string = '';
-  same_value: boolean | undefined;
+  category: any;
 
   constructor(
-    private router: Router,
     private likesService: LikesService,
     private usersService: UsersService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit() {
@@ -38,9 +36,7 @@ export class TrackDetailComponent implements OnInit {
       this.user = users.find((user) => user.id == this.trackData.user_id);
     });
 
-    this.editTrack = false;
-    this.same_value = true;
-    this.editedTitle = this.trackData.title;
+    this.getCategoryById(this.trackData.categoryId);
   }
 
   public formatTime(seconds: number): string {
@@ -55,23 +51,6 @@ export class TrackDetailComponent implements OnInit {
     return `${formattedMinutes}:${formattedSeconds}`;
   }
 
-  public edit_track() {
-    console.log(this.editTrack);
-    this.editTrack = true;
-  }
-
-  public go_back() {
-    this.editTrack = false;
-  }
-
-  onInputChange() {
-    if (this.editedTitle == this.trackData.title) {
-      this.same_value = true;
-    } else {
-      this.same_value = false;
-    }
-  }
-
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];
 
@@ -80,9 +59,15 @@ export class TrackDetailComponent implements OnInit {
 
       reader.onload = (e: any) => {
         this.trackData.image_path = e.target.result;
-        this.same_value = false;
       };
       reader.readAsDataURL(file);
     }
   }
+
+  getCategoryById(categoryId: number): void {
+    this.categoryService.getCategories().subscribe((categories) => {
+      this.category = categories.find((category) => category.id == categoryId);
+    });
+  }
+
 }

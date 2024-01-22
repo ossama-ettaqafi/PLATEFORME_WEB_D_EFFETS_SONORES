@@ -1,44 +1,21 @@
 <div class="track-details">
-  <ng-container *ngIf="LoggedUserId === trackData.user_id">
-    <div class="button-container">
-      <div class="edit-button" *ngIf="!editTrack" (click)="edit_track()">
-        <i class="fas fa-edit"></i> Edit
-      </div>
-
-      <div class="back-button" *ngIf="editTrack" (click)="go_back()">
-        <i class="fa fa-angle-left"></i> Back
-      </div>
-
-      <div class="verify-button" *ngIf="editTrack && !same_value" (click)="go_back()">
-        <i class="fa fa-check"></i>
-      </div>
-
-      <div class="delete-button" *ngIf="editTrack" (click)="edit_track()">
-        <i class="fas fa-trash"></i>
-      </div>
-
-    </div>
-  </ng-container>
-
   <div class="image-container">
-    <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" />
     <img *ngIf="trackData" [src]="trackData.image_path" alt="Track Image" />
-    <div class="edit-icon" *ngIf="editTrack" (click)="fileInput.click()">
-      <i class="fas fa-pencil-alt"></i>
-    </div>
   </div>
 
-
   <div class="track-info">
-    <ng-container *ngIf="!editTrack">
+    <ng-container>
       <h2 *ngIf="trackData">
         {{ trackData.title }}
+        <ng-container *ngIf="LoggedUserId === trackData.user_id">
+          <div class="button-container">
+            <div class="delete-button">
+              <i class="fas fa-trash"></i>
+            </div>
+          </div>
+        </ng-container>
       </h2>
     </ng-container>
-
-    <div class="input-container" *ngIf="editTrack">
-      <input type="text" id="track-name" [value]="trackData.title" [(ngModel)]="editedTitle" (input)="onInputChange()">
-    </div>
 
     <p>
       <span class="icon"><i class="fas fa-user"></i></span>
@@ -51,6 +28,10 @@
     <p>
       <span class="icon"><i class="fas fa-calendar-alt"></i></span>
       {{ trackData.release_date }}
+    </p>
+    <p *ngIf="category">
+      <span class="icon"><i [class]="category.icon"></i></span>
+      {{ category.name }}
     </p>
   </div>
 
