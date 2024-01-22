@@ -1,53 +1,101 @@
 <div class="main-content">
   <h2>Settings</h2>
-  <div class="container">
-    <div class="avatar-container">
-      <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" />
-      <img *ngIf="user && user.image_path" [src]="user.image_path" alt="User Avatar" class="avatar">
-      <div class="edit-icon" (click)="fileInput.click()">
-        <i class="fas fa-pencil-alt"></i>
+  <form #userForm="ngForm" (ngSubmit)="saveChanges(userForm)">
+    <div class="container">
+      <div class="avatar-container">
+        <input
+          type="file"
+          #fileInput
+          style="display: none"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+        />
+        <img
+          *ngIf="user && user.image_path"
+          [src]="user.image_path"
+          alt="User Avatar"
+          class="avatar"
+        />
+        <div class="edit-icon" (click)="fileInput.click()">
+          <i class="fas fa-pencil-alt"></i>
+        </div>
       </div>
-    </div>
 
+      <div
+        *ngIf="displaySuccessMessage"
+        class="error-message"
+        id="success-message"
+        [style.color]="'green'"
+      >
+        Changes saved successfully!
+      </div>
 
+      <div *ngIf="displayErrorMessage" class="error-message" id="error-message">
+        Please fill in all fields!
+      </div>
 
-    <div *ngIf="displaySuccessMessage" class="error-message" id="success-message" [style.color]="'green'">
-      Changes saved successfully!
-    </div>
-
-    <div *ngIf="displayErrorMessage" class="error-message" id="error-message">
-      Please fill in all fields!
-    </div>
-
-    <form #userForm="ngForm" (ngSubmit)="saveChanges(userForm)">
       <div class="form-container">
         <div class="form-section">
           <h3>Personal Information</h3>
           <div class="form-group">
             <div class="input-with-icon">
               <i class="fas fa-user"></i>
-              <input *ngIf="user" type="text" id="name" class="form-input" placeholder="Name" [(ngModel)]="user.name" name="name" required>
+              <input
+                *ngIf="user"
+                type="text"
+                id="name"
+                class="form-input"
+                placeholder="Name"
+                [(ngModel)]="user.name"
+                name="name"
+                required
+              />
             </div>
           </div>
 
           <div class="form-group">
             <div class="input-with-icon">
               <i class="fas fa-envelope"></i>
-              <input *ngIf="user" type="email" id="email" class="form-input" placeholder="Email" [(ngModel)]="user.email" name="email" required>
+              <input
+                *ngIf="user"
+                type="email"
+                id="email"
+                class="form-input"
+                placeholder="Email"
+                [(ngModel)]="user.email"
+                name="email"
+                required
+              />
             </div>
           </div>
 
           <div class="form-group">
             <div class="input-with-icon">
               <i class="fas fa-globe"></i>
-              <input *ngIf="user" type="text" id="country" class="form-input" placeholder="Country" [(ngModel)]="user.country" name="country">
+              <input
+                *ngIf="user"
+                type="text"
+                id="country"
+                class="form-input"
+                placeholder="Country"
+                [(ngModel)]="user.country"
+                name="country"
+              />
             </div>
           </div>
 
           <div class="form-group">
             <div class="input-with-icon">
               <i class="fas fa-map-marker-alt"></i>
-              <input *ngIf="user" type="text" id="city" class="form-input" placeholder="City" [(ngModel)]="user.city" name="city">
+              <input
+                *ngIf="user"
+                type="text"
+                id="city"
+                class="form-input"
+                placeholder="City"
+                [(ngModel)]="user.city"
+                name="city"
+              />
             </div>
           </div>
         </div>
@@ -57,7 +105,14 @@
           <div class="form-group">
             <div class="input-with-icon">
               <i class="fas fa-user"></i>
-              <textarea *ngIf="user" id="bio" class="form-input" placeholder="Bio" [(ngModel)]="user.bio" name="bio"></textarea>
+              <textarea
+                *ngIf="user"
+                id="bio"
+                class="form-input"
+                placeholder="Bio"
+                [(ngModel)]="user.bio"
+                name="bio"
+              ></textarea>
             </div>
           </div>
         </div>
@@ -67,14 +122,24 @@
           <div class="form-group">
             <div class="input-with-icon">
               <i class="fas fa-lock"></i>
-              <input *ngIf="user" type="password" id="password" class="form-input" placeholder="Password" [(ngModel)]="user.password" name="password" required>
+              <input
+                *ngIf="user"
+                type="password"
+                id="password"
+                class="form-input"
+                placeholder="Password"
+                [(ngModel)]="user.password"
+                name="password"
+                required
+              />
             </div>
           </div>
 
           <div class="form-group">
             <div class="input-with-icon">
               <i class="fas fa-lock"></i>
-              <input *ngIf="user"
+              <input
+                *ngIf="user"
                 type="password"
                 id="repeat-password"
                 class="form-input"
@@ -83,19 +148,28 @@
                 name="repeatPassword"
                 required
                 (input)="checkPasswordMatch()"
-              >
+              />
             </div>
             <div *ngIf="passwordMatchError" class="password-error">
               Passwords do not match!
             </div>
-            <div *ngIf="user && !passwordMatchError && user.password && user.repeatPassword" class="password-success">
+            <div
+              *ngIf="
+                user &&
+                !passwordMatchError &&
+                user.password &&
+                user.repeatPassword
+              "
+              class="password-success"
+            >
               Passwords match!
             </div>
           </div>
         </div>
-
       </div>
-      <button type="submit" class="save-button"><i class="fas fa-save"></i> Save Changes</button>
-    </form>
-  </div>
+      <button type="submit" class="save-button">
+        <i class="fas fa-save"></i> Save Changes
+      </button>
+    </div>
+  </form>
 </div>

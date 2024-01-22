@@ -1,4 +1,3 @@
-import { UploadService } from './../../../services/upload-track-image.service';
 import { UsersService } from 'src/app/services/users.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -24,8 +23,7 @@ export class TrackDetailComponent implements OnInit {
     private router: Router,
     private likesService: LikesService,
     private usersService: UsersService,
-    private sharedService: SharedService,
-    private uploadService:UploadService
+    private sharedService: SharedService
   ) {}
 
   ngOnInit() {
@@ -81,27 +79,10 @@ export class TrackDetailComponent implements OnInit {
       const reader = new FileReader();
 
       reader.onload = (e: any) => {
-        // Update the image_path with the data URL
         this.trackData.image_path = e.target.result;
         this.same_value = false;
-
       };
-
       reader.readAsDataURL(file);
-
-      // Assuming you have a service method to handle file uploads
-      // Update the trackData.image_path with the new image path
-      // You may need to subscribe to an Observable returned by your service
-      this.uploadService.uploadFile(file, `${this.trackData.user_id}`, `${this.trackData.id}`).subscribe(
-        (response: any) => {
-          // Update the image_path with the response from the server
-          this.trackData.image_path = response.image_path;
-        },
-        (error: any) => {
-          console.error('Error uploading file:', error);
-        }
-      );
     }
   }
-
 }
