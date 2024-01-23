@@ -1,5 +1,7 @@
 <div class="main-content">
-  <h2  *ngIf="loggedInUserId && loggedUser">Welcome, {{ getUserById(loggedInUserId).name }}</h2>
+  <h2 *ngIf="loggedInUserId">
+    Welcome, {{ getUserById(loggedInUserId)?.name }}
+  </h2>
 
   <div class="container">
     <div class="pub-container">

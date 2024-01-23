@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { LikesService } from 'src/app/services/likes.service';
 import { SharedService } from 'src/app/shared.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { AudioService } from 'src/app/services/audio.service';
 
 @Component({
   selector: 'app-track-detail',
@@ -21,7 +22,8 @@ export class TrackDetailComponent implements OnInit {
     private likesService: LikesService,
     private usersService: UsersService,
     private sharedService: SharedService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    public audioService: AudioService
   ) {}
 
   ngOnInit() {
@@ -70,4 +72,24 @@ export class TrackDetailComponent implements OnInit {
     });
   }
 
+  play(trackURL: string): void {
+    this.audioService.playAudio(trackURL);
+    console.log(trackURL);
+  }
+
+  pause(): void {
+    this.audioService.pauseAudio();
+  }
+
+  getAudioTime(): number {
+    return this.audioService.getAudioTime();
+  }
+
+  getAudioDuration(): number {
+    return this.audioService.getAudioDuration();
+  }
+
+  ngOnDestroy(): void {
+    this.audioService.onTimeUpdate.unsubscribe();
+  }
 }

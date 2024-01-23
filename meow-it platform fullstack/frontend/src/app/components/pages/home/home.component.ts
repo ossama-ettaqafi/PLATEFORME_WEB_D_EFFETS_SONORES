@@ -34,8 +34,15 @@ export class HomeComponent implements OnInit {
   }
 
   getUserById(userId: number): any {
-    return this.users.find((user: any) => user.id === userId);
+    // Check if this.users is defined before using the find method
+    if (this.users) {
+      return this.users.find((user: any) => user.id == userId);
+    } else {
+      // Handle the case where this.users is undefined (return null or handle it accordingly)
+      return null;
+    }
   }
+
 
   categories = [
     { id: 1, name: 'Nature', icon: 'fas fa-leaf', side: 'left' },

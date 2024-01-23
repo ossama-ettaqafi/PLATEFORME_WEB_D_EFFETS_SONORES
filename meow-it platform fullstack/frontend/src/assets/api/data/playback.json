@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "idUser": 2,
+    "idTrack": 3
+  },
+  {
+    "id": 2,
+    "idUser": 2,
+    "idTrack": 3
+  },
+  {
+    "id": 3,
+    "idUser": 2,
+    "idTrack": 3
+  },
+  {
+    "id": 4,
+    "idUser": 2,
+    "idTrack": 3
+  }
+
+]

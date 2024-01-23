@@ -48,7 +48,9 @@ img {
 
 .button-container {
   display: flex;
+  position: relative;
   justify-content: space-between;
+  z-index: 1;
   width: 100%;
 }
 

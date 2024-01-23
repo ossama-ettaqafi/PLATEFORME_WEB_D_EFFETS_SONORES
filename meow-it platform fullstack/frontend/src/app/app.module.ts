@@ -30,6 +30,7 @@ import { UploadButtonComponent } from './components/upload-button/upload-button.
 import { CategoryPageComponent } from './components/pages/category-page/category-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { FormatTimePipe } from './pipes/format-time.pipe';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { FormsModule } from '@angular/forms';
     UploadTrackPageComponent,
     TrackUploadComponent,
     UploadButtonComponent,
-    CategoryPageComponent
+    CategoryPageComponent,
+    FormatTimePipe
   ],
   imports: [
     BrowserModule,

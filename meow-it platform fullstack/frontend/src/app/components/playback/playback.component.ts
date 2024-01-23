@@ -1,33 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AudioService } from 'src/app/services/audio.service';
 
 @Component({
   selector: 'app-playback',
   templateUrl: './playback.component.html',
-  styleUrls: ['./playback.component.css']
+  styleUrls: ['./playback.component.css'],
 })
-export class PlaybackComponent {
-  public currentTrack: string = "Current Track Name";
-  public artistName: string = "Artist Name";
+export class PlaybackComponent implements OnInit {
+  public currentTrack: string = 'Current Track Name';
+  public artistName: string = 'Artist Name';
+  public imageURL: string = 'assets/images/def/test-image.jpg';
 
-  public imageURL: string = "assets/images/def/test-image.jpg";
+  constructor(public audioService: AudioService) {}
 
-  public maxTime: number = 200000; // Assuming maxTime is in milliseconds
-
-  // Convert milliseconds to seconds
-  public maxTimeInSeconds: number = Math.floor(this.maxTime / 1000);
-
-  // Format the seconds as "mm:ss"
-  public maxTimeString: string = this.formatTime(this.maxTimeInSeconds);
-
-  private formatTime(seconds: number): string {
-    const minutes: number = Math.floor(seconds / 60);
-    const remainingSeconds: number = Math.floor(seconds % 60);
-
-    // Pad with leading zeros
-    const formattedMinutes: string = minutes.toString().padStart(2, '0');
-    const formattedSeconds: string = remainingSeconds.toString().padStart(2, '0');
-
-    return `${formattedMinutes}:${formattedSeconds}`;
+  ngOnInit(): void {
+    this.audioService.initAudioEventListeners();
   }
 
+  playGlobal(): void {
+    this.audioService.playGlobal();
+  }
+
+  pauseGlobal(): void {
+    this.audioService.pauseAudio();
+  }
+
+  getAudioTime(): number {
+    return this.audioService.getAudioTime();
+  }
+
+  getAudioDuration(): number {
+    return this.audioService.getAudioDuration();
+  }
+
+  ngOnDestroy(): void {
+    this.audioService.onTimeUpdate.unsubscribe();
+  }
 }

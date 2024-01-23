@@ -36,7 +36,15 @@
   </div>
 
   <div class="buttons">
-    <button class="button play-button"><i class="fas fa-play"></i></button>
+
+    <button *ngIf="!audioService.isAudioPlaying(trackData.trackURL)" class="button play-button" id="play-pause-btn" (click)="play(trackData.trackURL)">
+      <i class="fas fa-play"></i>
+    </button>
+
+    <button *ngIf="audioService.isAudioPlaying(trackData.trackURL)" class="button play-button" id="play-pause-btn" (click)="pause()">
+      <i class="fas fa-pause"></i>
+    </button>
+
     <button class="button heart-button">
       <i class="fas fa-heart"></i> {{ likesCount }}
     </button>
