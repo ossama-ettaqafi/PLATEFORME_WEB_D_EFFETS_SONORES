@@ -100,6 +100,10 @@ p {
   color: #ff1493;
 }
 
+.heart-icon:hover {
+  color: #ff1493;
+}
+
 .download-button {
   margin-left: auto;
   color: #800080;

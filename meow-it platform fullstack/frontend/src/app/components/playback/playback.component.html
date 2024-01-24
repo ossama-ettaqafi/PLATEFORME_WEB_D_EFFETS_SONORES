@@ -1,8 +1,7 @@
 <div class="music-player">
-
   <ng-container *ngIf="audioService.checkAudio() === ''; else playbackContent">
     <div class="album-art">
-      <img src="assets/images/def/track_cover.jpg" alt="Album Art">
+      <img src="assets/images/def/track_cover.jpg" alt="Album Art" />
     </div>
     <div class="track-info">
       <div class="track-title">meow-it Playback</div>
@@ -14,34 +13,45 @@
     </div>
     <div class="duration">00:00 / 00:00</div>
     <div class="playback-controls">
-      <button class="play-pause-btn" >
+      <button class="play-pause-btn">
         <i class="fas fa-paw"></i>
       </button>
     </div>
   </ng-container>
 
-
   <ng-template #playbackContent>
-    <div class="album-art" [ngClass]="{'spin-animation': audioService.isGlobalAudioPlaying()}">
-      <img [src]="imageURL" alt="Album Art">
+    <div
+      class="album-art"
+      [ngClass]="{ 'spin-animation': audioService.isGlobalAudioPlaying() }"
+    >
+      <img [src]="audioService.trackData.image_path" alt="Album Art" />
     </div>
     <div class="track-info">
-      <div class="track-title">{{currentTrack}}</div>
-      <div class="track-artist">{{artistName}}</div>
+      <div class="track-title">{{ audioService.trackData.title }}</div>
+      <div class="track-artist">{{ audioService.artist?.name }}</div>
     </div>
     <div class="progress-bar-container">
       <div class="heart-icon liked"><i class="fas fa-heart"></i></div>
-      <progress class="progress-bar" [value]="getAudioTime()" [max]="getAudioDuration()"></progress>
+      <progress class="progress-bar" [value]="getAudioTime()" [max]="getValidAudioDuration()"></progress>
     </div>
-    <div class="duration">{{ getAudioTime() | formatTime }} / {{ getAudioDuration() | formatTime}}</div>
+    <div class="duration">
+      {{ getAudioTime() | formatTime }} / {{ getAudioDuration() | formatTime }}
+    </div>
     <div class="playback-controls">
-      <button *ngIf="!audioService.isGlobalAudioPlaying()" class="play-pause-btn" (click)="playGlobal()">
+      <button
+        *ngIf="!audioService.isGlobalAudioPlaying()"
+        class="play-pause-btn"
+        (click)="playGlobal()"
+      >
         <i class="fas fa-play"></i>
       </button>
-      <button *ngIf="audioService.isGlobalAudioPlaying()" class="play-pause-btn" (click)="pauseGlobal()">
+      <button
+        *ngIf="audioService.isGlobalAudioPlaying()"
+        class="play-pause-btn"
+        (click)="pauseGlobal()"
+      >
         <i class="fas fa-pause"></i>
       </button>
     </div>
   </ng-template>
-
 </div>

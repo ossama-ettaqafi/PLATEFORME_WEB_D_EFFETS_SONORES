@@ -1,4 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { UsersService } from './users.service';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -6,17 +8,25 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class AudioService {
   audio: HTMLAudioElement = new Audio();
   pausedTime = 0;
+  public trackData: any;
+  public artist:any;
 
   onTimeUpdate: EventEmitter<void> = new EventEmitter<void>();
 
-  playAudio(url: string): void {
-    if (this.audio.src !== url) {
-      this.audio.src = url;
+  constructor(public usersService: UsersService) {}
+
+  playAudio(trackData: any): void {
+    if (this.audio.src !== trackData.trackURL) {
+      this.audio.src = trackData.trackURL;
       this.audio.load();
     }
 
-    this.audio.currentTime = this.pausedTime;
-    this.audio.play();
+    this.trackData = trackData;
+    this.extractUserFromService().subscribe((user) => {
+      this.artist = user;
+      this.audio.currentTime = this.pausedTime;
+      this.audio.play();
+    });
   }
 
   pauseAudio(): void {
@@ -25,17 +35,19 @@ export class AudioService {
   }
 
   isAudioPlaying(url: string): boolean {
-    const sanitizedCurrentSrc = this.audio.src.replace(window.location.origin, '');
+    const sanitizedCurrentSrc = this.audio.src.replace(
+      window.location.origin,
+      ''
+    );
 
     return sanitizedCurrentSrc.endsWith(url) && !this.audio.paused;
   }
-
 
   isGlobalAudioPlaying(): boolean {
     return !this.audio.paused;
   }
 
-  playGlobal():void{
+  playGlobal(): void {
     this.audio.currentTime = this.pausedTime;
     this.audio.play();
   }
@@ -45,19 +57,26 @@ export class AudioService {
   }
 
   getAudioDuration(): number {
-    return this.audio.duration;
+    return isFinite(this.audio.duration) ? this.audio.duration : 0;
   }
 
-  downloadCurrentTrack(trackData:any): void {
+  downloadCurrentTrack(trackData: any): void {
     const link = document.createElement('a');
     link.href = trackData.trackURL;
-    // link.download = `${trackData.title}.mp3`;
-    console.log(link);
+    // link.download = `${this.artist.name} - ${trackData.title}.mp3`;
     link.click();
   }
 
-  checkAudio():string{
+  checkAudio(): string {
     return this.audio.src;
+  }
+
+  extractUserFromService(): Observable<any> {
+    return this.usersService.getUsers().pipe(
+      map((users) =>
+        users.find((user) => user.id == this.trackData.user_id)
+      )
+    );
   }
 
   initAudioEventListeners(): void {

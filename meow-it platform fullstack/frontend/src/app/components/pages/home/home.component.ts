@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from 'src/app/services/category.service';
 import { TracksService } from 'src/app/services/tracks.service';
 import { UsersService } from 'src/app/services/users.service';
 import { SharedService } from 'src/app/shared.service';
@@ -14,11 +15,13 @@ export class HomeComponent implements OnInit {
   loggedInUserId: number | null | undefined;
   loggedUser: any[] | undefined;
   loggedInUserName: string | undefined;
+  categories:any;
 
   constructor(
     private usersService: UsersService,
     private tracksService: TracksService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
@@ -31,25 +34,17 @@ export class HomeComponent implements OnInit {
     this.tracksService.getTracks().subscribe((tracks) => {
       this.tracks = tracks;
     });
+
+    this.categoryService.getCategories().subscribe((categories) => {
+      this.categories = categories;
+    });
   }
 
   getUserById(userId: number): any {
-    // Check if this.users is defined before using the find method
     if (this.users) {
       return this.users.find((user: any) => user.id == userId);
     } else {
-      // Handle the case where this.users is undefined (return null or handle it accordingly)
       return null;
     }
   }
-
-
-  categories = [
-    { id: 1, name: 'Nature', icon: 'fas fa-leaf', side: 'left' },
-    { id: 2, name: 'Human', icon: 'fas fa-user', side: 'left' },
-    { id: 3, name: 'Animals', icon: 'fas fa-paw', side: 'left' },
-    { id: 4, name: 'Ambiances', icon: 'fas fa-tree', side: 'right' },
-    { id: 5, name: 'Instruments', icon: 'fas fa-music', side: 'right' },
-    { id: 6, name: 'Things', icon: 'fas fa-cog', side: 'right' },
-  ];
 }

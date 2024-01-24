@@ -1,8 +1,7 @@
 [
-  { "id": 1, "name": "Nature", "icon": "fas fa-leaf", "imagePath": "assets/images/def/nature.jpg" },
-  { "id": 2, "name": "Human", "icon": "fas fa-user", "imagePath": "assets/images/def/human.jpeg" },
-  { "id": 3, "name": "Animals", "icon": "fas fa-paw", "imagePath": "assets/images/def/animals.jpg" },
-  { "id": 4, "name": "Ambiances", "icon": "fas fa-tree", "imagePath": "assets/images/def/ambiances.jpg" },
-  { "id": 5, "name": "Instruments", "icon": "fas fa-music", "imagePath": "assets/images/def/instruments.jpeg" },
-  { "id": 6, "name": "Things", "icon": "fas fa-cog", "imagePath": "assets/images/def/things.jpg" }
+  { "id": 1, "name": "Emo", "icon": "fas fa-heart", "imagePath": "assets/images/def/category.jpg", "side": "left" },
+  { "id": 2, "name": "Alternative", "icon": "fas fa-guitar", "imagePath": "assets/images/def/category.jpg", "side": "left" },
+  { "id": 3, "name": "Pop", "icon": "fas fa-cat", "imagePath": "assets/images/def/category.jpg", "side": "left" },
+  { "id": 4, "name": "Lo-fi pop", "icon": "fas fa-cloud", "imagePath": "assets/images/def/category.jpg", "side": "right" },
+  { "id": 5, "name": "Rap", "icon": "fas fa-microphone", "imagePath": "assets/images/def/category.jpg", "side": "right" }
 ]

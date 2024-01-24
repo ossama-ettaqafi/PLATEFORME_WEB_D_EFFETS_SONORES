@@ -1,24 +1,37 @@
 <div class="track-details">
-  <form id="upload-form">
+  <form [formGroup]="trackUploadForm" (ngSubmit)="onSubmit()">
     <div class="track-info">
-
       <label class="titles" for="track-image">Track Image</label>
-      <input type="file" id="track-image" name="trackImage" accept="image/*">
+      <input type="file" id="track-image" name="trackImage" accept="image/*" formControlName="trackImage" />
+      <div *ngIf="trackUploadForm.get('trackImage')?.invalid && trackUploadForm.get('trackImage')?.touched" class="error-message">
+        {{ getErrorMessage('trackImage') }}
+      </div>
+
+      <label class="titles" for="mp3-file">MP3 Track</label>
+      <input type="file" id="mp3-file" name="mp3File" accept=".mp3" formControlName="mp3File" />
+      <div *ngIf="trackUploadForm.get('mp3File')?.invalid && trackUploadForm.get('mp3File')?.touched" class="error-message">
+        {{ getErrorMessage('mp3File') }}
+      </div>
 
       <label class="titles" for="track-name">Track Name</label>
-      <input type="text" id="track-name" name="trackName" placeholder="Enter track name">
+      <input type="text" id="track-name" name="trackName" placeholder="Enter track name" formControlName="trackName" />
+      <div *ngIf="trackUploadForm.get('trackName')?.invalid && trackUploadForm.get('trackName')?.touched" class="error-message">
+        {{ getErrorMessage('trackName') }}
+      </div>
 
       <label class="titles" for="category">Category</label>
-      <select id="category" name="category">
-        <option value="1">Nature</option>
-        <option value="2">Human</option>
-        <option value="3">Animals</option>
-        <option value="4">Ambiances</option>
-        <option value="5">Instruments</option>
-        <option value="6">Things</option>
+      <select id="category" name="category" formControlName="category">
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </option>
       </select>
+      <div *ngIf="trackUploadForm.get('category')?.invalid && trackUploadForm.get('category')?.touched" class="error-message">
+        {{ getErrorMessage('category') }}
+      </div>
 
-      <button type="submit" class="button upload-button"><i class="fas fa-upload"></i> Upload Track</button>
+      <button type="submit" class="button upload-button">
+        <i class="fas fa-upload"></i> Upload Track
+      </button>
     </div>
   </form>
 </div>

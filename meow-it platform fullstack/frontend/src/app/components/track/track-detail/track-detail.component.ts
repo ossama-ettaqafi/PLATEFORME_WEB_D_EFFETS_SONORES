@@ -72,9 +72,8 @@ export class TrackDetailComponent implements OnInit {
     });
   }
 
-  play(trackURL: string): void {
-    this.audioService.playAudio(trackURL);
-    console.log(trackURL);
+  play(trackData: any): void {
+    this.audioService.playAudio(trackData);
   }
 
   pause(): void {
@@ -87,6 +86,10 @@ export class TrackDetailComponent implements OnInit {
 
   getAudioDuration(): number {
     return this.audioService.getAudioDuration();
+  }
+
+  download(): void {
+    this.audioService.downloadCurrentTrack(this.trackData);
   }
 
   ngOnDestroy(): void {

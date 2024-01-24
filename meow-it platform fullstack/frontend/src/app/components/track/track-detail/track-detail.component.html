@@ -37,7 +37,7 @@
 
   <div class="buttons">
 
-    <button *ngIf="!audioService.isAudioPlaying(trackData.trackURL)" class="button play-button" id="play-pause-btn" (click)="play(trackData.trackURL)">
+    <button *ngIf="!audioService.isAudioPlaying(trackData.trackURL)" class="button play-button" id="play-pause-btn" (click)="play(trackData)">
       <i class="fas fa-play"></i>
     </button>
 
@@ -48,7 +48,7 @@
     <button class="button heart-button">
       <i class="fas fa-heart"></i> {{ likesCount }}
     </button>
-    <button class="button download-button">
+    <button class="button download-button" (click)="download(); $event.stopPropagation()">
       <i class="fas fa-download"></i>
     </button>
   </div>

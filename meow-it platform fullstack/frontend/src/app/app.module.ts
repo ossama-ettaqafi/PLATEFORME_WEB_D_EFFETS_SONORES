@@ -29,7 +29,7 @@ import { TrackUploadComponent } from './components/track/track-upload/track-uplo
 import { UploadButtonComponent } from './components/upload-button/upload-button.component';
 import { CategoryPageComponent } from './components/pages/category-page/category-page.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormatTimePipe } from './pipes/format-time.pipe';
 
 @NgModule({
@@ -61,7 +61,8 @@ import { FormatTimePipe } from './pipes/format-time.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     UsersService,

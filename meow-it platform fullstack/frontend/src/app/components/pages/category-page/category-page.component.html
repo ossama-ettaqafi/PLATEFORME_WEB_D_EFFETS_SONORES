@@ -4,16 +4,19 @@
       <button (click)="navigateBack()">
         <i class="fas fa-chevron-left"></i>
       </button>
-      Go back
     </div>
-    <h2>Categorie: {{ category?.name }} <div class="{{ category?.icon }}"></div>
+    <h2>
+      Category: {{ category?.name }}
+      <div class="{{ category?.icon }}"></div>
     </h2>
   </div>
 
   <div class="container">
-
     <div class="pub-container">
-      <img [src]="category.imagePath" alt="meow-it {{ category?.name | lowercase }} image">
+      <img
+        [src]="category.imagePath"
+        alt="meow-it {{ category?.name | lowercase }} image"
+      />
     </div>
 
     <h3>Sounds</h3>
@@ -23,7 +26,11 @@
     </div>
 
     <div class="cards-container">
-      <app-track-card *ngFor="let track of filteredTracks" [trackData]="track" [user]="getUserById(track.user_id)"></app-track-card>
+      <app-track-card
+        *ngFor="let track of filteredTracks"
+        [trackData]="track"
+        [user]="getUserById(track.user_id)"
+      ></app-track-card>
     </div>
   </div>
 </div>

@@ -5,7 +5,7 @@
 
   <div class="container">
     <div class="pub-container">
-      <img src="assets/images/def/feed-pub.png" alt="meow-it publication">
+      <img src="assets/images/def/feed-pub.png" alt="meow-it publication" />
     </div>
 
     <div class="cate-container">
@@ -13,13 +13,18 @@
         <h3>Categories</h3>
       </div>
       <ul class="vertical-list">
-        <li *ngFor="let category of categories" [routerLink]="['/category', category.id]" class="vertical-list-item" [class.left-side]="category.side === 'left'" [class.right-side]="category.side === 'right'">
+        <li
+          *ngFor="let category of categories"
+          [routerLink]="['/category', category.id]"
+          class="vertical-list-item"
+          [class.left-side]="category.side === 'left'"
+          [class.right-side]="category.side === 'right'"
+        >
           <i [class]="category.icon"></i>
           <span>{{ category.name }}</span>
         </li>
       </ul>
     </div>
-
   </div>
 </div>
 
@@ -33,9 +38,11 @@
     </div>
 
     <div class="cards-container" *ngIf="users && users.length > 0">
-      <app-user-card *ngFor="let user of users" [userData]="user"></app-user-card>
+      <app-user-card
+        *ngFor="let user of users"
+        [userData]="user"
+      ></app-user-card>
     </div>
-
   </div>
 </div>
 
@@ -49,8 +56,11 @@
     </div>
 
     <div class="cards-container">
-      <app-track-card *ngFor="let track of tracks" [trackData]="track" [user]="getUserById(track.user_id)"></app-track-card>
+      <app-track-card
+        *ngFor="let track of tracks"
+        [trackData]="track"
+        [user]="getUserById(track.user_id)"
+      ></app-track-card>
     </div>
   </div>
 </div>
-

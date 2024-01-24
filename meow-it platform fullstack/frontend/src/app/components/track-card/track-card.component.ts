@@ -16,9 +16,8 @@ export class TrackCardComponent implements OnInit, OnDestroy {
 
   }
 
-  play(trackURL: string): void {
-    this.audioService.playAudio(trackURL);
-    console.log(trackURL);
+  play(trackData: any): void {
+    this.audioService.playAudio(trackData);
   }
 
   pause(): void {

@@ -18,7 +18,7 @@
     <button
       *ngIf="!audioService.isAudioPlaying(trackData.trackURL)"
       id="play-pause-btn"
-      (click)="play(trackData.trackURL); $event.stopPropagation()"
+      (click)="play(trackData); $event.stopPropagation()"
     >
       <i class="fas fa-play"></i>
     </button>

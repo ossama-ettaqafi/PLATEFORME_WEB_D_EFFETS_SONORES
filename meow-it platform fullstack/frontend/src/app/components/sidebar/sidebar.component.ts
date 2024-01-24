@@ -5,21 +5,22 @@ import { SharedService } from 'src/app/shared.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
 })
-export class SidebarComponent implements OnInit{
+export class SidebarComponent implements OnInit {
   loggedInUserId: number | null | undefined;
   loggedUser: any[] | undefined;
 
-
-  constructor(private usersService: UsersService, private sharedService: SharedService) {}
+  constructor(
+    private usersService: UsersService,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
     this.loggedInUserId = this.sharedService.getLoggedInUserId();
 
-    this.usersService.getUsers().subscribe(data => {
-      this.loggedUser = data.filter(user => user.id == this.loggedInUserId);
+    this.usersService.getUsers().subscribe((data) => {
+      this.loggedUser = data.filter((user) => user.id == this.loggedInUserId);
     });
   }
-
 }

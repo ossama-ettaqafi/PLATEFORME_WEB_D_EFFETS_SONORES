@@ -74,6 +74,10 @@ img {
   color: #FF1493;
 }
 
+#heart-icon:hover {
+  color: #ff1493;
+}
+
 #play-pause-btn {
   width: 25px;
   height: 25px;
