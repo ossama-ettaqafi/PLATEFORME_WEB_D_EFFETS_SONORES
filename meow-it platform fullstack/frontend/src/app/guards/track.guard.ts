@@ -15,7 +15,7 @@ export class TrackGuard implements CanActivate {
     // Get the valid Track IDs from the service
     const validTrackIds = this.tracksService.getTracksIds();
 
-    console.log(validTrackIds);
+    // console.log(validTrackIds);
 
     // Check if the requested Track ID is valid
     const isValidTrackId = validTrackIds.includes(requestedTrackId);

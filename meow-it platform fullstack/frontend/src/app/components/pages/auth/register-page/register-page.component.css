@@ -149,6 +149,7 @@ button:hover {
   white-space: nowrap;
   text-overflow: ellipsis;
   width: 300px;
+  margin-bottom: 40px;
 }
 
 .upload-logo {
@@ -176,11 +177,15 @@ button:hover {
 }
 
 .error-message {
-  display: flex;
-  align-items: center;
-  align-content: center;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   color: #e74c3c;
+  text-align: center;
   font-size: 14px;
+  width: 100%;
 }
 
 @media (max-width: 768px) {

@@ -1,9 +1,19 @@
 <div class="container">
   <div class="card inverse">
     <div class="left-section">
-      <img src="assets/images/auth/register.png" alt="Image d'inscription" class="register-image" />
+      <img
+        src="assets/images/auth/register.png"
+        alt="Image d'inscription"
+        class="register-image"
+      />
     </div>
-    <form action="" method="POST" class="right-section" enctype="multipart/form-data">
+    <form
+      (submit)="onSubmit()"
+      action=""
+      method="POST"
+      class="right-section"
+      enctype="multipart/form-data"
+    >
       <div class="logo-image">
         <img src="assets/images/def/meow-it.png" alt="meow-it" />
       </div>
@@ -11,23 +21,33 @@
       <h1>Inscription</h1>
       <div class="input-group">
         <i class="fa fa-user"></i>
-        <input type="text" name="fullname" placeholder="Nom complet" />
+        <input type="text" name="fullname" placeholder="Nom complet" [(ngModel)]="formData.fullname" />
       </div>
       <div class="input-group">
         <i class="fa fa-envelope"></i>
-        <input type="email" name="email" placeholder="Email" />
+        <input type="email" name="email" placeholder="Email" [(ngModel)]="formData.email" />
       </div>
       <div class="input-group">
         <i class="fa fa-lock"></i>
-        <input type="password" name="password" placeholder="Mot de passe" />
+        <input type="password" name="password" placeholder="Mot de passe" [(ngModel)]="formData.password" />
       </div>
+
       <div class="input-group">
-        <div class="upload-details" onclick="">
+        <div class="upload-details" (click)="triggerFileInput()">
           <label for="upload-input" class="upload-logo">
             <i class="fa fa-cloud-upload"></i>
           </label>
-          <span id="file-name" class="upload-file-name">Choisir une image</span>
+          <span id="file-name" class="upload-file-name">{{ formData.image ? formData.image.name : 'Choisir une image' }}</span>
         </div>
+        <input type="file" id="upload-input" (change)="onFileSelected($event)" accept="image/*" style="display: none;" />
+
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <!-- <div *ngIf="successMessage" class="success-message">
+          {{ successMessage }}
+        </div> -->
       </div>
 
       <button type="submit">S'inscrire</button>

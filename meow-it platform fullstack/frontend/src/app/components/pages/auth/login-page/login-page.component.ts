@@ -17,13 +17,11 @@ export class LoginPageComponent {
 
   constructor(private usersService: UsersService, private sharedService: SharedService, private router: Router, private titleService: Title) { }
 
-
   ngOnInit() {
-    this.titleService.setTitle('meow-it | Page de connextion');
+    this.titleService.setTitle('meow-it | Page de connexion');
 
     this.usersService.getUsers().subscribe(data => {
       this.users = data;
-      // console.log(this.users);
     });
   }
 
@@ -34,9 +32,15 @@ export class LoginPageComponent {
     // Reset error message
     this.errorMessage = '';
 
+    // Check if email and password are not empty
+    if (!enteredEmail || !enteredPassword) {
+      this.errorMessage = 'Les deux champs, e-mail et mot de passe, sont requis';
+      return;
+    }
+
     // Basic email validation
-    if (!enteredEmail || !enteredEmail.includes('@')) {
-      this.errorMessage = 'Invalid email format';
+    if (!enteredEmail.includes('@')) {
+      this.errorMessage = 'Format e-mail invalide';
       return;
     }
 
@@ -45,7 +49,7 @@ export class LoginPageComponent {
 
     if (user && user.password === enteredPassword) {
       // Authentication successful
-      console.log('Login successful');
+      // console.log('Connexion réussie');
 
       // Set the logged user's ID in the SharedService
       this.sharedService.setLoggedInUserId(user.id);
@@ -53,7 +57,7 @@ export class LoginPageComponent {
       this.router.navigate(['/home']);
     } else {
       // Authentication failed
-      this.errorMessage = 'Invalid credentials';
+      this.errorMessage = 'Identifiants invalides';
     }
   }
 }
