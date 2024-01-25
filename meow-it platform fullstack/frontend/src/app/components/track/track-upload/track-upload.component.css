@@ -1,73 +1,172 @@
-.track-details {
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 60px auto;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   background-color: #fff;
-  position: relative; /* Added position relative */
+  padding-bottom: 100px;
 }
 
-.track-info {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+h2 {
+  align-self: flex-start;
+  margin-left: 100px;
 }
 
-.titles {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #333;
-}
-
-input[type="file"],
-input[type="text"],
-select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.form-container {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   box-sizing: border-box;
-  font-size: 14px;
-  background-color: #f8f8f8;
-  transition: background-color 0.3s ease;
+  border-radius: 10px;
+  color: #fff;
+  margin-bottom: -40px;
 }
 
-input[type="file"]:hover,
-input[type="text"]:hover,
-select:hover {
-  background-color: #e0e0e0;
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
-input[type="file"]:focus,
-input[type="text"]:focus,
-select:focus {
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-with-icon i {
+  margin-right: 10px;
+  color: #aaa;
+}
+
+.input-with-icon input {
+  width: 450px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  box-sizing: border-box;
+}
+
+.input-with-icon select {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  color: #888;
+  box-sizing: border-box;
+}
+
+.form-input:focus, .input-with-icon select:focus {
   outline: none;
-  border: 1px solid #4CAF50;
+  background-color: #fff;
 }
 
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #45a049;
+.form-section h3 {
+  color: #888;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 .error-message {
+  position: absolute;
+  padding: 20px;
+  bottom: 10px;
+  left: 30px;
   color: #e74c3c;
   font-size: 14px;
-  margin-top: 5px;
+}
+
+.save-button {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  background-color: #27ae60;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.save-button:hover {
+  background-color: #218f53;
+}
+
+.save-button i {
+  margin-right: 8px;
+}
+
+.form-group:first-of-type, .form-group:first-of-type ~ .form-group {
+  color: #888;
+}
+
+@media screen and (max-width: 860px) {
+  .main-content h2 {
+    font-size: 22px;
+    width: 60%;
+  }
+
+  .container {
+    width: 400px;
+  }
+
+  .avatar-container {
+    max-width: 120px;
+    height: 120px;
+    margin-bottom: 0;
+  }
+
+  .input-with-icon input {
+    width: 300px;
+    font-size: 12px;
+  }
+
+  .input-with-icon select {
+    width: 100px;
+    font-size: 12px;
+  }
+
+  .input-with-icon i {
+    font-size: 12px;
+  }
+
+  .form-section h3 {
+    color: #888;
+    font-size: 16px;
+  }
+
+  .password-error,
+  .password-success,
+  .error-message {
+    font-size: 12px;
+  }
+
+  .error-message {
+    left: 10px;
+  }
+
+  .save-button {
+    font-size: 12px;
+  }
 }

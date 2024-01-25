@@ -21,7 +21,7 @@ export class RegisterPageComponent implements OnInit {
     image: null,
   };
 
-  errorMessage: string = ''; // Variable to store error messages
+  errorMessage: string = '';
 
   constructor(private titleService: Title) {}
 
@@ -36,13 +36,24 @@ export class RegisterPageComponent implements OnInit {
       // Clear previous error messages
       this.errorMessage = '';
 
+      // Validate email format
+      if (!this.isEmailValid(this.formData.email)) {
+        this.errorMessage = 'Veuillez fournir une adresse e-mail valide.';
+        return;
+      }
+
       console.log('Form data:', this.formData);
       console.log('Success message!!');
-      // You can send the form data to the server or perform other actions here
     } else {
       this.errorMessage =
         'Tous les champs doivent être remplis et une image doit être sélectionnée.';
     }
+  }
+
+  isEmailValid(email: string): boolean {
+    // Regular expression for a simple email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
 
   isFormValid(): boolean {

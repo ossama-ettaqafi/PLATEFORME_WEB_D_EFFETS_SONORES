@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from 'src/app/services/category.service';
+import { Router } from '@angular/router';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-track-upload',
@@ -8,65 +9,79 @@ import { CategoryService } from 'src/app/services/category.service';
   styleUrls: ['./track-upload.component.css'],
 })
 export class TrackUploadComponent implements OnInit {
-
-  trackUploadForm!: FormGroup;
   categories: any;
+  successMessage: string = '';
+  errorMessage: string = '';
+  loggedUserId: number | undefined;
 
-  constructor(
-    private fb: FormBuilder,
-    public categoryService: CategoryService
-  ) {}
+  constructor(public categoryService: CategoryService, private router: Router, private sharedService: SharedService) {}
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe((categories) => {
       this.categories = categories;
     });
 
-    // Initialize the form with FormBuilder
-    this.trackUploadForm = this.fb.group({
-      trackImage: [null, [Validators.required]],
-      mp3File: [null, [Validators.required]],
-      trackName: ['', [Validators.required]],
-      category: ['', [Validators.required]],
-    });
+    this.loggedUserId = this.sharedService.getLoggedInUserId() ?? undefined;
   }
+
+  formData = {
+    image: null,
+    audio: null,
+    title: '',
+    category: '',
+  };
 
   onSubmit() {
-    if (this.trackUploadForm.valid) {
-      // Form is valid, proceed with submission
-      const formData = new FormData();
-      formData.append('trackImage', this.trackUploadForm.get('trackImage')?.value as File);
-      formData.append('mp3File', this.trackUploadForm.get('mp3File')?.value as File);
-      formData.append('trackName', this.trackUploadForm.get('trackName')?.value);
-      formData.append('category', this.trackUploadForm.get('category')?.value);
-
-      // Now, you can implement the logic to send this FormData to your backend service
-      // for further processing, such as uploading the files.
-      console.log(formData);
-    } else {
-      // Form is invalid, show error messages or take appropriate action
-      this.validateAllFormFields(this.trackUploadForm);
+    // Check if all required fields are filled
+    if (!this.isFormValid()) {
+      this.errorMessage = 'Please fill in all fields!';
+      this.successMessage = ''; // Clear success message if there was one
+      return;
     }
+
+    // Access the form data and display it
+    console.log('Form Data:', this.formData);
+
+    // Display success message
+    this.successMessage = 'Track Uploaded Succefly!';
+    this.errorMessage = '';
+
+    // You can also perform any additional logic or API calls here
+
+    this.router.navigate(['/profile', this.loggedUserId]);
   }
 
-  // Helper method to validate all form fields
-  private validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach((field) => {
-      const control = formGroup.get(field);
-      if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      } else {
-        control?.markAsTouched({ onlySelf: true });
-      }
-    });
+  isFormValid(): boolean {
+    return (
+      this.formData.image !== null &&
+      this.formData.audio !== null &&
+      this.formData.title !== '' &&
+      this.formData.category !== ''
+    );
   }
 
-  // Helper method to display error messages
-  getErrorMessage(controlName: string) {
-    const control = this.trackUploadForm.get(controlName);
-    if (control?.hasError('required')) {
-      return 'This field is required';
-    }
-    return '';
+
+  onImageChange(event: any) {
+    // Handle image file change event
+    this.formData.image = event.target.files[0];
+  }
+
+  onAudioChange(event: any) {
+    // Handle audio file change event
+    this.formData.audio = event.target.files[0];
+  }
+
+  resetForm() {
+    // Reset form data and clear file inputs
+    this.formData = {
+      image: null,
+      audio: null,
+      title: '',
+      category: '',
+    };
+
+    // Reset error and success messages
+    this.errorMessage = '';
+    this.successMessage = '';
   }
 }

@@ -1,35 +1,92 @@
-<div class="track-details">
-  <form [formGroup]="trackUploadForm" (ngSubmit)="onSubmit()">
-    <div class="track-info">
-      <label class="titles" for="track-image">Track Image</label>
-      <input type="file" id="track-image" name="trackImage" accept="image/*" formControlName="trackImage" />
-      <div *ngIf="trackUploadForm.get('trackImage')?.invalid && trackUploadForm.get('trackImage')?.touched" class="error-message">
-        {{ getErrorMessage('trackImage') }}
+<div class="main-content">
+  <form #uplaodForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <div class="form-container">
+        <div class="error-message" id="error-message" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+
+        <div
+          class="error-message"
+          id="success-message"
+          [style.color]="'green'"
+          *ngIf="successMessage"
+        >
+          {{ successMessage }}
+        </div>
+
+        <div class="form-section">
+          <h3>Métadonnés</h3>
+
+          <!-- Add Image Upload -->
+          <div class="form-group">
+            <label for="image">
+              <div class="input-with-icon">
+                <i class="fas fa-camera"></i>
+                <input
+                  type="file"
+                  id="image"
+                  class="form-input"
+                  name="image"
+                  accept="image/*"
+                  required
+                  (change)="onImageChange($event)"
+                />
+              </div>
+            </label>
+          </div>
+
+          <!-- Add Audio Upload -->
+          <div class="form-group">
+            <label for="audio">
+              <div class="input-with-icon">
+                <i class="fas fa-file-audio"></i>
+                <input
+                  type="file"
+                  id="audio"
+                  class="form-input"
+                  name="audio"
+                  accept="audio/mp3"
+                  required
+                  (change)="onAudioChange($event)"
+                />
+              </div>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <div class="input-with-icon">
+              <i class="fas fa-music"></i>
+              <input
+                type="text"
+                id="title"
+                class="form-input"
+                placeholder="Track Title"
+                name="title"
+                [(ngModel)]="formData.title"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-with-icon">
+              <i class="fas fa-globe"></i>
+
+              <select [(ngModel)]="formData.category" name="category">
+                <option
+                  *ngFor="let category of categories"
+                  [value]="category.id"
+                >
+                  {{ category.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <label class="titles" for="mp3-file">MP3 Track</label>
-      <input type="file" id="mp3-file" name="mp3File" accept=".mp3" formControlName="mp3File" />
-      <div *ngIf="trackUploadForm.get('mp3File')?.invalid && trackUploadForm.get('mp3File')?.touched" class="error-message">
-        {{ getErrorMessage('mp3File') }}
-      </div>
-
-      <label class="titles" for="track-name">Track Name</label>
-      <input type="text" id="track-name" name="trackName" placeholder="Enter track name" formControlName="trackName" />
-      <div *ngIf="trackUploadForm.get('trackName')?.invalid && trackUploadForm.get('trackName')?.touched" class="error-message">
-        {{ getErrorMessage('trackName') }}
-      </div>
-
-      <label class="titles" for="category">Category</label>
-      <select id="category" name="category" formControlName="category">
-        <option *ngFor="let category of categories" [value]="category.id">
-          {{ category.name }}
-        </option>
-      </select>
-      <div *ngIf="trackUploadForm.get('category')?.invalid && trackUploadForm.get('category')?.touched" class="error-message">
-        {{ getErrorMessage('category') }}
-      </div>
-
-      <button type="submit" class="button upload-button">
+      <button type="submit" class="save-button">
         <i class="fas fa-upload"></i> Upload Track
       </button>
     </div>

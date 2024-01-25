@@ -7,6 +7,6 @@
     <a [routerLink]="['/home']" routerLinkActive="active"><i class="fas fa-home"></i></a>
     <a [routerLink]="['/notifications']" routerLinkActive="active"><i class="fas fa-bell"></i></a>
     <a *ngIf="loggedUser" [routerLink]="['/settings']" routerLinkActive="active"><i class="fas fa-cog"></i></a>
-    <a (click)="logout()"><i class="fas fa-sign-out-alt"></i></a>
+    <a style="cursor: pointer;" (click)="logout()"><i class="fas fa-sign-out-alt"></i></a>
   </div>
 </div>
