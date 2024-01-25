@@ -13,6 +13,8 @@ import { UploadTrackPageComponent } from './components/pages/track/upload-track-
 import { AuthGuard } from './guards/auth.guard';
 import { CategoryGuard } from './guards/category.guard';
 import { CategoryPageComponent } from './components/pages/category-page/category-page.component';
+import { ProfileGuard } from './guards/profile.guard';
+import { TrackGuard } from './guards/track.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -24,8 +26,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
   { path: 'upload-track', component: UploadTrackPageComponent, canActivate: [AuthGuard] },
   { path: 'not-found', component: NotfoundComponent, canActivate: [AuthGuard] },
-  { path: 'profile/:id', component: ProfilePageComponent, canActivate: [AuthGuard] },
-  { path: 'track/:id', component: TrackPageComponent, canActivate: [AuthGuard] },
+  { path: 'track/:id', component: TrackPageComponent, canActivate: [AuthGuard, TrackGuard] },
+  { path: 'profile/:id', component: ProfilePageComponent, canActivate: [AuthGuard, ProfileGuard] },
   { path: 'category/:id', component: CategoryPageComponent, canActivate: [AuthGuard, CategoryGuard] },
   { path: '**', redirectTo:'not-found', pathMatch: 'full'}
 ];

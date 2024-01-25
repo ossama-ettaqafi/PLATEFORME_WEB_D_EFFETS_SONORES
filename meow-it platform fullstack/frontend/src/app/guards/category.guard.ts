@@ -18,9 +18,6 @@ export class CategoryGuard implements CanActivate {
     // Check if the requested category ID is valid
     const isValidCategoryId = validCategoryIds.includes(requestedCategoryId);
 
-
-    console.log(requestedCategoryId);
-
     if (!isValidCategoryId) {
       // Redirect to the 'not-found' page
       return this.router.parseUrl('/not-found');

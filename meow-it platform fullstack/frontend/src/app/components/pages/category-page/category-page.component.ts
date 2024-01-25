@@ -48,8 +48,13 @@ export class CategoryPageComponent implements OnInit {
   }
 
   getUserById(userId: number): any {
-    return this.allUsers.find((user: any) => user.id === userId);
+    if (this.allUsers) {
+      const user = this.allUsers.find((user: any) => user.id === userId);
+      return user || null; // Return null if the user is not found
+    }
+    return null; // Return null if allUsers is not yet populated
   }
+
 
   navigateBack(): void {
     const pathToNavigateBack = '/home';
