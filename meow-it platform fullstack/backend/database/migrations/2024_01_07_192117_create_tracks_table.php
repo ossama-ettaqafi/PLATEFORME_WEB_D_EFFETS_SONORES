@@ -16,7 +16,8 @@ class CreateTracksTable extends Migration
             $table->integer('duration');
             $table->date('release_date');
             $table->integer('category');
-            $table->timestamps(); // Created at and Updated at timestamps
+            $table->string('trackURL');
+            $table->timestamps();
         });
     }
 

@@ -1,7 +1,37 @@
 [
-  { "id": 1, "name": "Emo", "icon": "fas fa-heart", "imagePath": "assets/images/def/category.jpg", "side": "left" },
-  { "id": 2, "name": "Alternative", "icon": "fas fa-guitar", "imagePath": "assets/images/def/category.jpg", "side": "left" },
-  { "id": 3, "name": "Pop", "icon": "fas fa-cat", "imagePath": "assets/images/def/category.jpg", "side": "left" },
-  { "id": 4, "name": "Lo-fi pop", "icon": "fas fa-cloud", "imagePath": "assets/images/def/category.jpg", "side": "right" },
-  { "id": 5, "name": "Rap", "icon": "fas fa-microphone", "imagePath": "assets/images/def/category.jpg", "side": "right" }
+  {
+    "id": 1,
+    "name": "Emo",
+    "icon": "fas fa-heart",
+    "imagePath": "assets/images/def/category.jpg",
+    "side": "left"
+  },
+  {
+    "id": 2,
+    "name": "Alternative",
+    "icon": "fas fa-guitar",
+    "imagePath": "assets/images/def/category.jpg",
+    "side": "left"
+  },
+  {
+    "id": 3,
+    "name": "Pop",
+    "icon": "fas fa-cat",
+    "imagePath": "assets/images/def/category.jpg",
+    "side": "left"
+  },
+  {
+    "id": 4,
+    "name": "Lo-fi pop",
+    "icon": "fas fa-cloud",
+    "imagePath": "assets/images/def/category.jpg",
+    "side": "right"
+  },
+  {
+    "id": 5,
+    "name": "Rap",
+    "icon": "fas fa-microphone",
+    "imagePath": "assets/images/def/category.jpg",
+    "side": "right"
+  }
 ]
