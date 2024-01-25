@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/services/category.service';
 import { TracksService } from 'src/app/services/tracks.service';
 import { UsersService } from 'src/app/services/users.service';
-import { SharedService } from 'src/app/shared.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-home',

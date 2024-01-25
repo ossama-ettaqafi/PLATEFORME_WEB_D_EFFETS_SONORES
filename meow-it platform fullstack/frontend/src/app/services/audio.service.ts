@@ -18,7 +18,7 @@ export class AudioService {
   playAudio(trackData: any): void {
     if (this.audio.src !== trackData.trackURL) {
       this.audio.src = trackData.trackURL;
-      this.audio.load();
+      // this.audio.load();
     }
 
     this.trackData = trackData;

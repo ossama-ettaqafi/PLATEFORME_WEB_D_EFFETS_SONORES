@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { SharedService } from 'src/app/shared.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-login-page',
@@ -14,12 +15,15 @@ export class LoginPageComponent {
   errorMessage: string = '';
   loggedInUserId: number | null | undefined;
 
-  constructor(private usersService: UsersService, private sharedService: SharedService, private router: Router) { }
+  constructor(private usersService: UsersService, private sharedService: SharedService, private router: Router, private titleService: Title) { }
+
 
   ngOnInit() {
+    this.titleService.setTitle('meow-it | Page de connextion');
+
     this.usersService.getUsers().subscribe(data => {
       this.users = data;
-      console.log(this.users);
+      // console.log(this.users);
     });
   }
 

@@ -1,6 +1,7 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
-import { SharedService } from 'src/app/shared.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +14,8 @@ export class SidebarComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -22,5 +24,10 @@ export class SidebarComponent implements OnInit {
     this.usersService.getUsers().subscribe((data) => {
       this.loggedUser = data.filter((user) => user.id == this.loggedInUserId);
     });
+  }
+
+  logout(): void{
+    this.sharedService.setLoggedInUserId(null);
+    this.router.navigate(['/login']);
   }
 }

@@ -1,4 +1,4 @@
-import { SharedService } from 'src/app/shared.service';
+import { SharedService } from 'src/app/services/shared.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FollowsService } from 'src/app/services/follows.service';
 import { LikesService } from 'src/app/services/likes.service';

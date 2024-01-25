@@ -12,11 +12,8 @@
   </div>
 
   <div class="container">
-    <div class="pub-container">
-      <img
-        [src]="category.imagePath"
-        alt="meow-it {{ category?.name | lowercase }} image"
-      />
+    <div class="pub-container" *ngIf="category">
+      <img src="{{ category?.imagePath }}" alt="Category Image">
     </div>
 
     <h3>Sounds</h3>

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import { HttpClient } from '@angular/common/http';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -10,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./settings-page.component.css'],
 })
 export class SettingsPageComponent implements OnInit {
-  public userId: string | null = null;
+  public userId: number | undefined;
   public user: any;
   public allUsers: any[] = [];
 
@@ -26,12 +27,13 @@ export class SettingsPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UsersService,
+    private sharedService: SharedService,
     private http:HttpClient
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.userId = params.get('id');
+      this.userId = this.sharedService.getLoggedInUserId() ?? undefined;
 
       this.userService.getUsers().subscribe((users) => {
         this.user = users.find((u) => u.id == this.userId);

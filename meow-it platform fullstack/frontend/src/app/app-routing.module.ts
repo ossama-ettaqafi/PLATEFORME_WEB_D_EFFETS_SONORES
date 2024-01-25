@@ -10,21 +10,23 @@ import { NotfoundComponent } from './components/pages/notfound/notfound.componen
 import { LoginPageComponent } from './components/pages/auth/login-page/login-page.component';
 import { RegisterPageComponent } from './components/pages/auth/register-page/register-page.component';
 import { UploadTrackPageComponent } from './components/pages/track/upload-track-page/upload-track-page.component';
+import { AuthGuard } from './guards/auth.guard';
+import { CategoryGuard } from './guards/category.guard';
 import { CategoryPageComponent } from './components/pages/category-page/category-page.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'notifications', component: NotificationsPageComponent},
-  { path: 'search', component: SearchComponent},
-  { path: 'profile/:id', component: ProfilePageComponent},
-  { path: 'settings/:id', component: SettingsPageComponent},
-  { path: 'track/:id', component: TrackPageComponent},
-  { path: 'upload-track', component: UploadTrackPageComponent},
-  { path: 'login', component: LoginPageComponent},
-  { path: 'register', component: RegisterPageComponent},
-  { path: 'not-found', component: NotfoundComponent},
-  { path: 'category/:id', component: CategoryPageComponent},
+  { path: 'notifications', component: NotificationsPageComponent, canActivate: [AuthGuard] },
+  { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingsPageComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'register', component: RegisterPageComponent },
+  { path: 'upload-track', component: UploadTrackPageComponent, canActivate: [AuthGuard] },
+  { path: 'not-found', component: NotfoundComponent, canActivate: [AuthGuard] },
+  { path: 'profile/:id', component: ProfilePageComponent, canActivate: [AuthGuard] },
+  { path: 'track/:id', component: TrackPageComponent, canActivate: [AuthGuard] },
+  { path: 'category/:id', component: CategoryPageComponent, canActivate: [AuthGuard, CategoryGuard] },
   { path: '**', redirectTo:'not-found', pathMatch: 'full'}
 ];
 

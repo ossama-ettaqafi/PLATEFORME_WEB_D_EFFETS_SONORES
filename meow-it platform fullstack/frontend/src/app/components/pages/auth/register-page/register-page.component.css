@@ -21,7 +21,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(45deg, #FFD700, #FF8C00);
+  background: linear-gradient(45deg, #ffd700, #ff8c00);
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
@@ -90,7 +90,7 @@ button {
   width: 60%;
   padding: 10px;
   margin-top: 10px;
-  background: linear-gradient(45deg, #FFD700, #FFA500);
+  background: linear-gradient(45deg, #ffd700, #ffa500);
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -100,7 +100,7 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(45deg, #FFD700, #FF8C00);
+  background: linear-gradient(45deg, #ffd700, #ff8c00);
 }
 
 .register-image {
@@ -132,13 +132,13 @@ button:hover {
 }
 
 .create-account a {
-  color: #8A2BE2;
+  color: #8a2be2;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .create-account a:hover {
-  color: #B48CF9;
+  color: #b48cf9;
 }
 
 .upload-details {
@@ -153,7 +153,7 @@ button:hover {
 
 .upload-logo {
   position: relative;
-  width: 40px;
+  width: 30px;
   height: 40px;
   color: #fff;
   cursor: pointer;
@@ -172,7 +172,7 @@ button:hover {
 
 .upload-details:hover .upload-logo i,
 .upload-details:hover .upload-file-name {
-  color: #B48CF9;
+  color: #b48cf9;
 }
 
 .error-message {
@@ -183,7 +183,6 @@ button:hover {
   font-size: 14px;
 }
 
-
 @media (max-width: 768px) {
   .register-image {
     width: 150px;
@@ -191,42 +190,42 @@ button:hover {
   }
 
   .card {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .left-section,
   .right-section {
-      text-align: center;
+    text-align: center;
   }
 
   .right-section {
-      padding-top: 0px;
-      margin-top: -30px;
+    padding-top: 0px;
+    margin-top: -30px;
   }
 
   .left-section {
-      margin-right: 0px;
-      border-radius: 50%;
-      overflow: hidden;
-      position: relative;
-      top: -50px;
-      height: 150px;
-      transition: background-color 0.3s ease;
+    margin-right: 0px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    top: -50px;
+    height: 150px;
+    transition: background-color 0.3s ease;
   }
 
   .inverse .left-section {
-      order: 1;
-      margin-right: 0px;
-      border-radius: 50%;
-      overflow: hidden;
-      position: relative;
-      top: -50px;
-      height: 150px;
+    order: 1;
+    margin-right: 0px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    top: -50px;
+    height: 150px;
   }
 
   .inverse .right-section {
-      order: 2;
-      text-align: center;
+    order: 2;
+    text-align: center;
   }
 }

@@ -1,4 +1,4 @@
-<div [routerLink]="['/track', trackData.id]" class="music-card">
+<div [routerLink]="['/track', trackData.id]" class="music-card" *ngIf="user">
   <div class="image-container">
     <img [src]="trackData.image_path" alt="Track Image" />
   </div>

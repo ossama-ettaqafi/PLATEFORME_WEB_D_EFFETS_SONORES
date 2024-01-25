@@ -3,14 +3,29 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
   private apiUrl = 'assets/api/data/users.json';
+  private usersIds: string[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.fetchUsersIds();
+  }
 
   getUsers(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
+
+  getUsersIds(): string[] {
+    return this.usersIds;
+  }
+
+  private fetchUsersIds() {
+    this.getUsers().subscribe(users => {
+      this.usersIds = users.map(user => user.id.toString());
+    });
+  }
+
 }
+

@@ -1,7 +1,7 @@
 import { UsersService } from 'src/app/services/users.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { LikesService } from 'src/app/services/likes.service';
-import { SharedService } from 'src/app/shared.service';
+import { SharedService } from 'src/app/services/shared.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { AudioService } from 'src/app/services/audio.service';
 
