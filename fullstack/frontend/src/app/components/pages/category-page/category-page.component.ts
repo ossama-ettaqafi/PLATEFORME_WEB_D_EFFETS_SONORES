@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { TracksService } from 'src/app/services/tracks.service';
@@ -20,8 +21,15 @@ export class CategoryPageComponent implements OnInit {
     private router: Router,
     private categoryService: CategoryService,
     private tracksService: TracksService,
-    private usersService: UsersService
-  ) {}
+    private usersService: UsersService,
+    private titleService: Title) {
+      this.setTitle('meow-it | Page de catégorie');
+    }
+
+  private setTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
+  }
+
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {

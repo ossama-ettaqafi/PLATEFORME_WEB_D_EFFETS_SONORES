@@ -146,12 +146,18 @@ p {
   transform: scale(1.1);
 }
 
+h2 span {
+  width: 600px;
+}
+
 .button-container {
+  width: 100%;
   font-size: 18px;
-  margin-left: 10px;
 }
 
 .delete-button {
+  display: flex;
+  justify-content: flex-end;
   color: #e74c3c;
   cursor: pointer;
 }

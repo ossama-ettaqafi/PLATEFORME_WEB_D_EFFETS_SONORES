@@ -1,6 +1,6 @@
 <div class="main-content">
   <h2 *ngIf="loggedInUserId">
-    Welcome, {{ getUserById(loggedInUserId)?.name }}
+    Bienvenue, {{ getUserById(loggedInUserId)?.name }}
   </h2>
 
   <div class="container">
@@ -10,7 +10,7 @@
 
     <div class="cate-container">
       <div class="title-container">
-        <h3>Categories</h3>
+        <h3>Catégories</h3>
       </div>
       <ul class="vertical-list">
         <li
@@ -31,10 +31,10 @@
 <!-- Users card -->
 <div class="main-content">
   <div class="container">
-    <h3>Artists</h3>
+    <h3>Artistes</h3>
 
     <div class="nothing-found" *ngIf="users && users.length === 0">
-      <span>Oops! The list is empty.</span>
+      <span>Oops! La liste est vide.</span>
     </div>
 
     <div class="cards-container" *ngIf="users && users.length > 0">
@@ -49,10 +49,10 @@
 <!-- Tracks cards -->
 <div class="main-content">
   <div class="container">
-    <h3>Sounds</h3>
+    <h3>Sons</h3>
 
     <div *ngIf="tracks && tracks.length === 0" class="nothing-found">
-      <span>Oops! Nothing found in this category.</span>
+      <span>Oops! Rien de trouvé dans cette catégorie.</span>
     </div>
 
     <div class="cards-container">

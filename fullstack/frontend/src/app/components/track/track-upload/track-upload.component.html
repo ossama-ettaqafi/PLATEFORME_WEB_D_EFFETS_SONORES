@@ -61,8 +61,8 @@
                 type="text"
                 id="title"
                 class="form-input"
-                placeholder="Track Title"
-                name="title"
+                placeholder="Titre de son"
+                name="ttile"
                 [(ngModel)]="formData.title"
                 required
               />
@@ -74,9 +74,10 @@
               <i class="fas fa-globe"></i>
 
               <select [(ngModel)]="formData.category" name="category">
+                <option value="" disabled selected>Select a category</option>
                 <option
                   *ngFor="let category of categories"
-                  [value]="category.id"
+                  [ngValue]="category.id"
                 >
                   {{ category.name }}
                 </option>
@@ -87,7 +88,7 @@
       </div>
 
       <button type="submit" class="save-button">
-        <i class="fas fa-upload"></i> Upload Track
+        <i class="fas fa-upload"></i> Télécharger le son
       </button>
     </div>
   </form>

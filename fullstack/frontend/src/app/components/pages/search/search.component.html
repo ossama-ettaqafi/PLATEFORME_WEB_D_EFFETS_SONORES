@@ -1,5 +1,5 @@
 <div class="main-content">
-  <h2>Search</h2>
+  <h2>Recherche</h2>
   <div class="search-container">
     <div class="searchbar-container">
       <button class="search-icon" (click)="performSearch()">
@@ -9,14 +9,14 @@
         [(ngModel)]="searchQuery"
         type="text"
         class="search-input"
-        placeholder="Search"
+        placeholder="Recherche"
       />
       <div class="search-filter">
         <div class="filter-list">
           <select [(ngModel)]="searchFilter">
-            <option value="all">All</option>
-            <option value="sounds">Sounds</option>
-            <option value="users">Users</option>
+            <option value="all">Toute</option>
+            <option value="sounds">Sons</option>
+            <option value="users">Artistes</option>
           </select>
         </div>
       </div>
@@ -29,7 +29,7 @@
     *ngIf="searchFilter === 'all' || searchFilter === 'users'"
   >
     <div class="container">
-      <h3>Users</h3>
+      <h3>Artistes</h3>
 
       <div
         class="cards-container"
@@ -45,7 +45,7 @@
         class="nothing-found"
         *ngIf="filteredUsers && filteredUsers.length == 0"
       >
-        <span>Oops! Nothing Found.</span>
+        <span>Oops! Rien n'a été trouvé.</span>
       </div>
     </div>
   </div>
@@ -56,7 +56,7 @@
     *ngIf="searchFilter === 'all' || searchFilter === 'sounds'"
   >
     <div class="container">
-      <h3>Sounds</h3>
+      <h3>Sons</h3>
 
       <div
         class="cards-container"
@@ -73,7 +73,7 @@
         class="nothing-found"
         *ngIf="filteredTracks && filteredTracks.length == 0"
       >
-        <span>Oops! Nothing Found.</span>
+        <span>Oops! Rien n'a été trouvé.</span>
       </div>
     </div>
   </div>

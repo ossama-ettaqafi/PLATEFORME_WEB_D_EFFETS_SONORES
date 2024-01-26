@@ -3,13 +3,13 @@
     <img [src]="user.image_path" alt="User Image">
 
     <ng-container *ngIf="loggedInUserId != trackData.user_id">
-      <button class="follow-button">Follow</button>
+      <button class="follow-button">Suivre</button>
     </ng-container>
 
   </div>
   <div class="user-info">
-    <span>{{followersCount}} Followers</span>
-    <span>{{followingCount}} Following</span>
-    <span>{{userlikesCount}} Likes</span>
+    <span>{{followersCount}} Suiveuses</span>
+    <span>{{followingCount}} Suivantes</span>
+    <span>{{userlikesCount}} Aimes</span>
   </div>
 </div>

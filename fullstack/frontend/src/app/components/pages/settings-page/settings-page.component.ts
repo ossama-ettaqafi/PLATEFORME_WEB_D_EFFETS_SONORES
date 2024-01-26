@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import { HttpClient } from '@angular/common/http';
 import { SharedService } from 'src/app/services/shared.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-settings-page',
@@ -28,8 +29,15 @@ export class SettingsPageComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UsersService,
     private sharedService: SharedService,
-    private http:HttpClient
-  ) {}
+    private http: HttpClient,
+    private titleService: Title
+  ) {
+    this.setTitle('meow-it | Page des paramètres');
+  }
+
+  private setTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -55,7 +63,6 @@ export class SettingsPageComponent implements OnInit {
       this.user.password === this.user.repeatPassword;
 
     if (passwordsFilledAndMatch && this.allFieldsFilled) {
-
       if (this.selectedFile) {
         const newImagePath = `assets/users_images/${this.userId}_${this.selectedFile.name}`;
 
@@ -68,7 +75,6 @@ export class SettingsPageComponent implements OnInit {
         // Log the new image path for demonstration purposes
         console.log('New Image Path:', newImagePath);
       }
-
 
       console.log('Form submitted!', {
         ...form.value,

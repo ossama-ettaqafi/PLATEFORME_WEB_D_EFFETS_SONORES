@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 import { CategoryService } from '../services/category.service';
 
 @Injectable({
@@ -12,18 +13,18 @@ export class CategoryGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     const requestedCategoryId = route.params['id']; // Assuming you have a route parameter named 'categoryId'
 
-    // Get the valid category IDs from the service
-    const validCategoryIds = this.categoryService.getCategoryIds();
+    // Fetch category data based on the ID
+    return this.categoryService.getCategoryById(requestedCategoryId).pipe(
+      switchMap(category => {
+        if (!category) {
+          // Category not found, redirect to 'not-found' page
+          return of(this.router.parseUrl('/not-found'));
+        }
 
-    // Check if the requested category ID is valid
-    const isValidCategoryId = validCategoryIds.includes(requestedCategoryId);
-
-    if (!isValidCategoryId) {
-      // Redirect to the 'not-found' page
-      return this.router.parseUrl('/not-found');
-    }
-
-    // Continue with the route activation
-    return true;
+        // Continue with the route activation
+        return of(true);
+      }),
+      catchError(() => of(this.router.parseUrl('/not-found')))
+    );
   }
 }

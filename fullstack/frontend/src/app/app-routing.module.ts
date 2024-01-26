@@ -18,22 +18,46 @@ import { TrackGuard } from './guards/track.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'notifications', component: NotificationsPageComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'notifications',
+    component: NotificationsPageComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
-  { path: 'settings', component: SettingsPageComponent, canActivate: [AuthGuard] },
+  {
+    path: 'settings',
+    component: SettingsPageComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
-  { path: 'upload-track', component: UploadTrackPageComponent, canActivate: [AuthGuard] },
+  {
+    path: 'upload-track',
+    component: UploadTrackPageComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'not-found', component: NotfoundComponent, canActivate: [AuthGuard] },
-  { path: 'track/:id', component: TrackPageComponent, canActivate: [AuthGuard, TrackGuard] },
-  { path: 'profile/:id', component: ProfilePageComponent, canActivate: [AuthGuard, ProfileGuard] },
-  { path: 'category/:id', component: CategoryPageComponent, canActivate: [AuthGuard, CategoryGuard] },
-  { path: '**', redirectTo:'not-found', pathMatch: 'full'}
+  {
+    path: 'track/:id',
+    component: TrackPageComponent,
+    canActivate: [AuthGuard, TrackGuard],
+  },
+  {
+    path: 'profile/:id',
+    component: ProfilePageComponent,
+    canActivate: [AuthGuard, ProfileGuard],
+  },
+  {
+    path: 'category/:id',
+    component: CategoryPageComponent,
+    canActivate: [AuthGuard, CategoryGuard],
+  },
+  { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

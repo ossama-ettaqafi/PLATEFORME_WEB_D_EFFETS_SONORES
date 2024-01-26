@@ -6,7 +6,7 @@
   <div class="track-info">
     <ng-container>
       <h2 *ngIf="trackData">
-        {{ trackData.title }}
+        <span>{{ trackData.title }}</span>
         <ng-container *ngIf="LoggedUserId === trackData.user_id">
           <div class="button-container">
             <div class="delete-button">

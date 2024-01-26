@@ -9,11 +9,11 @@
 
         <div class="profile-details">
           <!-- Connected id -->
-          <h3 *ngIf="userData">{{ userData.name }} {{ loggedInUserId == userData.id? "(me)":"" }}</h3>
+          <h3 *ngIf="userData">{{ userData.name }} {{ loggedInUserId == userData.id? "(moi)":"" }}</h3>
           <p *ngIf="userData">{{ userData.country }}, {{ userData.city }}</p>
-          <p *ngIf="userData">Joining Date: {{ userData.join_date }}</p>
+          <p *ngIf="userData">Date d'inscription: {{ userData.join_date }}</p>
           <ng-container *ngIf="userData && loggedInUserId != userData.id">
-            <button class="follow-button">Follow</button>
+            <button class="follow-button">Suivre</button>
           </ng-container>
 
         </div>

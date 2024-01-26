@@ -1,7 +1,8 @@
-import { TracksService } from 'src/app/services/tracks.service';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { switchMap, catchError } from 'rxjs/operators';
+import { TracksService } from '../services/tracks.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,23 +10,21 @@ import { Observable } from 'rxjs';
 export class TrackGuard implements CanActivate {
   constructor(private tracksService: TracksService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    const requestedTrackId = route.params['id']; // Assuming you have a route parameter named 'TrackId'
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
+    const requestedTrackId = route.params['id']; // Assuming you have a route parameter named 'id'
 
-    // Get the valid Track IDs from the service
-    const validTrackIds = this.tracksService.getTracksIds();
+    // Fetch track data based on the ID
+    return this.tracksService.getTrackById(requestedTrackId).pipe(
+      switchMap(track => {
+        if (!track) {
+          // Track not found, redirect to 'not-found' page
+          return of(this.router.parseUrl('/not-found'));
+        }
 
-    // console.log(validTrackIds);
-
-    // Check if the requested Track ID is valid
-    const isValidTrackId = validTrackIds.includes(requestedTrackId);
-
-    if (!isValidTrackId) {
-      // Redirect to the 'not-found' page
-      return this.router.parseUrl('/not-found');
-    }
-
-    // Continue with the route activation
-    return true;
+        // Continue with the route activation
+        return of(true);
+      }),
+      catchError(() => of(this.router.parseUrl('/not-found')))
+    );
   }
 }

@@ -6,7 +6,7 @@
       </button>
     </div>
     <h2>
-      Category: {{ category?.name }}
+      Catégorie: {{ category?.name }}
       <div class="{{ category?.icon }}"></div>
     </h2>
   </div>
@@ -16,10 +16,10 @@
       <img src="{{ category?.imagePath }}" alt="Category Image">
     </div>
 
-    <h3>Sounds</h3>
+    <h3>Sons</h3>
 
     <div *ngIf="filteredTracks.length == 0" class="nothing-found">
-      <span>Oops! Nothing found in this category.</span>
+      <span>Oops! Rien de trouvé dans cette catégorie.</span>
     </div>
 
     <div class="cards-container">
