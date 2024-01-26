@@ -2,15 +2,12 @@
   <img [src]="userData.image_path" alt="User Image" />
   <p>{{ userData.name }}</p>
 
-  <button
-    *ngIf="loggedInUserId == userData.id"
-    class="follow-button"
-    (click)="$event.stopPropagation()"
-  >
+  <button *ngIf="loggedInUserId == userData.id" class="follow-button">
     Visite
   </button>
+
   <button
-    *ngIf="loggedInUserId != userData.id"
+    *ngIf="loggedInUserId !== userData.id"
     class="follow-button"
     (click)="$event.stopPropagation()"
   >
