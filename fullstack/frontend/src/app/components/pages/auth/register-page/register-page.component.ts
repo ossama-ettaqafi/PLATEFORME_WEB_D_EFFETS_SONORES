@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { RegistrationService } from 'src/app/services/registration.service';
 
-interface FormData {
+export interface FormData {
   fullname: string;
   email: string;
   password: string;
@@ -14,6 +15,7 @@ interface FormData {
   styleUrls: ['./register-page.component.css'],
 })
 export class RegisterPageComponent implements OnInit {
+
   formData: FormData = {
     fullname: '',
     email: '',
@@ -22,28 +24,37 @@ export class RegisterPageComponent implements OnInit {
   };
 
   errorMessage: string = '';
+  selectedFile: File | undefined;
 
-  constructor(private titleService: Title) {}
+  constructor(
+    private titleService: Title,
+    private registrationService: RegistrationService
+  ) {}
 
   ngOnInit(): void {
     this.titleService.setTitle("meow-it | Page d'inscription");
   }
 
   onSubmit(): void {
-    console.log(this.isFormValid());
-
     if (this.isFormValid()) {
-      // Clear previous error messages
       this.errorMessage = '';
 
-      // Validate email format
       if (!this.isEmailValid(this.formData.email)) {
         this.errorMessage = 'Veuillez fournir une adresse e-mail valide.';
         return;
       }
 
-      console.log('Form data:', this.formData);
-      console.log('Success message!!');
+      // Call the registration service to send data to Laravel API
+      this.registrationService.register(this.formData).subscribe(
+        (response) => {
+          // Handle success response from Laravel API
+          console.log('Registration successful:', response);
+        },
+        (error) => {
+          // Handle error response from Laravel API
+          console.error('Registration failed:', error);
+        }
+      );
     } else {
       this.errorMessage =
         'Tous les champs doivent être remplis et une image doit être sélectionnée.';
@@ -51,17 +62,11 @@ export class RegisterPageComponent implements OnInit {
   }
 
   isEmailValid(email: string): boolean {
-    // Regular expression for a simple email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
 
   isFormValid(): boolean {
-    console.log('Fullname:', this.formData.fullname);
-    console.log('Email:', this.formData.email);
-    console.log('Password:', this.formData.password);
-    console.log('Image:', this.formData.image);
-
     return (
       this.formData.fullname.trim() !== '' &&
       this.formData.email.trim() !== '' &&
@@ -74,11 +79,10 @@ export class RegisterPageComponent implements OnInit {
     document.getElementById('upload-input')?.click();
   }
 
-  onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.formData.image = file;
-      console.log('Selected image path:', file.name);
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      this.formData.image = this.selectedFile;
     }
   }
 }

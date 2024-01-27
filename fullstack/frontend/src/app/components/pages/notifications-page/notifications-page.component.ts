@@ -33,13 +33,11 @@ export class NotificationsPageComponent implements OnInit {
     private titleService: Title
   ) {
     this.setTitle('meow-it | Page de notifications');
-
   }
 
   private setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
-
 
   ngOnInit(): void {
     this.loggedInUserId = this.sharedService.getLoggedInUserId();

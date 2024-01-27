@@ -27,11 +27,15 @@
         id="success-message"
         [style.color]="'green'"
       >
-        Changements sauvegardés avec succès!
+        Changements sauvegardés!
       </div>
 
       <div *ngIf="displayErrorMessage" class="error-message" id="error-message">
-        Merci de remplir tous les champs!
+        Remplir tous les champs!
+      </div>
+
+      <div *ngIf="displayUplaodFailed" class="error-message" id="error-message">
+        Mise à jour a échoué!
       </div>
 
       <div class="form-container">
@@ -168,7 +172,7 @@
         </div>
       </div>
       <button type="submit" class="save-button">
-        <i class="fas fa-save"></i> Sauvegarder les modifications
+        <i class="fas fa-save"></i> Sauvegarder
       </button>
     </div>
   </form>

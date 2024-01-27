@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/services/category.service';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
+import { TrackUploadService } from 'src/app/services/track-upload.service';
 
 @Component({
   selector: 'app-track-upload',
@@ -14,7 +15,12 @@ export class TrackUploadComponent implements OnInit {
   errorMessage: string = '';
   loggedUserId: number | undefined;
 
-  constructor(public categoryService: CategoryService, private router: Router, private sharedService: SharedService) {}
+  constructor(
+    public categoryService: CategoryService,
+    private router: Router,
+    private sharedService: SharedService,
+    private trackUploadService: TrackUploadService
+  ) {}
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe((categories) => {
@@ -39,16 +45,28 @@ export class TrackUploadComponent implements OnInit {
       return;
     }
 
-    // Access the form data and display it
-    console.log('Form Data:', this.formData);
+    // Call the track upload service to send data to Laravel API
+    this.trackUploadService.uploadTrack(this.formData).subscribe(
+      (response) => {
+        // Handle success response from Laravel API
+        console.log('Track upload successful:', response);
 
-    // Display success message
-    this.successMessage = 'Track Uploaded Succefly!';
-    this.errorMessage = '';
+        // Display success message
+        this.successMessage = 'Téléchargé avec succès!';
+        this.errorMessage = '';
 
-    // You can also perform any additional logic or API calls here
+        // Navigate to the profile page
+        this.router.navigate(['/profile', this.loggedUserId]);
+      },
+      (error) => {
+        // Handle error response from Laravel API
+        console.error('Track upload failed:', error);
 
-    this.router.navigate(['/profile', this.loggedUserId]);
+        // Display error message
+        this.errorMessage = 'Échec du téléchargement.';
+        this.successMessage = ''; // Clear success message if there was one
+      }
+    );
   }
 
   isFormValid(): boolean {
@@ -59,7 +77,6 @@ export class TrackUploadComponent implements OnInit {
       this.formData.category !== ''
     );
   }
-
 
   onImageChange(event: any) {
     // Handle image file change event

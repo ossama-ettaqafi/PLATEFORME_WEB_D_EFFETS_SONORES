@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { HttpClient } from '@angular/common/http';
 import { SharedService } from 'src/app/services/shared.service';
 import { Title } from '@angular/platform-browser';
+import { UserUpdateService } from 'src/app/services/user-update.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -22,6 +22,7 @@ export class SettingsPageComponent implements OnInit {
   allFieldsFilled: boolean = true;
   displaySuccessMessage: boolean = false;
   displayErrorMessage: boolean = false;
+  displayUplaodFailed: boolean = false;
 
   changesSaved: boolean = false;
 
@@ -29,8 +30,8 @@ export class SettingsPageComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UsersService,
     private sharedService: SharedService,
-    private http: HttpClient,
-    private titleService: Title
+    private titleService: Title,
+    private userUpdateService: UserUpdateService
   ) {
     this.setTitle('meow-it | Page des paramètres');
   }
@@ -54,42 +55,55 @@ export class SettingsPageComponent implements OnInit {
   }
 
   saveChanges(form: NgForm): void {
-    this.allFieldsFilled = Object.values(this.user).every(
-      (value) => value !== ''
-    );
-    const passwordsFilledAndMatch =
-      this.user.password &&
-      this.user.repeatPassword &&
-      this.user.password === this.user.repeatPassword;
+    this.allFieldsFilled = Object.values(this.user).every(value => value !== '');
+    const passwordsFilledAndMatch = this.user.password && this.user.repeatPassword && this.user.password === this.user.repeatPassword;
 
     if (passwordsFilledAndMatch && this.allFieldsFilled) {
+      const formData = new FormData();
+
+      // Append other form data to formData
+      formData.append('name', this.user.name);
+      formData.append('email', this.user.email);
+      formData.append('country', this.user.country);
+      formData.append('city', this.user.city);
+      formData.append('bio', this.user.bio);
+      formData.append('password', this.user.password);
+      formData.append('repeatPassword', this.user.repeatPassword);
+
       if (this.selectedFile) {
-        const newImagePath = `assets/users_images/${this.userId}_${this.selectedFile.name}`;
-
-        // Simulate copying the file within the Angular app (for demonstration purposes)
-        this.copyFileToLocalAssets(this.selectedFile, newImagePath);
-
-        // Update user.image_path with the new path
-        this.user.image_path = newImagePath;
-
-        // Log the new image path for demonstration purposes
-        console.log('New Image Path:', newImagePath);
+        formData.append('image', this.selectedFile);
+      }else{
+        formData.append('image', 'default');
       }
 
-      console.log('Form submitted!', {
-        ...form.value,
-        image_path: this.user.image_path,
-      });
+      // Use the userUpdateService to send the formData to the API
+      this.userUpdateService.updateUser(formData).subscribe(
+        (response) => {
+          // Handle success response from the API
+          console.log('Update successful:', response);
 
-      this.changesSaved = true;
-      this.displaySuccessMessage = true;
-      this.displayErrorMessage = false;
+          this.changesSaved = true;
+          this.displaySuccessMessage = true;
+          this.displayErrorMessage = false;
+          this.displayUplaodFailed = false;
+        },
+        (error) => {
+          // Handle error response from the API
+          console.error('Update failed:', error);
+
+          this.displayErrorMessage = false;
+          this.displaySuccessMessage = false;
+          this.displayUplaodFailed = true;
+        }
+      );
+
     } else {
       this.passwordMatchError = !passwordsFilledAndMatch;
       this.displayErrorMessage = true;
       this.displaySuccessMessage = false;
     }
   }
+
 
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];
@@ -98,26 +112,5 @@ export class SettingsPageComponent implements OnInit {
       this.selectedFile = file;
       this.user.image_path = URL.createObjectURL(file);
     }
-  }
-
-  // Helper method to simulate copying the file within the Angular app
-  private copyFileToLocalAssets(file: File, newPath: string): void {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const dataUrl = reader.result as string;
-
-      // Simulate copying the file to the new path
-      this.http.post(newPath, dataUrl, { responseType: 'text' }).subscribe(
-        (response) => {
-          console.log('File copied successfully:', response);
-        },
-        (error) => {
-          console.error('Error copying file:', error);
-        }
-      );
-    };
-
-    // Read the file as a data URL
-    reader.readAsDataURL(file);
   }
 }
