@@ -4,6 +4,7 @@ import { LikesService } from 'src/app/services/likes.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { AudioService } from 'src/app/services/audio.service';
+import { TrackDeleteService } from 'src/app/services/delete-track.service';
 
 @Component({
   selector: 'app-track-detail',
@@ -25,7 +26,8 @@ export class TrackDetailComponent implements OnInit, OnDestroy {
     private usersService: UsersService,
     private sharedService: SharedService,
     private categoryService: CategoryService,
-    public audioService: AudioService
+    public audioService: AudioService,
+    public trackDeleteService: TrackDeleteService
   ) {}
 
   ngOnInit() {
@@ -136,6 +138,24 @@ export class TrackDetailComponent implements OnInit, OnDestroy {
 
   download(): void {
     this.audioService.downloadCurrentTrack(this.trackData);
+  }
+
+  deleteTrack(): void {
+    if (this.trackData.id !== undefined) {
+      this.trackDeleteService.deleteTrack(this.trackData.id).subscribe(
+        response => {
+          console.log('Delete operation successful:', response);
+
+          // Additional logic if needed (e.g., navigate to another page)
+
+        },
+        error => {
+          console.error('Error during delete operation:', error);
+
+          // Additional error handling if needed
+        }
+      );
+    }
   }
 
   ngOnDestroy(): void {

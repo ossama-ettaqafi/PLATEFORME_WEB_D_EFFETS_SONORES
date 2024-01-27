@@ -9,7 +9,7 @@
         <span>{{ trackData.title }}</span>
         <ng-container *ngIf="LoggedUserId === trackData.user_id">
           <div class="button-container">
-            <div class="delete-button">
+            <div class="delete-button" (click)="deleteTrack()">
               <i class="fas fa-trash"></i>
             </div>
           </div>
