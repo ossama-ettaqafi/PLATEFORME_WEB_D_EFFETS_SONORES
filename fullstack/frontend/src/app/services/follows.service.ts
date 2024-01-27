@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Observer, map } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FollowsService {
   private apiUrl = 'assets/api/data/follows.json';
+  private followsData: any[] | null = null; // Initialize as null
 
   constructor(private http: HttpClient) {}
 
@@ -14,14 +15,25 @@ export class FollowsService {
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  follow(followerId: number, followingId: number): void {
-    console.log(`User ${followerId} follows the user ${followingId}`);
-    // Add your logic to perform the follow action, e.g., make an API call to the server
+  followUser(followerId: number, followingId: number): Observable<any> {
+    const putUrl = `${this.apiUrl}/follow`; // Replace with your actual follow endpoint
+
+    // Assuming your server supports PUT requests for following
+    return this.http.put<any>(putUrl, {
+      follower_id: followerId,
+      following_id: followingId,
+    });
   }
 
-  isFollowing(followerId: number, followingId: number): boolean {
+  unfollowUser(followerId: number, followingId: number): Observable<any> {
+    const deleteUrl = `${this.apiUrl}/unfollow`; // Replace with your actual unfollow endpoint
 
-    return true;
-
+    // Assuming your server supports DELETE requests for unfollowing
+    return this.http.delete<any>(deleteUrl, {
+      params: {
+        followerId: followerId.toString(),
+        followingId: followingId.toString(),
+      },
+    });
   }
 }

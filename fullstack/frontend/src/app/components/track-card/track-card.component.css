@@ -62,7 +62,7 @@ img {
   border-radius: 50%;
 }
 
-#heart-btn {
+#heart-btn, #heart-btn.liked:hover {
   color: #666;
   background: none;
   cursor: pointer;
@@ -70,11 +70,7 @@ img {
   font-size: 10px;
 }
 
-#heart-btn:hover {
-  color: #FF1493;
-}
-
-#heart-icon:hover {
+#heart-btn:hover, #heart-btn.liked {
   color: #ff1493;
 }
 

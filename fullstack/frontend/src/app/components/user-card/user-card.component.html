@@ -7,9 +7,17 @@
   </button>
 
   <button
-    *ngIf="loggedInUserId !== userData.id"
+    *ngIf="loggedInUserId !== userData.id && isFollow"
     class="follow-button"
-    (click)="$event.stopPropagation()"
+    (click)="unfollowUser(); $event.stopPropagation()"
+  >
+    Pas suivre
+  </button>
+
+  <button
+    *ngIf="loggedInUserId !== userData.id && !isFollow"
+    class="follow-button"
+    (click)="followUser(); $event.stopPropagation()"
   >
     Suivre
   </button>

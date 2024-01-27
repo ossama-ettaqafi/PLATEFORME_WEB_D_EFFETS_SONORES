@@ -20,6 +20,8 @@ export class TrackOwnerComponent implements OnInit {
   userlikesCount: number | undefined;
   user: any;
 
+  public isFollow: boolean | undefined;
+
   constructor(
     private likesService: LikesService,
     private followsService: FollowsService,
@@ -33,12 +35,51 @@ export class TrackOwnerComponent implements OnInit {
 
     this.usersService.getUsers().subscribe((users) => {
       this.user = users.find((user) => user.id == this.trackData.user_id);
+      this.checkIfFollows();
     });
 
     this.getFollowersCount();
     this.getFollowingCount();
     this.getUserLikesCount();
   }
+
+  checkIfFollows(): void {
+    if (this.loggedInUserId && this.user && this.user.id) {
+      this.followsService.getFollows().subscribe((followsData: any[]) => {
+        const followEntry = followsData.find(
+          (entry) =>
+            entry.follower_id === this.loggedInUserId &&
+            entry.following_id === this.user.id
+        );
+        this.isFollow = !!followEntry; // Set isFollow to true if followEntry is found, otherwise false
+      });
+    } else {
+      this.isFollow = false; // Set isFollow to false if user data or logged-in user ID is not available
+    }
+  }
+
+  followUser(): void {
+    if (this.loggedInUserId && this.user && this.user.id) {
+      this.followsService
+        .followUser(this.loggedInUserId, this.user.id)
+        .subscribe(() => {
+          // Optional: You can perform additional actions after successful follow
+          this.checkIfFollows(); // Refresh follow status after follow
+        });
+    }
+  }
+
+  unfollowUser(): void {
+    if (this.loggedInUserId && this.user && this.user.id) {
+      this.followsService
+        .unfollowUser(this.loggedInUserId, this.user.id)
+        .subscribe(() => {
+          // Optional: You can perform additional actions after successful unfollow
+          this.checkIfFollows(); // Refresh follow status after unfollow
+        });
+    }
+  }
+
 
   getFollowersCount() {
     this.followsService.getFollows().subscribe((data) => {

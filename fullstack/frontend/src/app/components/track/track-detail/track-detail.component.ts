@@ -1,5 +1,5 @@
 import { UsersService } from 'src/app/services/users.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { LikesService } from 'src/app/services/likes.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { CategoryService } from 'src/app/services/category.service';
@@ -10,13 +10,15 @@ import { AudioService } from 'src/app/services/audio.service';
   templateUrl: './track-detail.component.html',
   styleUrls: ['./track-detail.component.css'],
 })
-export class TrackDetailComponent implements OnInit {
+export class TrackDetailComponent implements OnInit, OnDestroy {
   @Input() trackData: any;
 
   likesCount: any = 0;
   user: any;
   LoggedUserId: any;
   category: any;
+  public hasLiked: boolean | undefined;
+  isLiked: boolean | undefined;
 
   constructor(
     private likesService: LikesService,
@@ -28,6 +30,7 @@ export class TrackDetailComponent implements OnInit {
 
   ngOnInit() {
     this.LoggedUserId = this.sharedService.getLoggedInUserId();
+
     this.likesService.getLikes().subscribe((likes) => {
       this.likesCount = likes.filter(
         (like) => like.track_id == this.trackData.id
@@ -39,6 +42,49 @@ export class TrackDetailComponent implements OnInit {
     });
 
     this.getCategoryById(this.trackData.categoryId);
+
+    this.checkIfLiked();
+  }
+
+  likeTrack(): void {
+    if (this.LoggedUserId !== null && this.LoggedUserId !== undefined && this.trackData.id !== undefined) {
+      this.likesService.likeTrack(this.LoggedUserId, this.trackData.id).subscribe(
+        response => {
+          this.isLiked = true;
+          console.log('Like operation successful:', response);
+          console.log('isLiked:', this.isLiked);
+        },
+        error => {
+          console.error('Error during like operation:', error);
+        }
+      );
+    }
+  }
+
+  dislikeTrack(): void {
+    if (this.LoggedUserId !== null && this.LoggedUserId !== undefined && this.trackData.id !== undefined) {
+      this.likesService.dislikeTrack(this.LoggedUserId, this.trackData.id).subscribe(
+        response => {
+          this.isLiked = false;
+          console.log('Dislike operation successful:', response);
+          console.log('isLiked:', this.isLiked);
+        },
+        error => {
+          console.error('Error during dislike operation:', error);
+        }
+      );
+    }
+  }
+
+  checkIfLiked(): void {
+    this.likesService.getLikes().subscribe((likesData: any[]) => {
+      const likedEntry = likesData.find(
+        (entry) =>
+          entry.user_id === this.LoggedUserId &&
+          entry.track_id === this.trackData.id
+      );
+      this.hasLiked = !!likedEntry; // Set hasLiked to true if likedEntry is found, otherwise false
+    });
   }
 
   public formatTime(seconds: number): string {

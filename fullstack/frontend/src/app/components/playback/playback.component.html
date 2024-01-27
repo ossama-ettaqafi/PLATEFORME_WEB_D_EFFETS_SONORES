@@ -8,12 +8,12 @@
       <div class="track-artist">Meow, meow!</div>
     </div>
     <div class="progress-bar-container">
-      <div class="heart-icon liked"><i class="fas fa-cat"></i></div>
+      <div id="cat"><i class="fas fa-cat"></i></div>
       <progress class="progress-bar"></progress>
     </div>
     <div class="duration">00:00 / 00:00</div>
     <div class="playback-controls">
-      <button class="play-pause-btn">
+      <button class="play-pause-btn cat">
         <i class="fas fa-paw"></i>
       </button>
     </div>
@@ -31,8 +31,28 @@
       <div class="track-artist">{{ audioService.artist?.name }}</div>
     </div>
     <div class="progress-bar-container">
-      <div class="heart-icon liked"><i class="fas fa-heart"></i></div>
-      <progress class="progress-bar" [value]="getAudioTime()" [max]="getValidAudioDuration()"></progress>
+      <button
+        *ngIf="audioService.getLikeStats()"
+        id="heart-btn"
+        [ngClass]="{ liked: audioService.getLikeStats() }"
+        (click)="dislikeTrack(audioService.trackData);$event.stopPropagation()"
+      >
+        <i class="fas fa-heart"></i>
+      </button>
+
+      <button
+        *ngIf="!audioService.getLikeStats()"
+        id="heart-btn"
+        (click)="likeTrack(audioService.trackData); $event.stopPropagation()"
+      >
+        <i class="fas fa-heart"></i>
+      </button>
+
+      <progress
+        class="progress-bar"
+        [value]="getAudioTime()"
+        [max]="getValidAudioDuration()"
+      ></progress>
     </div>
     <div class="duration">
       {{ getAudioTime() | formatTime }} / {{ getAudioDuration() | formatTime }}

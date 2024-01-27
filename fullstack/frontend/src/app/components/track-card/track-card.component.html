@@ -5,9 +5,20 @@
   <h3 class="music-title">{{ trackData.title }}</h3>
   <p>{{ user.name }}</p>
   <div class="button-container">
-    <button id="heart-btn" (click)="$event.stopPropagation()">
+
+    <button
+      *ngIf="hasLiked"
+      id="heart-btn"
+      [ngClass]="{ liked: hasLiked }"
+      (click)="dislikeTrack(); $event.stopPropagation()"
+    >
       <i class="fas fa-heart"></i>
     </button>
+
+    <button *ngIf="!hasLiked" id="heart-btn" (click)="likeTrack(); $event.stopPropagation()">
+      <i class="fas fa-heart"></i>
+    </button>
+
     <button
       *ngIf="audioService.isAudioPlaying(trackData.trackURL)"
       id="play-pause-btn"
@@ -23,7 +34,6 @@
       <i class="fas fa-play"></i>
     </button>
 
-    <!-- {{ audioService.isAudioPlaying(trackData.trackURL) }} -->
     <button id="download-btn" (click)="download(); $event.stopPropagation()">
       <i class="fas fa-download"></i>
     </button>

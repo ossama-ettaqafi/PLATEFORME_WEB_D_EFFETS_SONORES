@@ -6,19 +6,29 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class AudioService {
-  audio: HTMLAudioElement = new Audio();
-  pausedTime = 0;
   public trackData: any;
   public artist:any;
+  public hasLiked: boolean | undefined;
+
+  audio: HTMLAudioElement = new Audio();
+  pausedTime = 0;
 
   onTimeUpdate: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(public usersService: UsersService) {}
 
+  setLike(isLiked: boolean):void{
+    this.hasLiked = isLiked;
+  }
+
+  getLikeStats(): boolean | undefined{
+    return this.hasLiked;
+  }
+
   playAudio(trackData: any): void {
-    if (this.audio.src !== trackData.trackURL) {
+    if (this.audio.src != trackData.trackURL && this.audio) {
       this.audio.src = trackData.trackURL;
-      // this.audio.load();
+      this.audio.load();
     }
 
     this.trackData = trackData;
