@@ -5,6 +5,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { AudioService } from 'src/app/services/audio.service';
 import { TrackDeleteService } from 'src/app/services/delete-track.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-track-detail',
@@ -27,7 +28,8 @@ export class TrackDetailComponent implements OnInit, OnDestroy {
     private sharedService: SharedService,
     private categoryService: CategoryService,
     public audioService: AudioService,
-    public trackDeleteService: TrackDeleteService
+    public trackDeleteService: TrackDeleteService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -49,32 +51,44 @@ export class TrackDetailComponent implements OnInit, OnDestroy {
   }
 
   likeTrack(): void {
-    if (this.LoggedUserId !== null && this.LoggedUserId !== undefined && this.trackData.id !== undefined) {
-      this.likesService.likeTrack(this.LoggedUserId, this.trackData.id).subscribe(
-        response => {
-          this.isLiked = true;
-          console.log('Like operation successful:', response);
-          console.log('isLiked:', this.isLiked);
-        },
-        error => {
-          console.error('Error during like operation:', error);
-        }
-      );
+    if (
+      this.LoggedUserId !== null &&
+      this.LoggedUserId !== undefined &&
+      this.trackData.id !== undefined
+    ) {
+      this.likesService
+        .likeTrack(this.LoggedUserId, this.trackData.id)
+        .subscribe(
+          (response) => {
+            this.isLiked = true;
+            // console.log('Like operation successful:', response);
+            // console.log('isLiked:', this.isLiked);
+          },
+          (error) => {
+            console.error('Error during like operation:', error);
+          }
+        );
     }
   }
 
   dislikeTrack(): void {
-    if (this.LoggedUserId !== null && this.LoggedUserId !== undefined && this.trackData.id !== undefined) {
-      this.likesService.dislikeTrack(this.LoggedUserId, this.trackData.id).subscribe(
-        response => {
-          this.isLiked = false;
-          console.log('Dislike operation successful:', response);
-          console.log('isLiked:', this.isLiked);
-        },
-        error => {
-          console.error('Error during dislike operation:', error);
-        }
-      );
+    if (
+      this.LoggedUserId !== null &&
+      this.LoggedUserId !== undefined &&
+      this.trackData.id !== undefined
+    ) {
+      this.likesService
+        .dislikeTrack(this.LoggedUserId, this.trackData.id)
+        .subscribe(
+          (response) => {
+            this.isLiked = false;
+            // console.log('Dislike operation successful:', response);
+            // console.log('isLiked:', this.isLiked);
+          },
+          (error) => {
+            console.error('Error during dislike operation:', error);
+          }
+        );
     }
   }
 
@@ -143,13 +157,12 @@ export class TrackDetailComponent implements OnInit, OnDestroy {
   deleteTrack(): void {
     if (this.trackData.id !== undefined) {
       this.trackDeleteService.deleteTrack(this.trackData.id).subscribe(
-        response => {
-          console.log('Delete operation successful:', response);
+        (response) => {
+          // console.log('Delete operation successful:', response);
 
-          // Additional logic if needed (e.g., navigate to another page)
-
+          this.router.navigate(['/home']);
         },
-        error => {
+        (error) => {
           console.error('Error during delete operation:', error);
 
           // Additional error handling if needed

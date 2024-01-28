@@ -35,7 +35,7 @@ export class TrackCardComponent implements OnInit, OnDestroy {
       this.likesService.likeTrack(this.userId, this.trackData.id).subscribe(
         response => {
           this.isLiked = true;
-          console.log('Like operation successful:', response);
+          // console.log('Like operation successful:', response);
           // console.log('isLiked:', this.isLiked);
         },
         error => {
@@ -50,8 +50,8 @@ export class TrackCardComponent implements OnInit, OnDestroy {
       this.likesService.dislikeTrack(this.userId, this.trackData.id).subscribe(
         response => {
           this.isLiked = false;
-          console.log('Dislike operation successful:', response);
-          console.log('isLiked:', this.isLiked);
+          // console.log('Dislike operation successful:', response);
+          // console.log('isLiked:', this.isLiked);
         },
         error => {
           console.error('Error during dislike operation:', error);

@@ -5,7 +5,6 @@
   <h3 class="music-title">{{ trackData.title }}</h3>
   <p>{{ user.name }}</p>
   <div class="button-container">
-
     <button
       *ngIf="hasLiked"
       id="heart-btn"
@@ -15,7 +14,11 @@
       <i class="fas fa-heart"></i>
     </button>
 
-    <button *ngIf="!hasLiked" id="heart-btn" (click)="likeTrack(); $event.stopPropagation()">
+    <button
+      *ngIf="!hasLiked"
+      id="heart-btn"
+      (click)="likeTrack(); $event.stopPropagation()"
+    >
       <i class="fas fa-heart"></i>
     </button>
 

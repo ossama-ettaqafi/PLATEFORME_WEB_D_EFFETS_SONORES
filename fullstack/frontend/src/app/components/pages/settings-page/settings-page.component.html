@@ -1,6 +1,10 @@
 <div class="main-content">
   <h2>Paramètres</h2>
-  <form [formGroup]="registrationForm" (ngSubmit)="saveChanges()">
+  <form
+    [formGroup]="registrationForm"
+    (ngSubmit)="saveChanges()"
+    enctype="multipart/form-data"
+  >
     <!-- Avatar Section -->
     <div class="container">
       <div class="avatar-container">
@@ -147,7 +151,11 @@
               Les mots de passe ne correspondent pas!
             </div>
             <div
-              *ngIf="!passwordMatchError && registrationForm.get('password')?.value && registrationForm.get('repeatPassword')?.value"
+              *ngIf="
+                !passwordMatchError &&
+                registrationForm.get('password')?.value &&
+                registrationForm.get('repeatPassword')?.value
+              "
               class="password-success"
             >
               Les mots de passe correspondent!

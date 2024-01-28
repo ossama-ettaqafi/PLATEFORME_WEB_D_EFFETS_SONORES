@@ -7,6 +7,15 @@ import { SharedService } from 'src/app/services/shared.service';
 import { Title } from '@angular/platform-browser';
 import { UserUpdateService } from 'src/app/services/user-update.service';
 
+export interface UserData {
+  name: string;
+  email: string;
+  password: string;
+  bio: string;
+  country: string;
+  city: string;
+}
+
 @Component({
   selector: 'app-settings-page',
   templateUrl: './settings-page.component.html',
@@ -42,7 +51,6 @@ export class SettingsPageComponent implements OnInit {
       bio: [''],
       password: ['', Validators.required],
       repeatPassword: ['', Validators.required],
-      join_date: [''],
     });
   }
 
@@ -64,7 +72,6 @@ export class SettingsPageComponent implements OnInit {
           country: this.user.country,
           city: this.user.city,
           bio: this.user.bio,
-          join_date: this.user.join_date,
           password: '', // Password fields can be initialized as needed
           repeatPassword: '',
         });
@@ -85,26 +92,29 @@ export class SettingsPageComponent implements OnInit {
     );
 
     if (this.registrationForm.valid && this.allFieldsFilled) {
-      const formData = new FormData();
 
+      const userData: UserData = {
+        name: this.registrationForm.get('name')?.value,
+        email: this.registrationForm.get('email')?.value,
+        password: this.registrationForm.get('password')?.value,
+        bio: this.registrationForm.get('bio')?.value,
+        country: this.registrationForm.get('country')?.value,
+        city: this.registrationForm.get('city')?.value,
+      };
+
+
+      // const formData = new FormData();
       // Append form data to the FormData object
-      formData.append('name', this.registrationForm.get('name')?.value);
-      formData.append('email', this.registrationForm.get('email')?.value);
-      formData.append('password', this.registrationForm.get('password')?.value);
-      formData.append('bio', this.registrationForm.get('bio')?.value);
-      formData.append('country', this.registrationForm.get('country')?.value);
-      formData.append('city', this.registrationForm.get('city')?.value);
+      // formData.append('name', this.registrationForm.get('name')?.value);
+      // formData.append('email', this.registrationForm.get('email')?.value);
+      // formData.append('password', this.registrationForm.get('password')?.value);
+      // formData.append('bio', this.registrationForm.get('bio')?.value);
+      // formData.append('country', this.registrationForm.get('country')?.value);
+      // formData.append('city', this.registrationForm.get('city')?.value);
 
-      // Append the image file if available
-      if (this.selectedFile) {
-        formData.append('image_file', this.selectedFile);
-      } else {
-        formData.append('image_file', '');
-      }
-
-      this.userUpdateService.updateUser(this.userId!, formData).subscribe(
+      this.userUpdateService.updateUser(this.userId!, userData, this.selectedFile).subscribe(
         (response) => {
-          console.log('Update successful:', response);
+          // console.log('Update successful:', response);
 
           this.changesSaved = true;
           this.displaySuccessMessage = true;
@@ -126,12 +136,11 @@ export class SettingsPageComponent implements OnInit {
     }
   }
 
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
-
+  onFileSelected(event: any) {
+    const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.selectedFile = file;
-      this.user.image_path = URL.createObjectURL(file);
+      this.user.image_path = URL.createObjectURL(this.selectedFile);
     }
   }
 }

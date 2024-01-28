@@ -19,7 +19,7 @@ class UserController extends Controller
     public function register(Request $request)
     {
         try {
-            Log::info('Attempting to create a new user', ['request_data' => $request->all()]);
+            Log::info('Update User Request Data', ['request_data' => $request->all()]);
 
             // Validate the request data (you might have additional validation rules)
             $validatedData = $request->validate([
@@ -74,54 +74,46 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            Log::info('Attempting to update user data', ['request_data' => $request->all(), 'user_id' => $id]);
+        // Log the request data
+        Log::info('Update User Request Data', ['request_data' => $request->all()]);
 
-            // Validate the request data (you might have additional validation rules)
-            $validatedData = $request->validate([
-                'name' => 'string',
-                'email' => 'email|unique:users,email,'.$id,
-                'password' => 'string',
-                'bio' => 'string',
-                'country' => 'string',
-                'city' => 'string',
-                'image_file' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-                'join_date' => 'date',
-            ]);
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . $id, // Ignore the email of the current user
+            'password' => 'required|string',
+            'bio' => 'string',
+            'country' => 'string',
+            'city' => 'string',
+            'image_file' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-            // Log the validated data
-            Log::info('Validated data', ['validated_data' => $validatedData]);
+        // Find the user by ID
+        $user = User::find($id);
 
-            // Find the user by ID
-            $user = User::find($id);
+        // Check if the user exists
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
 
-            // Log the user data before the update
-            Log::info('User data before update', ['user_data_before_update' => $user->toArray()]);
+        // Handle file upload if image is provided
+        if ($request->hasFile('image_file')) {
+            $image = $request->file('image_file');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $imagePath = 'images/users/';
+            $image->move(public_path($imagePath), $imageName);
 
-            // Check if the user exists
-            if (!$user) {
-                return response()->json(['error' => 'User not found'], 404);
-            }
+            // Save the image path in the database
+            $user->update(['image_path' => url($imagePath . $imageName)]);
+        }
 
-            // Handle file upload
-            if ($request->hasFile('image_file')) {
-                $image = $request->file('image_file');
-                $imageName = time() . '_' . $image->getClientOriginalName();
-                $imagePath = 'images/users/';
-                $image->move(public_path($imagePath), $imageName);
+        // Update user data
+        $user->update($validatedData);
 
-                // Save the image path in the database
-                $user->update(['image_path' => $imagePath . $imageName]);
-            }
+        // Return a response with the updated user information
+        return response()->json(['user' => $user], 200);
 
-            // Update user data
-            $user->update($validatedData);
-
-            // Log the user data after the update
-            Log::info('User data after update', ['user_data_after_update' => $user->toArray()]);
-
-            // Return a response with the updated user information
-            return response()->json(['user' => $user], 200);
-        } catch (\Exception $e) {
+    } catch (\Exception $e) {
             // Log the error
             Log::error('Error updating user: ' . $e->getMessage());
 

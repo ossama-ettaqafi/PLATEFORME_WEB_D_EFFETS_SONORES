@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TrackDeleteService {
-  private apiUrl = 'http://your-api-endpoint'; // Replace with your API endpoint
+  private apiUrl = 'http://127.0.0.1:8000/api'; // Replace with your API endpoint
 
   constructor(private http: HttpClient) {}
 
@@ -17,6 +17,6 @@ export class TrackDeleteService {
     });
 
     // Adjust the endpoint and HTTP method based on your API
-    return this.http.delete(`${this.apiUrl}/delete-track/${trackId}`, { headers });
+    return this.http.delete(`${this.apiUrl}/track/delete/${trackId}`, { headers });
   }
 }

@@ -14,13 +14,13 @@ class TracksTableSeeder extends Seeder
 
         foreach (range(1, 5) as $index) {
             DB::table('tracks')->insert([
-                'title' => $faker->sentence,
+                'title' => $faker->word,
                 'user_id' => $faker->numberBetween(1, 5),
-                'image_path' => $faker->imageUrl(),
+                'image_path' => 'assets/images/def/track_cover.jpg',
                 'duration' => $faker->numberBetween(180, 600),
                 'release_date' => $faker->date,
                 'category' => $faker->numberBetween(1, 5),
-                'trackURL' => $faker->url,
+                'trackURL' => $faker->url . '.mp3',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

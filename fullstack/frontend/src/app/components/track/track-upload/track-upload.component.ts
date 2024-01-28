@@ -15,6 +15,8 @@ export class TrackUploadComponent implements OnInit {
   errorMessage: string = '';
   loggedUserId: number | undefined;
   currentDate: Date = new Date();
+  selectedImage: File | undefined;
+  selectedAudio: File | undefined;
 
   constructor(
     public categoryService: CategoryService,
@@ -49,42 +51,40 @@ export class TrackUploadComponent implements OnInit {
     const formData = new FormData();
     formData.append('title', this.formData.title);
     formData.append('category', this.formData.category);
-    formData.append('release_date',this.currentDate.toDateString());
+    formData.append('release_date', this.currentDate.toDateString());
+    formData.append('user_id', String(this.loggedUserId));
 
-    if (this.formData.image !== null) {
-      formData.append('image_file', this.formData.image);
+    if (this.selectedImage) {
+      formData.append('image_file', this.selectedImage);
     }
 
-    if (this.formData.audio !== null) {
-      formData.append('audio_file', this.formData.audio);
-    }
-
-    for (const pair of (formData as any).entries()) {
-      console.log(pair[0], pair[1]);
+    if (this.selectedAudio) {
+      formData.append('audio_file', this.selectedAudio);
+      formData.append('duration', String(this.selectedAudio.size));
     }
 
     // Call the track upload service to send data to Laravel API
-    // this.trackUploadService.uploadTrack(this.formData).subscribe(
-    //   (response) => {
-    //     // Handle success response from Laravel API
-    //     console.log('Track upload successful:', response);
+    this.trackUploadService.uploadTrack(formData).subscribe(
+      (response) => {
+        // Handle success response from Laravel API
+        // console.log('Track upload successful:', response);
 
-    //     // Display success message
-    //     this.successMessage = 'Téléchargé avec succès!';
-    //     this.errorMessage = '';
+        // Display success message
+        this.successMessage = 'Téléchargé avec succès!';
+        this.errorMessage = '';
 
-    //     // Navigate to the profile page
-    //     this.router.navigate(['/profile', this.loggedUserId]);
-    //   },
-    //   (error) => {
-    //     // Handle error response from Laravel API
-    //     console.error('Track upload failed:', error);
+        // Navigate to the profile page
+        this.router.navigate(['/profile', this.loggedUserId]);
+      },
+      (error) => {
+        // Handle error response from Laravel API
+        console.error('Track upload failed:', error);
 
-    //     // Display error message
-    //     this.errorMessage = 'Échec du téléchargement.';
-    //     this.successMessage = ''; // Clear success message if there was one
-    //   }
-    // );
+        // Display error message
+        this.errorMessage = 'Échec du téléchargement.';
+        this.successMessage = ''; // Clear success message if there was one
+      }
+    );
   }
 
   isFormValid(): boolean {
@@ -97,13 +97,13 @@ export class TrackUploadComponent implements OnInit {
   }
 
   onImageChange(event: any) {
-    // Handle image file change event
     this.formData.image = event.target.files[0];
+    this.selectedImage = event.target.files[0];
   }
 
   onAudioChange(event: any) {
-    // Handle audio file change event
     this.formData.audio = event.target.files[0];
+    this.selectedAudio = event.target.files[0];
   }
 
   resetForm() {

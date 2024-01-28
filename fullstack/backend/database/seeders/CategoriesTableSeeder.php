@@ -12,10 +12,18 @@ class CategoriesTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        $icons = [
+            "fas fa-heart",
+            "fas fa-guitar",
+            "fas fa-cat",
+            "fas fa-cloud",
+            "fas fa-microphone",
+        ];
+
         foreach (range(1, 5) as $index) {
             DB::table('categories')->insert([
                 'name' => $faker->word,
-                'icon' => $faker->word,
+                'icon' => $icons[$index - 1],
                 'imagePath' => $faker->imageUrl(),
                 'side' => $faker->randomElement(['left', 'right']),
                 'created_at' => now(),

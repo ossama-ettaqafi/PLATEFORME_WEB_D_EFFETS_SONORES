@@ -58,9 +58,8 @@ Route::group(['prefix' => 'api'], function () {
 // ALTER Data
 Route::group(['prefix' => 'api'], function () {
     //User
-    Route::put('/user/update/{id}', [UserController::class, 'update']);
+    Route::post('/user/update/{id}', [UserController::class, 'update']);
 });
-
 
 // DELETE data
 Route::group(['prefix' => 'api'], function () {

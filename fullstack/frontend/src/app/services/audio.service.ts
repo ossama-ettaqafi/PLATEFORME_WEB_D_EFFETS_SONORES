@@ -7,7 +7,7 @@ import { Observable, map } from 'rxjs';
 })
 export class AudioService {
   public trackData: any;
-  public artist:any;
+  public artist: any;
   public hasLiked: boolean | undefined;
 
   audio: HTMLAudioElement = new Audio();
@@ -17,16 +17,18 @@ export class AudioService {
 
   constructor(public usersService: UsersService) {}
 
-  setLike(isLiked: boolean):void{
+  setLike(isLiked: boolean): void {
     this.hasLiked = isLiked;
   }
 
-  getLikeStats(): boolean | undefined{
+  getLikeStats(): boolean | undefined {
     return this.hasLiked;
   }
 
   playAudio(trackData: any): void {
-    if (this.audio.src != trackData.trackURL && this.audio) {
+    const audioFileName = this.extractAudioURL(this.audio.src);
+
+    if (audioFileName !== trackData.trackURL) {
       this.audio.src = trackData.trackURL;
       this.audio.load();
     }
@@ -45,12 +47,17 @@ export class AudioService {
   }
 
   isAudioPlaying(url: string): boolean {
-    const sanitizedCurrentSrc = this.audio.src.replace(
-      window.location.origin,
-      ''
-    );
+    const audioFileName = this.extractAudioURL(this.audio.src);
 
-    return sanitizedCurrentSrc.endsWith(url) && !this.audio.paused;
+    return audioFileName == url && !this.audio.paused;
+  }
+
+  private extractAudioURL(url: string): string {
+    // Use a regular expression to extract the file name from the URL
+    const match = url.toString();
+
+    // If a match is found, decode the file name and return it; otherwise, return the original URL
+    return match ? decodeURIComponent(match) : url;
   }
 
   isGlobalAudioPlaying(): boolean {
@@ -58,6 +65,7 @@ export class AudioService {
   }
 
   playGlobal(): void {
+    // console.log(this.pausedTime);
     this.audio.currentTime = this.pausedTime;
     this.audio.play();
   }
@@ -82,11 +90,11 @@ export class AudioService {
   }
 
   extractUserFromService(): Observable<any> {
-    return this.usersService.getUsers().pipe(
-      map((users) =>
-        users.find((user) => user.id == this.trackData.user_id)
-      )
-    );
+    return this.usersService
+      .getUsers()
+      .pipe(
+        map((users) => users.find((user) => user.id == this.trackData.user_id))
+      );
   }
 
   initAudioEventListeners(): void {

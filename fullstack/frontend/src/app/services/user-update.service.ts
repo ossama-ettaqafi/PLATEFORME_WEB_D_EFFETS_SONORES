@@ -11,11 +11,32 @@ export class UserUpdateService {
 
   constructor(private http: HttpClient) {}
 
-  updateUser(userId: number, formData: FormData): Observable<any> {
-    const headers = new HttpHeaders({
+  updateUser(
+    userId: number,
+    userData: any,
+    file: File | null
+  ): Observable<any> {
+    const url = `${this.apiUrl}/user/update/${userId}`;
 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',  // For JSON requests
+      'Accept': 'application/json',
     });
 
-    return this.http.put(`${this.apiUrl}/user/update/${userId}`, formData, { headers });
+
+    const formData = new FormData();
+
+    // Append known form data fields
+    formData.append('name', userData.name);
+    formData.append('email', userData.email);
+    formData.append('password', userData.password);
+    formData.append('bio', userData.bio);
+    formData.append('country', userData.country);
+    formData.append('city', userData.city);
+
+    // Append the image file if available
+    if (file !== null) formData.append('image_file', file);
+
+    return this.http.post(url, formData);
   }
 }

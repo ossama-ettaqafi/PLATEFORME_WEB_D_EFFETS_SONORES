@@ -35,13 +35,13 @@ export class PlaybackComponent implements OnInit, OnDestroy  {
   }
 
   likeTrack(trackData: any): void {
-    console.log("sss");
+    // console.log("sss");
     if (this.userId !== null && this.userId !== undefined && trackData.id !== undefined) {
       this.likesService.likeTrack(this.userId, trackData.id).subscribe(
         response => {
           this.isLiked = true;
-          console.log('Like operation successful:', response);
-          console.log('isLiked:', this.isLiked);
+          // console.log('Like operation successful:', response);
+          // console.log('isLiked:', this.isLiked);
         },
         error => {
           console.error('Error during like operation:', error);
@@ -55,8 +55,8 @@ export class PlaybackComponent implements OnInit, OnDestroy  {
       this.likesService.dislikeTrack(this.userId, trackData.id).subscribe(
         response => {
           this.isLiked = false;
-          console.log('Dislike operation successful:', response);
-          console.log('isLiked:', this.isLiked);
+          // console.log('Dislike operation successful:', response);
+          // console.log('isLiked:', this.isLiked);
         },
         error => {
           console.error('Error during dislike operation:', error);

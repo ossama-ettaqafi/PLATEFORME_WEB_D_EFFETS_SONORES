@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -6,16 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TrackUploadService {
-  private apiUrl = 'http://your-laravel-api-endpoint'; // Replace with your Laravel API endpoint
+  private apiUrl = 'http://127.0.0.1:8000/api';
 
   constructor(private http: HttpClient) {}
 
-  uploadTrack(formData: any): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-
+  uploadTrack(formData: FormData): Observable<any> {
     // Adjust the endpoint and HTTP method based on your Laravel API
-    return this.http.post(`${this.apiUrl}/upload-track`, formData, { headers });
+    return this.http.post(`${this.apiUrl}/track/store`, formData);
   }
 }

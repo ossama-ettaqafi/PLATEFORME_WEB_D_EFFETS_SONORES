@@ -66,12 +66,10 @@ export class RegisterPageComponent implements OnInit {
         formData.append('image_file', this.selectedFile);
       }
 
-      console.log(formData);
-
       this.registrationService.register(formData).subscribe(
         (response) => {
           // Handle success response from Laravel API
-          console.log('Registration successful:', response);
+          // console.log('Registration successful:', response);
           this.router.navigate(['/home']);
         },
         (error) => {

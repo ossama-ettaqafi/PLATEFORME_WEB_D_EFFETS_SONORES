@@ -8,15 +8,13 @@ import { Observable } from 'rxjs';
 export class RegistrationService {
   private apiUrl = 'http://127.0.0.1:8000/api';
 
-  currentDate: Date = new Date();
-
   constructor(private http: HttpClient) {}
 
   register(formData: FormData): Observable<any> {
     const headers = new HttpHeaders();
 
     return this.http.post<any>(`${this.apiUrl}/user/register`, formData, {
-      headers: headers,
+      headers,
     });
   }
 }
