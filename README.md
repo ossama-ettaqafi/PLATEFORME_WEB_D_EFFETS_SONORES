@@ -1,4 +1,7 @@
 <div align="center">
+
+### Guide sur l'utilisation de notre plateforme locale
+<a href="https://github.com/imossama/Plateforme-web-d-effets-sonores/blob/main/fullstack/README.md"> <img src="https://64.media.tumblr.com/15b7fc60bbe2fd927bc223ba628d57a5/tumblr_mrub1w37AL1swnmv6o1_400.pnj" alt="meow-it use" width="50" title="Voir le guide"></a>
   
 ### Captures d'écran de l'interface / progression du projet
 <a href="https://drive.google.com/drive/folders/1Y3fxcTsiJ2nF_YQMAfViY1RmNV1n2Q-l?usp=drive_link"> <img src="https://www.gstatic.com/images/icons/material/product/2x/drive_48dp.png" alt="ossama's google drive" width="50" title="Voir les captures d'écran de l'interface"></a>
