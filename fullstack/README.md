@@ -1,11 +1,12 @@
 <div align="center">
 
-   <img src="https://media.tenor.com/OKO48giZVgwAAAAM/school-superbad.gif" alt="McLovin pew-pew haha gangsta" width="100%">
+   <img src="https://media.tenor.com/OKO48giZVgwAAAAM/school-superbad.gif" alt="McLovin pew-pew haha gangsta" width="80%">
   
 </div>
 
 <div align="center">
-  <h3>Guide sur l'utilisation de notre plateforme locale</h3>
+   
+  ### Guide sur l'utilisation de notre plateforme locale
   <p>Bienvenue sur notre plateforme locale ! Ce guide vous guidera à travers les étapes pour profiter au maximum de nos fonctionnalités et services. Suivez les instructions ci-dessous pour commencer :</p>
   <img src="https://i.ibb.co/Bc4gXkf/meow-it-logo-new.png" alt="meow-it-logo-new" width="200">
 </div>
