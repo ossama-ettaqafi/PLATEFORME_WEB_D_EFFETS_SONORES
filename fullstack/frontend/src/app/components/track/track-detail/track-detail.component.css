@@ -14,19 +14,20 @@
 
 .image-container {
   width: 200px;
-  max-height: 200px;
+  height: 200px;
   text-align: center;
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 30px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   position: relative;
+
 }
 
 .image-container img {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.2s ease-in-out;
 }
 

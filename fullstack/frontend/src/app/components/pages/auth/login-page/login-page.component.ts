@@ -22,6 +22,7 @@ export class LoginPageComponent {
 
     this.usersService.getUsers().subscribe(data => {
       this.users = data;
+      // console.log(this.users);
     });
   }
 

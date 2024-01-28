@@ -7,13 +7,7 @@
         class="register-image"
       />
     </div>
-    <form
-      (submit)="onSubmit()"
-      action=""
-      method="POST"
-      class="right-section"
-      enctype="multipart/form-data"
-    >
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="right-section" [formGroup]="registrationForm" action="http://127.0.0.1:8000/api/user/register" enctype="multipart/form-data">
       <div class="logo-image">
         <img src="assets/images/def/meow-it.png" alt="meow-it" />
       </div>
@@ -21,15 +15,30 @@
       <h1>Inscription</h1>
       <div class="input-group">
         <i class="fa fa-user"></i>
-        <input type="text" name="fullname" placeholder="Nom complet" [(ngModel)]="formData.fullname" />
+        <input type="text" name="fullname" placeholder="Nom complet" formControlName="name" />
       </div>
       <div class="input-group">
         <i class="fa fa-envelope"></i>
-        <input type="email" name="email" placeholder="Email" [(ngModel)]="formData.email" />
+        <input type="email" name="email" placeholder="Email" formControlName="email" />
       </div>
       <div class="input-group">
         <i class="fa fa-lock"></i>
-        <input type="password" name="password" placeholder="Mot de passe" [(ngModel)]="formData.password" />
+        <input type="password" name="password" placeholder="Mot de passe" formControlName="password" />
+      </div>
+
+      <div class="input-group">
+        <i class="fa fa-info"></i>
+        <textarea name="bio" placeholder="Bio" formControlName="bio"></textarea>
+      </div>
+
+      <div class="input-group">
+        <i class="fa fa-globe"></i>
+        <input type="text" name="country" placeholder="Pays" formControlName="country" />
+      </div>
+
+      <div class="input-group">
+        <i class="fa fa-building"></i>
+        <input type="text" name="city" placeholder="Ville" formControlName="city" />
       </div>
 
       <div class="input-group">
@@ -37,7 +46,7 @@
           <label for="upload-input" class="upload-logo">
             <i class="fa fa-cloud-upload"></i>
           </label>
-          <span id="file-name" class="upload-file-name">{{ formData.image ? formData.image.name : 'Choisir une image' }}</span>
+          <span id="file-name" class="upload-file-name">{{ registrationForm.get('image_file')?.value?.name || 'Choisir une image' }}</span>
         </div>
         <input type="file" id="upload-input" (change)="onFileSelected($event)" accept="image/*" style="display: none;" />
 

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('image_path')->nullable();
             $table->text('bio')->nullable();
-            $table->date('join_date');
+            $table->string('join_date');
             $table->string('country')->nullable();
             $table->string('city')->nullable();
             $table->timestamps(); // Created at and Updated at timestamps

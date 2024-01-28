@@ -36,7 +36,7 @@ export class TrackCardComponent implements OnInit, OnDestroy {
         response => {
           this.isLiked = true;
           console.log('Like operation successful:', response);
-          console.log('isLiked:', this.isLiked);
+          // console.log('isLiked:', this.isLiked);
         },
         error => {
           console.error('Error during like operation:', error);

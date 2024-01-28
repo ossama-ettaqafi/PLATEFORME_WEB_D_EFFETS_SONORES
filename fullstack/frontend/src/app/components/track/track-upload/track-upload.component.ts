@@ -14,6 +14,7 @@ export class TrackUploadComponent implements OnInit {
   successMessage: string = '';
   errorMessage: string = '';
   loggedUserId: number | undefined;
+  currentDate: Date = new Date();
 
   constructor(
     public categoryService: CategoryService,
@@ -45,28 +46,45 @@ export class TrackUploadComponent implements OnInit {
       return;
     }
 
+    const formData = new FormData();
+    formData.append('title', this.formData.title);
+    formData.append('category', this.formData.category);
+    formData.append('release_date',this.currentDate.toDateString());
+
+    if (this.formData.image !== null) {
+      formData.append('image_file', this.formData.image);
+    }
+
+    if (this.formData.audio !== null) {
+      formData.append('audio_file', this.formData.audio);
+    }
+
+    for (const pair of (formData as any).entries()) {
+      console.log(pair[0], pair[1]);
+    }
+
     // Call the track upload service to send data to Laravel API
-    this.trackUploadService.uploadTrack(this.formData).subscribe(
-      (response) => {
-        // Handle success response from Laravel API
-        console.log('Track upload successful:', response);
+    // this.trackUploadService.uploadTrack(this.formData).subscribe(
+    //   (response) => {
+    //     // Handle success response from Laravel API
+    //     console.log('Track upload successful:', response);
 
-        // Display success message
-        this.successMessage = 'Téléchargé avec succès!';
-        this.errorMessage = '';
+    //     // Display success message
+    //     this.successMessage = 'Téléchargé avec succès!';
+    //     this.errorMessage = '';
 
-        // Navigate to the profile page
-        this.router.navigate(['/profile', this.loggedUserId]);
-      },
-      (error) => {
-        // Handle error response from Laravel API
-        console.error('Track upload failed:', error);
+    //     // Navigate to the profile page
+    //     this.router.navigate(['/profile', this.loggedUserId]);
+    //   },
+    //   (error) => {
+    //     // Handle error response from Laravel API
+    //     console.error('Track upload failed:', error);
 
-        // Display error message
-        this.errorMessage = 'Échec du téléchargement.';
-        this.successMessage = ''; // Clear success message if there was one
-      }
-    );
+    //     // Display error message
+    //     this.errorMessage = 'Échec du téléchargement.';
+    //     this.successMessage = ''; // Clear success message if there was one
+    //   }
+    // );
   }
 
   isFormValid(): boolean {

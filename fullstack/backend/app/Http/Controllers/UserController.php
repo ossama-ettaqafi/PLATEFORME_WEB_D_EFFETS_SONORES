@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -15,26 +16,120 @@ class UserController extends Controller
         return response()->json($users);
     }
 
-    public function store(Request $request)
+    public function register(Request $request)
     {
-        // Validate the incoming request data
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8',
-            'image_path' => 'nullable|string',
-            'bio' => 'nullable|string',
-            'join_date' => 'required|date',
-            'country' => 'nullable|string',
-            'city' => 'nullable|string',
-        ]);
+        try {
+            Log::info('Attempting to create a new user', ['request_data' => $request->all()]);
 
-        // Create a new user with the validated data
-        $user = User::create($validatedData);
+            // Validate the request data (you might have additional validation rules)
+            $validatedData = $request->validate([
+                'name' => 'required|string',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|string',
+                'bio' => 'string',
+                'country' => 'string',
+                'city' => 'string',
+                'image_file' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'join_date' => 'date',
+            ]);
 
-        // You can customize the response as needed
-        return response()->json(['message' => 'User created successfully', 'user' => $user], 201);
+            // Create a new user with the validated data
+            $user = User::create($validatedData);
+
+            // Handle file upload
+            if ($request->hasFile('image_file')) {
+                $image = $request->file('image_file');
+
+                // Generate a hashed unique name for the image
+                $hashedName = $image->hashName();
+                $imagePath = 'images/users/';
+
+                // Move the image to the specified directory with the hashed name
+                $image->move(public_path($imagePath), $hashedName);
+
+                // Save the image URL in the database
+                $user->update(['image_path' => url($imagePath . $hashedName)]);
+            } else {
+                // Set default image path when no image is uploaded
+                $user->update(['image_path' => url('assets/images/def/user-image.png')]);
+            }
+
+            // You may want to return a response or redirect as needed
+            return response()->json(['user' => $user], 201);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Handle validation errors, check if the email already exists
+            if ($e->errors()['email'][0] == 'The email has already been taken.') {
+                return response()->json(['error' => 'Email already exists'], 422);
+            }
+
+            // Log other validation errors or return a specific error response
+            return response()->json(['error' => 'Validation error: ' . $e->getMessage()], 422);
+        } catch (\Exception $e) {
+            // Log the error or return a specific error response
+            return response()->json(['error' => 'Error creating user: ' . $e->getMessage()], 500);
+        }
     }
+
+
+    public function update(Request $request, $id)
+    {
+        try {
+            Log::info('Attempting to update user data', ['request_data' => $request->all(), 'user_id' => $id]);
+
+            // Validate the request data (you might have additional validation rules)
+            $validatedData = $request->validate([
+                'name' => 'string',
+                'email' => 'email|unique:users,email,'.$id,
+                'password' => 'string',
+                'bio' => 'string',
+                'country' => 'string',
+                'city' => 'string',
+                'image_file' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'join_date' => 'date',
+            ]);
+
+            // Log the validated data
+            Log::info('Validated data', ['validated_data' => $validatedData]);
+
+            // Find the user by ID
+            $user = User::find($id);
+
+            // Log the user data before the update
+            Log::info('User data before update', ['user_data_before_update' => $user->toArray()]);
+
+            // Check if the user exists
+            if (!$user) {
+                return response()->json(['error' => 'User not found'], 404);
+            }
+
+            // Handle file upload
+            if ($request->hasFile('image_file')) {
+                $image = $request->file('image_file');
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $imagePath = 'images/users/';
+                $image->move(public_path($imagePath), $imageName);
+
+                // Save the image path in the database
+                $user->update(['image_path' => $imagePath . $imageName]);
+            }
+
+            // Update user data
+            $user->update($validatedData);
+
+            // Log the user data after the update
+            Log::info('User data after update', ['user_data_after_update' => $user->toArray()]);
+
+            // Return a response with the updated user information
+            return response()->json(['user' => $user], 200);
+        } catch (\Exception $e) {
+            // Log the error
+            Log::error('Error updating user: ' . $e->getMessage());
+
+            // Return an error response
+            return response()->json(['error' => 'Internal Server Error'], 500);
+        }
+    }
+
 
     public function destroy($id)
     {
@@ -51,34 +146,5 @@ class UserController extends Controller
 
         // You can customize the response as needed
         return response()->json(['message' => 'User deleted successfully']);
-    }
-
-    public function update(Request $request, $id)
-    {
-        // Validate the incoming request data
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id, // Ensure email is unique, excluding the current user
-            'password' => 'nullable|string|min:8', // You might want to handle password updates differently
-            'image_path' => 'nullable|string',
-            'bio' => 'nullable|string',
-            'join_date' => 'required|date',
-            'country' => 'nullable|string',
-            'city' => 'nullable|string',
-        ]);
-
-        // Find the user by ID
-        $user = User::find($id);
-
-        // Check if the user exists
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
-        }
-
-        // Update the user with the validated data
-        $user->update($validatedData);
-
-        // You can customize the response as needed
-        return response()->json(['message' => 'User updated successfully', 'user' => $user]);
     }
 }

@@ -43,7 +43,7 @@ export class TrackDetailComponent implements OnInit, OnDestroy {
       this.user = users.find((user) => user.id == this.trackData.user_id);
     });
 
-    this.getCategoryById(this.trackData.categoryId);
+    this.getCategoryById(this.trackData.category);
 
     this.checkIfLiked();
   }

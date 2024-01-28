@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormGroupDirective,
+} from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { RegistrationService } from 'src/app/services/registration.service';
-
-export interface FormData {
-  fullname: string;
-  email: string;
-  password: string;
-  image: File | null;
-}
 
 @Component({
   selector: 'app-register-page',
@@ -15,64 +15,81 @@ export interface FormData {
   styleUrls: ['./register-page.component.css'],
 })
 export class RegisterPageComponent implements OnInit {
-
-  formData: FormData = {
-    fullname: '',
-    email: '',
-    password: '',
-    image: null,
-  };
-
+  registrationForm: FormGroup;
   errorMessage: string = '';
   selectedFile: File | undefined;
+  currentDate: Date = new Date();
 
   constructor(
     private titleService: Title,
-    private registrationService: RegistrationService
-  ) {}
+    private registrationService: RegistrationService,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {
+    this.registrationForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      bio: ['', Validators.required],
+      country: ['', Validators.required],
+      city: ['', Validators.required],
+      image_file: [null, Validators.required],
+      image_path: [null],
+      join_date: [this.currentDate.toDateString()],
+    });
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle("meow-it | Page d'inscription");
   }
 
-  onSubmit(): void {
-    if (this.isFormValid()) {
+  onSubmit(form: FormGroupDirective): void {
+    if (this.registrationForm?.valid) {
       this.errorMessage = '';
 
-      if (!this.isEmailValid(this.formData.email)) {
-        this.errorMessage = 'Veuillez fournir une adresse e-mail valide.';
-        return;
+      const formData = new FormData();
+
+      // Append form data to the FormData object
+      formData.append('name', this.registrationForm.get('name')?.value);
+      formData.append('email', this.registrationForm.get('email')?.value);
+      formData.append('password', this.registrationForm.get('password')?.value);
+      formData.append('bio', this.registrationForm.get('bio')?.value);
+      formData.append('country', this.registrationForm.get('country')?.value);
+      formData.append('city', this.registrationForm.get('city')?.value);
+      formData.append(
+        'join_date',
+        this.registrationForm.get('join_date')?.value
+      );
+
+      // Append the image file if available
+      if (this.selectedFile) {
+        formData.append('image_file', this.selectedFile);
       }
 
-      // Call the registration service to send data to Laravel API
-      this.registrationService.register(this.formData).subscribe(
+      console.log(formData);
+
+      this.registrationService.register(formData).subscribe(
         (response) => {
           // Handle success response from Laravel API
           console.log('Registration successful:', response);
+          this.router.navigate(['/home']);
         },
         (error) => {
-          // Handle error response from Laravel API
-          console.error('Registration failed:', error);
+          if (
+            error.status === 422 &&
+            error.error.error === 'Email already exists'
+          ) {
+            this.errorMessage =
+              'Email already exists. Please choose a different email.';
+          } else {
+            this.errorMessage = 'Registration failed. Please try again later.';
+          }
         }
       );
     } else {
       this.errorMessage =
         'Tous les champs doivent être remplis et une image doit être sélectionnée.';
     }
-  }
-
-  isEmailValid(email: string): boolean {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
-
-  isFormValid(): boolean {
-    return (
-      this.formData.fullname.trim() !== '' &&
-      this.formData.email.trim() !== '' &&
-      this.formData.password.trim() !== '' &&
-      this.formData.image !== null
-    );
   }
 
   triggerFileInput(): void {
@@ -82,7 +99,7 @@ export class RegisterPageComponent implements OnInit {
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
     if (this.selectedFile) {
-      this.formData.image = this.selectedFile;
+      this.registrationForm.patchValue({ image_file: this.selectedFile });
     }
   }
 }

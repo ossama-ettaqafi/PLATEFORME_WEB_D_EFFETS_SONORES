@@ -6,7 +6,7 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class CategoryService {
-  private apiUrl = 'assets/api/data/categories.json';
+  private apiUrl = 'http://127.0.0.1:8000/api/all-categories';
   private categoryIds: string[] = [];
 
   constructor(private http: HttpClient) {

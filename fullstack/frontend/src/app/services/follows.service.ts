@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, filter, map, switchMap, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { NotificationsService } from './notifications.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FollowsService {
-  private apiUrl = 'assets/api/data/follows.json';
+  private apiUrl = 'http://127.0.0.1:8000/api';
   private followsData: any[] | null = null; // Initialize as null
 
   constructor(
@@ -16,38 +16,23 @@ export class FollowsService {
   ) {}
 
   getFollows(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(`${this.apiUrl}/all-follows`);
   }
 
   followUser(followerId: number, followingId: number): Observable<any> {
     const putUrl = `${this.apiUrl}/follow`; // Replace with your actual follow endpoint
 
     // Assuming your server supports PUT requests for following
-    return this.http.put<any>(putUrl, {
+    return this.http.post<any>(putUrl, {
       follower_id: followerId,
       following_id: followingId,
-    }).pipe(
-      // Add notification after successfully following
-      tap(() => this.notificationsService.addNotification(followingId, followerId, 1))
-    );
+    });
   }
 
   unfollowUser(followerId: number, followingId: number): Observable<any> {
-    const deleteUrl = `${this.apiUrl}/unfollow`;
+    const deleteUrl = `${this.apiUrl}/unfollow/${followerId}/${followingId}`;
 
-    return this.http.delete<any>(deleteUrl, {
-      params: {
-        followerId: followerId.toString(),
-        followingId: followingId.toString(),
-      },
-    }).pipe(
-      // Delete notification after successfully unfollowing
-      switchMap(() => this.notificationsService.getNotifications()),
-      map(notifications => notifications.find(notification =>
-        notification.user_id === followingId && notification.sender_id === followerId
-      )),
-      filter(notification => !!notification),
-      switchMap(notification => this.notificationsService.deleteNotification(notification.id))
-    );
+    return this.http.delete<any>(deleteUrl);
   }
+
 }

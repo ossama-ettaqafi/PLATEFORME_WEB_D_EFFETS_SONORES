@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { FormData } from '../components/pages/auth/register-page/register-page.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegistrationService {
-  private apiUrl = 'http://your-laravel-api-endpoint'; // Replace with your Laravel API endpoint
+  private apiUrl = 'http://127.0.0.1:8000/api';
+
+  currentDate: Date = new Date();
 
   constructor(private http: HttpClient) {}
 
   register(formData: FormData): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
+    const headers = new HttpHeaders();
 
-    // You may need to adjust the endpoint and HTTP method based on your Laravel API
-    return this.http.post(`${this.apiUrl}/register`, formData, { headers });
+    return this.http.post<any>(`${this.apiUrl}/user/register`, formData, {
+      headers: headers,
+    });
   }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained(); // Foreign key to users table
             $table->string('image_path')->nullable();
             $table->integer('duration');
-            $table->date('release_date');
+            $table->string('release_date');
             $table->integer('category');
             $table->string('trackURL');
             $table->timestamps();

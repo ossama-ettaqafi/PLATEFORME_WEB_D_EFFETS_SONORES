@@ -7,16 +7,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UserUpdateService {
-  private apiUrl = 'http://your-api-endpoint'; // Replace with your API endpoint
+  private apiUrl = 'http://127.0.0.1:8000/api';
 
   constructor(private http: HttpClient) {}
 
-  updateUser(formData: FormData): Observable<any> {
+  updateUser(userId: number, formData: FormData): Observable<any> {
     const headers = new HttpHeaders({
-      // Add any necessary headers here
+
     });
 
-    // Adjust the endpoint and HTTP method based on your API
-    return this.http.put(`${this.apiUrl}/update-user`, formData, { headers });
+    return this.http.put(`${this.apiUrl}/user/update/${userId}`, formData, { headers });
   }
 }

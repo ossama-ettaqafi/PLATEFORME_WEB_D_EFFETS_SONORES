@@ -39,7 +39,7 @@ export class CategoryPageComponent implements OnInit {
     this.tracksService.getTracks().subscribe((tracks) => {
       if (this.categoryId) {
         this.filteredTracks = tracks.filter(
-          (track) => track.categoryId == this.categoryId
+          (track) => track.category == this.categoryId
         );
       }
     });

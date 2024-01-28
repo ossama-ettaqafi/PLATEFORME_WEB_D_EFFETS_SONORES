@@ -6,7 +6,7 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root'
 })
 export class TracksService {
-  private apiUrl = 'assets/api/data/tracks.json';
+  private apiUrl = 'http://127.0.0.1:8000/api/all-tracks';
   private tracksIds: string[] = [];
 
 

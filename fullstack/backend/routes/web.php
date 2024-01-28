@@ -42,6 +42,9 @@ Route::group(['prefix' => 'api'], function () {
     //User
     Route::post('/user/store', [UserController::class, 'store']);
 
+    //User
+    Route::post('/user/register', [UserController::class, 'register']);
+
     //Notification
     Route::post('/notification/store', [NotificationController::class, 'store']);
 
@@ -54,7 +57,7 @@ Route::group(['prefix' => 'api'], function () {
 
 // ALTER Data
 Route::group(['prefix' => 'api'], function () {
-    //Track
+    //User
     Route::put('/user/update/{id}', [UserController::class, 'update']);
 });
 
@@ -68,8 +71,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/notification/delete', [NotificationController::class, 'destroy']);
 
     //Follows
-    Route::delete('/unfollow', [FollowController::class, 'unfollowUser']);
+    Route::delete('/unfollow/{followerId}/{followingId}', [FollowController::class, 'unfollowUser']);
 
     //Like
-    Route::delete('/dislike', [LikeController::class, 'destroy']);
+    Route::delete('/like/{userId}/{trackId}', [LikeController::class, 'destroy']);
 });
