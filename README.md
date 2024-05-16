@@ -1,4 +1,4 @@
-# Meow-it: Plateforme de partage d'effets sonores
+# Cahier des charges de la plateforme meow-it
 <div align="center">
 <table>
   <tr>
@@ -24,8 +24,6 @@
   </tr>
 </table>
 </div>
-
-### Cahier des Charges : Meow-it
 
 **1. Introduction**
 
