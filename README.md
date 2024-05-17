@@ -1,38 +1,18 @@
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">Logo de la plateforme</td>
-      <td align="center">Technologies Utilisées</td>
-      <td align="center">Visitez le guide</td>
-      <td align="center">Captures d'écran de l'interface / Progression du projet</td>
-    </tr>
-    <tr>
-      <td align="center"><img src="https://i.ibb.co/Bc4gXkf/meow-it-logo-new.png" alt="meow-it-logo-new" width="200"></td>
-      <td align="center">
-        <img src="https://angular.io/assets/images/logos/angular/angular.png" alt="Angular Logo" width="50">
-        <img src="https://laravel.com/img/logomark.min.svg" alt="Laravel Logo" width="40"><br>
-        <img src="https://img.icons8.com/color/452/html-5.png" alt="HTML Logo" width="50">
-        <img src="https://img.icons8.com/color/452/css3.png" alt="CSS Logo" width="50">
-        <img src="https://img.icons8.com/color/452/typescript.png" alt="TypeScript Logo" width="50"><br>
-        <img src="https://www.php.net/images/logos/new-php-logo.png" alt="PHP Logo" width="50">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" alt="SQL Logo" width="80">
-      </td>
-      <td align="center"><a href="https://github.com/imossama/Plateforme-web-d-effets-sonores/blob/main/fullstack/README.md" target="_blank"><img src="https://64.media.tumblr.com/15b7fc60bbe2fd927bc223ba628d57a5/tumblr_mrub1w37AL1swnmv6o1_400.pnj" alt="meow-it use" width="50" title="Visitez le guide"></a></td>
-      <td align="center"><a href="https://drive.google.com/drive/folders/1Y3fxcTsiJ2nF_YQMAfViY1RmNV1n2Q-l?usp=drive_link" target="_blank"><img src="https://www.gstatic.com/images/icons/material/product/2x/drive_48dp.png" alt="ossama's google drive" width="50" title="Voir les captures d'écran de l'interface"></a>
-        <a href="https://occipital-tornado-e71.notion.site/Avancement-du-projet-individuel-28cd8f345c874f118fd48eb2865e4847?pvs=4" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="ossama's notion" title="Voir la progression du projet" width="50"></a></td>
-    </tr>
-  </table>
-</div>
-
 # Cahier des charges de la plateforme Meow-it
 
+<div align="center">
+  <h3>Ressources et Suivi du Projet</h3>
+  
+  <a href="https://drive.google.com/drive/folders/1Y3fxcTsiJ2nF_YQMAfViY1RmNV1n2Q-l?usp=drive_link" target="_blank"><img src="https://www.gstatic.com/images/icons/material/product/2x/drive_48dp.png" alt="ossama's google drive" width="30" title="Voir les captures d'écran de l'interface"></a>
+  <a href="https://occipital-tornado-e71.notion.site/Avancement-du-projet-individuel-28cd8f345c874f118fd48eb2865e4847?pvs=4" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="ossama's notion" title="Voir la progression du projet" width="30"></a>
+  <a href="https://github.com/imossama/Plateforme-web-d-effets-sonores/blob/main/fullstack/README.md" target="_blank"><img src="https://64.media.tumblr.com/15b7fc60bbe2fd927bc223ba628d57a5/tumblr_mrub1w37AL1swnmv6o1_400.pnj" alt="meow-it use" width="30" title="Visitez le guide"></a>
+</div>
+
 ## Table des matières
-- **Introduction**
-- **Fonctionnalités**
-- **Spécifications Techniques**
-- **Maintenance**
-- **Conclusion**
-- **Annexes**
+- [Introduction](#introduction)
+- [Fonctionnalités](#fonctionnalités)
+- [Spécifications Techniques](#spécifications-techniques)
+- [Conclusion](#conclusion)
 
 ## Introduction
 
@@ -106,11 +86,6 @@ Meow-it est une plateforme communautaire dédiée aux passionnés de son. Elle p
 - **Frontend:** Angular pour l'interface utilisateur.
 - **Backend:** Laravel pour la logique côté serveur et le développement de l'API.
 - **Base de Données:** MySQL pour le stockage des données.
-
-## Maintenance
-
-### Plan de Maintenance
-- Mises à jour régulières pour les corrections de bugs, les correctifs de sécurité et les améliorations fonctionnelles.
 
 ## Conclusion
 
