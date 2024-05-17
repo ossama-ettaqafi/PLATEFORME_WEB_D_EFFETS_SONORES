@@ -36,7 +36,7 @@ php artisan migrate:refresh
 
 ### Remplir les tables avec des données de test :
 
-Les seeders doivent être exécutés dans l'ordre car ils sont liés de manière logique. [Consultez le diagramme de classe UML](https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F66ae98fb-9ffb-42fb-9357-900c29c3b85d%2Fe87e575e-d250-4347-9df3-fa58214ebe48%2FUntitled.png?table=block&id=73d551f8-2eac-448a-bcbf-efc0460faa74&spaceId=66ae98fb-9ffb-42fb-9357-900c29c3b85d&width=2000&userId=6e3e97af-252f-4cec-81ab-55f53f9348d5&cache=v2) :
+Les seeders doivent être exécutés dans l'ordre car ils sont liés de manière logique. [Consultez le diagramme de classe UML](https://drive.google.com/file/d/1sZiBKghnePzmpaCZlfVkIpnjcHr4Tar1/view?usp=drive_link) :
 
 ```bash
 php artisan db:seed --class=UsersTableSeeder     
