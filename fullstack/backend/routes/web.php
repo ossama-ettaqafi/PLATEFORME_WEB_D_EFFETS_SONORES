@@ -14,9 +14,7 @@ use App\Http\Controllers\LikeController;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| Here is where you can register web routes for your application.
 |
 */
 
@@ -24,54 +22,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// GET data
 Route::group(['prefix' => 'api'], function () {
-    Route::get('/all-tracks', [TrackController::class, 'index']);
-    Route::get('/all-users', [UserController::class, 'index']);
-    Route::get('/all-categories', [CategoryController::class, 'index']);
-    Route::get('/all-notifications', [NotificationController::class, 'index']);
-    Route::get('/all-follows', [FollowController::class, 'index']);
-    Route::get('/all-likes', [LikeController::class, 'index']);
+    // GET data
+    Route::get('/all-tracks', [TrackController::class, 'index'])->name('tracks.index');
+    Route::get('/all-users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/all-categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/all-notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::get('/all-follows', [FollowController::class, 'index'])->name('follows.index');
+    Route::get('/all-likes', [LikeController::class, 'index'])->name('likes.index');
+
+    // PUT data
+    Route::post('/track/store', [TrackController::class, 'store'])->name('track.store');
+    Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+    Route::post('/user/register', [UserController::class, 'register'])->name('user.register');
+    Route::post('/notification/store', [NotificationController::class, 'store'])->name('notification.store');
+    Route::post('/follow', [FollowController::class, 'followUser'])->name('follow.store');
+    Route::post('/like', [LikeController::class, 'store'])->name('like.store');
+
+    // ALTER Data
+    Route::post('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
+
+    // DELETE data
+    Route::delete('/track/delete/{id}', [TrackController::class, 'destroy'])->name('track.delete');
+    Route::delete('/notification/delete', [NotificationController::class, 'destroy'])->name('notification.delete');
+    Route::delete('/unfollow/{followerId}/{followingId}', [FollowController::class, 'unfollowUser'])->name('unfollow');
+    Route::delete('/like/{userId}/{trackId}', [LikeController::class, 'destroy'])->name('like.delete');
 });
 
-// PUT data
-Route::group(['prefix' => 'api'], function () {
-    //Track
-    Route::post('/track/store', [TrackController::class, 'store']);
-
-    //User
-    Route::post('/user/store', [UserController::class, 'store']);
-
-    //User
-    Route::post('/user/register', [UserController::class, 'register']);
-
-    //Notification
-    Route::post('/notification/store', [NotificationController::class, 'store']);
-
-    //Follows
-    Route::post('/follow', [FollowController::class, 'followUser']);
-
-    //Like
-    Route::post('/like', [LikeController::class, 'store']);
-});
-
-// ALTER Data
-Route::group(['prefix' => 'api'], function () {
-    //User
-    Route::post('/user/update/{id}', [UserController::class, 'update']);
-});
-
-// DELETE data
-Route::group(['prefix' => 'api'], function () {
-    //Tracks
-    Route::delete('/track/delete/{id}', [TrackController::class, 'destroy']);
-
-    //Notification
-    Route::delete('/notification/delete', [NotificationController::class, 'destroy']);
-
-    //Follows
-    Route::delete('/unfollow/{followerId}/{followingId}', [FollowController::class, 'unfollowUser']);
-
-    //Like
-    Route::delete('/like/{userId}/{trackId}', [LikeController::class, 'destroy']);
-});
