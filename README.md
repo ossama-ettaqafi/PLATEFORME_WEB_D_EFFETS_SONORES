@@ -4,7 +4,7 @@
   <h3>Ressources et Suivi du Projet</h3>
   
   <a href="https://drive.google.com/drive/folders/1Y3fxcTsiJ2nF_YQMAfViY1RmNV1n2Q-l?usp=drive_link" target="_blank"><img src="https://www.gstatic.com/images/icons/material/product/2x/drive_48dp.png" alt="ossama's google drive" width="30" title="Voir les captures d'écran de l'interface"></a>
-  <a href="https://occipital-tornado-e71.notion.site/Avancement-du-projet-individuel-28cd8f345c874f118fd48eb2865e4847?pvs=4" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="ossama's notion" title="Voir la progression du projet" width="30"></a>
+  <a href="https://occipital-tornado-e71.notion.site/meow-it-Avancement-du-projet-individuel-3de5a67faebd485bb4b50ef819efee02?pvs=25" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="ossama's notion" title="Voir la progression du projet" width="30"></a>
   <a href="https://github.com/imossama/Plateforme-web-d-effets-sonores/blob/main/fullstack/README.md" target="_blank"><img src="https://64.media.tumblr.com/15b7fc60bbe2fd927bc223ba628d57a5/tumblr_mrub1w37AL1swnmv6o1_400.pnj" alt="meow-it use" width="30" title="Visitez le guide"></a>
 </div>
 
