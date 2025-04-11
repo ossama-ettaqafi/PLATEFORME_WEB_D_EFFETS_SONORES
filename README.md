@@ -1,4 +1,4 @@
-# 🎵 Meow-it - Cahier des charges de la plateforme
+# 🎵 Meow-it - Cahier des charges
 
 > **Meow-it** est une plateforme web communautaire dédiée aux passionnés de son. Elle permet de **partager**, **découvrir** et **apprécier** des effets sonores uniques dans une interface moderne et interactive.
 
